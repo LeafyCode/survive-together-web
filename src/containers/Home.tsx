@@ -46,7 +46,7 @@ export const Home = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempo
                 </h2>
-                <button className="button is-warning is-medium">
+                <button type="button" className="button is-warning is-medium">
                   Enroll as a distributor
                 </button>
               </div>
@@ -125,13 +125,10 @@ export const Home = () => {
             <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
               <div className="card">
                 <div className="card-content">
-                  <div className="columns">
+                  <div className="columns is-mobile">
                     <div className="column">
                       <div>
                         <h5 className="title is-5">Keels super</h5>
-                        <h6 className="title is-6 has-text-primary ">
-                          Title 6
-                        </h6>
                       </div>
                     </div>
                     <div className="column is-right">
@@ -142,93 +139,93 @@ export const Home = () => {
                       </div>
                     </div>
                   </div>
+                  <h6 className="title is-6 has-text-primary">
+                    +94 77 65456456
+                  </h6>
                   <div>
-                    <h6 className="subtitle is-6">Subtitle 6</h6>
-                    <p>asdasdasd asdasd asdas asdasd asdasd asdasda sdasdasd</p>
+                    <h6 className="subtitle is-6 has-text-grey-light">
+                      Available on 30 cities
+                    </h6>
+                    <p>Galle, Kottawa, Kasbawa, Horana, Kandy, Jaffna</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <p className="title is-3 is-spaced">Cities with most requests</p>
+          <div className="columns ">
             <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
               <div className="card">
                 <div className="card-content">
-                  <div className="columns">
+                  <div className="columns is-mobile">
                     <div className="column">
                       <div>
-                        <h5 className="title is-5">Keels super</h5>
-                        <h6 className="title is-6 has-text-primary ">
-                          Title 6
-                        </h6>
+                        <h5 className="title is-5">District name</h5>
                       </div>
                     </div>
                     <div className="column is-right">
                       <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
+                        <span className="tag is-primary">
+                          <h6 className="subtitle is-6 is-right">
+                            2000 requests
+                          </h6>
                         </span>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h6 className="subtitle is-6">Subtitle 6</h6>
-                    <p>asdasdasd asdasd asdas asdasd asdasd asdasda sdasdasd</p>
+                    <h6 className="subtitle is-6 has-text-grey-light">
+                      Cities
+                    </h6>
+                    <p>Galle, Kottawa, Kasbawa, Horana, Kandy, Jaffna</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <p className="title is-3 is-spaced has-text-centered">Sponsors</p>
+          <div className="columns ">
             <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">Keels super</h5>
-                        <h6 className="title is-6 has-text-primary ">
-                          Title 6
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="subtitle is-6">Subtitle 6</h6>
-                    <p>asdasdasd asdasd asdas asdasd asdasd asdasda sdasdasd</p>
-                  </div>
-                </div>
-              </div>
+              <figure className="image is-2by1">
+                <img
+                  alt="sponsor-logo"
+                  src="https://bulma.io/images/placeholders/256x256.png"
+                />
+              </figure>
             </div>
             <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">Keels super</h5>
-                        <h6 className="title is-6 has-text-primary ">
-                          Title 6
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="subtitle is-6">Subtitle 6</h6>
-                    <p>asdasdasd asdasd asdas asdasd asdasd asdasda sdasdasd</p>
-                  </div>
-                </div>
-              </div>
+              <figure className="image is-2by1">
+                <img
+                  alt="sponsor-logo"
+                  src="https://bulma.io/images/placeholders/256x256.png"
+                />
+              </figure>
+            </div>
+            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+              <figure className="image is-2by1">
+                <img
+                  alt="sponsor-logo"
+                  src="https://bulma.io/images/placeholders/256x256.png"
+                />
+              </figure>
+            </div>
+            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+              <figure className="image is-2by1">
+                <img
+                  alt="sponsor-logo"
+                  src="https://bulma.io/images/placeholders/256x256.png"
+                />
+              </figure>
             </div>
           </div>
         </div>
