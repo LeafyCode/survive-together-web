@@ -4,6 +4,7 @@
   "author": "LeafyCode",
   "license": "GPL-3.0-only",
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -11,20 +12,31 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.5",
+    "@types/react-toast-notifications": "^2.4.0",
+    "apollo-boost": "^0.4.7",
     "bulma": "^0.8.1",
+    "dotenv": "^8.2.0",
+    "graphql": "^14.6.0",
+    "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "react-select": "^3.1.0",
+    "react-toast-notifications": "^2.4.0",
     "styled-components": "^5.0.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "yup": "^0.28.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "schema:download": "yarn run apollo client:download-schema schema.graphql",
+    "types:generate": "yarn run apollo codegen:generate --target=typescript --tagName=gql --addTypename --localSchemaFile=schema.graphql --includes='src/graphql-types/*.ts' --globalTypesFile=src/graphql-types/generated/graphql-global-types.ts --outputFlat src/graphql-types/generated/\n",
+    "types:refresh": "yarn schema:download && yarn types:generate"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,10 +54,14 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
     "@types/react-router-dom": "^5.1.3",
+    "@types/react-select": "^3.0.11",
     "@types/styled-components": "^5.0.1",
+    "@types/yup": "^0.26.33",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "apollo": "^2.25.0",
     "eslint": "^5.16.0 || ^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.1",

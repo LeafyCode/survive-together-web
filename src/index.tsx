@@ -1,15 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { ApolloProvider } from "@apollo/react-hooks";
+import { ToastProvider } from "react-toast-notifications";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import "bulma/css/bulma.css";
 import "./index.css";
+import { apolloClient } from "./lib/apollo";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ToastProvider>
+    <ApolloProvider client={apolloClient}>
+      <App />
+    </ApolloProvider>
+  </ToastProvider>,
   document.getElementById("root")
 );
 

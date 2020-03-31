@@ -1,0 +1,7116 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+"""
+Direct the client to resolve this field locally, either from the cache or local resolvers.
+"""
+directive @client(
+  """
+  When true, the client will never use the cache for this value. See
+  https://www.apollographql.com/docs/react/essentials/local-state/#forcing-resolvers-with-clientalways-true
+  """
+  always: Boolean
+) on FIELD | FRAGMENT_DEFINITION | INLINE_FRAGMENT
+
+"""
+Export this locally resolved field as a variable to be used in the remainder of this query. See
+https://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables
+"""
+directive @export(
+  """The variable name to export this field as."""
+  as: String!
+) on FIELD
+
+"""
+Specify a custom store key for this result. See
+https://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive
+"""
+directive @connection(
+  """Specify the store key."""
+  key: String!
+
+  """
+  An array of query argument names to include in the generated custom store key.
+  """
+  filter: [String!]
+) on FIELD
+
+"""
+expression to compare columns of type Boolean. All fields are combined with logical 'AND'.
+"""
+input Boolean_comparison_exp {
+  _eq: Boolean
+  _gt: Boolean
+  _gte: Boolean
+  _in: [Boolean!]
+  _is_null: Boolean
+  _lt: Boolean
+  _lte: Boolean
+  _neq: Boolean
+  _nin: [Boolean!]
+}
+
+scalar bpchar
+
+"""
+expression to compare columns of type bpchar. All fields are combined with logical 'AND'.
+"""
+input bpchar_comparison_exp {
+  _eq: bpchar
+  _gt: bpchar
+  _gte: bpchar
+  _in: [bpchar!]
+  _is_null: Boolean
+  _lt: bpchar
+  _lte: bpchar
+  _neq: bpchar
+  _nin: [bpchar!]
+}
+
+"""
+columns and relationships of "city"
+"""
+type city {
+  """An array relationship"""
+  city_translations(
+    """distinct select on columns"""
+    distinct_on: [city_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_translation_order_by!]
+
+    """filter the rows returned"""
+    where: city_translation_bool_exp
+  ): [city_translation!]!
+
+  """An aggregated array relationship"""
+  city_translations_aggregate(
+    """distinct select on columns"""
+    distinct_on: [city_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_translation_order_by!]
+
+    """filter the rows returned"""
+    where: city_translation_bool_exp
+  ): city_translation_aggregate!
+
+  """An array relationship"""
+  distributor_cities(
+    """distinct select on columns"""
+    distinct_on: [distributor_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_city_bool_exp
+  ): [distributor_city!]!
+
+  """An aggregated array relationship"""
+  distributor_cities_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_city_bool_exp
+  ): distributor_city_aggregate!
+
+  """An array relationship"""
+  distributor_item_cities(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_city_bool_exp
+  ): [distributor_item_city!]!
+
+  """An aggregated array relationship"""
+  distributor_item_cities_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_city_bool_exp
+  ): distributor_item_city_aggregate!
+
+  """An array relationship"""
+  distributor_pack_cities(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_city_bool_exp
+  ): [distributor_pack_city!]!
+
+  """An aggregated array relationship"""
+  distributor_pack_cities_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_city_bool_exp
+  ): distributor_pack_city_aggregate!
+
+  """An object relationship"""
+  district: district!
+  districtId: uuid!
+  id: uuid!
+  location: geography
+  name: String!
+
+  """An array relationship"""
+  needs(
+    """distinct select on columns"""
+    distinct_on: [need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [need_order_by!]
+
+    """filter the rows returned"""
+    where: need_bool_exp
+  ): [need!]!
+
+  """An aggregated array relationship"""
+  needs_aggregate(
+    """distinct select on columns"""
+    distinct_on: [need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [need_order_by!]
+
+    """filter the rows returned"""
+    where: need_bool_exp
+  ): need_aggregate!
+  postcode: Int
+  sourceId: Int
+}
+
+"""
+aggregated selection of "city"
+"""
+type city_aggregate {
+  aggregate: city_aggregate_fields
+  nodes: [city!]!
+}
+
+"""
+aggregate fields of "city"
+"""
+type city_aggregate_fields {
+  avg: city_avg_fields
+  count(columns: [city_select_column!], distinct: Boolean): Int
+  max: city_max_fields
+  min: city_min_fields
+  stddev: city_stddev_fields
+  stddev_pop: city_stddev_pop_fields
+  stddev_samp: city_stddev_samp_fields
+  sum: city_sum_fields
+  var_pop: city_var_pop_fields
+  var_samp: city_var_samp_fields
+  variance: city_variance_fields
+}
+
+"""
+order by aggregate values of table "city"
+"""
+input city_aggregate_order_by {
+  avg: city_avg_order_by
+  count: order_by
+  max: city_max_order_by
+  min: city_min_order_by
+  stddev: city_stddev_order_by
+  stddev_pop: city_stddev_pop_order_by
+  stddev_samp: city_stddev_samp_order_by
+  sum: city_sum_order_by
+  var_pop: city_var_pop_order_by
+  var_samp: city_var_samp_order_by
+  variance: city_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "city"
+"""
+input city_arr_rel_insert_input {
+  data: [city_insert_input!]!
+  on_conflict: city_on_conflict
+}
+
+"""aggregate avg on columns"""
+type city_avg_fields {
+  postcode: Float
+  sourceId: Float
+}
+
+"""
+order by avg() on columns of table "city"
+"""
+input city_avg_order_by {
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "city". All fields are combined with a logical 'AND'.
+"""
+input city_bool_exp {
+  _and: [city_bool_exp]
+  _not: city_bool_exp
+  _or: [city_bool_exp]
+  city_translations: city_translation_bool_exp
+  distributor_cities: distributor_city_bool_exp
+  distributor_item_cities: distributor_item_city_bool_exp
+  distributor_pack_cities: distributor_pack_city_bool_exp
+  district: district_bool_exp
+  districtId: uuid_comparison_exp
+  id: uuid_comparison_exp
+  location: geography_comparison_exp
+  name: String_comparison_exp
+  needs: need_bool_exp
+  postcode: Int_comparison_exp
+  sourceId: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "city"
+"""
+enum city_constraint {
+  """unique or primary key constraint"""
+  city_pkey
+}
+
+"""
+input type for incrementing integer columne in table "city"
+"""
+input city_inc_input {
+  postcode: Int
+  sourceId: Int
+}
+
+"""
+input type for inserting data into table "city"
+"""
+input city_insert_input {
+  city_translations: city_translation_arr_rel_insert_input
+  distributor_cities: distributor_city_arr_rel_insert_input
+  distributor_item_cities: distributor_item_city_arr_rel_insert_input
+  distributor_pack_cities: distributor_pack_city_arr_rel_insert_input
+  district: district_obj_rel_insert_input
+  districtId: uuid
+  id: uuid
+  location: geography
+  name: String
+  needs: need_arr_rel_insert_input
+  postcode: Int
+  sourceId: Int
+}
+
+"""aggregate max on columns"""
+type city_max_fields {
+  name: String
+  postcode: Int
+  sourceId: Int
+}
+
+"""
+order by max() on columns of table "city"
+"""
+input city_max_order_by {
+  name: order_by
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""aggregate min on columns"""
+type city_min_fields {
+  name: String
+  postcode: Int
+  sourceId: Int
+}
+
+"""
+order by min() on columns of table "city"
+"""
+input city_min_order_by {
+  name: order_by
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""
+response of any mutation on the table "city"
+"""
+type city_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [city!]!
+}
+
+"""
+input type for inserting object relation for remote table "city"
+"""
+input city_obj_rel_insert_input {
+  data: city_insert_input!
+  on_conflict: city_on_conflict
+}
+
+"""
+on conflict condition type for table "city"
+"""
+input city_on_conflict {
+  constraint: city_constraint!
+  update_columns: [city_update_column!]!
+  where: city_bool_exp
+}
+
+"""
+ordering options when selecting data from "city"
+"""
+input city_order_by {
+  city_translations_aggregate: city_translation_aggregate_order_by
+  distributor_cities_aggregate: distributor_city_aggregate_order_by
+  distributor_item_cities_aggregate: distributor_item_city_aggregate_order_by
+  distributor_pack_cities_aggregate: distributor_pack_city_aggregate_order_by
+  district: district_order_by
+  districtId: order_by
+  id: order_by
+  location: order_by
+  name: order_by
+  needs_aggregate: need_aggregate_order_by
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""
+select columns of table "city"
+"""
+enum city_select_column {
+  """column name"""
+  districtId
+
+  """column name"""
+  id
+
+  """column name"""
+  location
+
+  """column name"""
+  name
+
+  """column name"""
+  postcode
+
+  """column name"""
+  sourceId
+}
+
+"""
+input type for updating data in table "city"
+"""
+input city_set_input {
+  districtId: uuid
+  id: uuid
+  location: geography
+  name: String
+  postcode: Int
+  sourceId: Int
+}
+
+"""aggregate stddev on columns"""
+type city_stddev_fields {
+  postcode: Float
+  sourceId: Float
+}
+
+"""
+order by stddev() on columns of table "city"
+"""
+input city_stddev_order_by {
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type city_stddev_pop_fields {
+  postcode: Float
+  sourceId: Float
+}
+
+"""
+order by stddev_pop() on columns of table "city"
+"""
+input city_stddev_pop_order_by {
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type city_stddev_samp_fields {
+  postcode: Float
+  sourceId: Float
+}
+
+"""
+order by stddev_samp() on columns of table "city"
+"""
+input city_stddev_samp_order_by {
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""aggregate sum on columns"""
+type city_sum_fields {
+  postcode: Int
+  sourceId: Int
+}
+
+"""
+order by sum() on columns of table "city"
+"""
+input city_sum_order_by {
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""
+columns and relationships of "city_translation"
+"""
+type city_translation {
+  """An object relationship"""
+  city: city!
+  cityId: uuid!
+  language: bpchar!
+  text: String!
+}
+
+"""
+aggregated selection of "city_translation"
+"""
+type city_translation_aggregate {
+  aggregate: city_translation_aggregate_fields
+  nodes: [city_translation!]!
+}
+
+"""
+aggregate fields of "city_translation"
+"""
+type city_translation_aggregate_fields {
+  count(columns: [city_translation_select_column!], distinct: Boolean): Int
+  max: city_translation_max_fields
+  min: city_translation_min_fields
+}
+
+"""
+order by aggregate values of table "city_translation"
+"""
+input city_translation_aggregate_order_by {
+  count: order_by
+  max: city_translation_max_order_by
+  min: city_translation_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "city_translation"
+"""
+input city_translation_arr_rel_insert_input {
+  data: [city_translation_insert_input!]!
+  on_conflict: city_translation_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "city_translation". All fields are combined with a logical 'AND'.
+"""
+input city_translation_bool_exp {
+  _and: [city_translation_bool_exp]
+  _not: city_translation_bool_exp
+  _or: [city_translation_bool_exp]
+  city: city_bool_exp
+  cityId: uuid_comparison_exp
+  language: bpchar_comparison_exp
+  text: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "city_translation"
+"""
+enum city_translation_constraint {
+  """unique or primary key constraint"""
+  city_translation_pkey
+}
+
+"""
+input type for inserting data into table "city_translation"
+"""
+input city_translation_insert_input {
+  city: city_obj_rel_insert_input
+  cityId: uuid
+  language: bpchar
+  text: String
+}
+
+"""aggregate max on columns"""
+type city_translation_max_fields {
+  text: String
+}
+
+"""
+order by max() on columns of table "city_translation"
+"""
+input city_translation_max_order_by {
+  text: order_by
+}
+
+"""aggregate min on columns"""
+type city_translation_min_fields {
+  text: String
+}
+
+"""
+order by min() on columns of table "city_translation"
+"""
+input city_translation_min_order_by {
+  text: order_by
+}
+
+"""
+response of any mutation on the table "city_translation"
+"""
+type city_translation_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [city_translation!]!
+}
+
+"""
+input type for inserting object relation for remote table "city_translation"
+"""
+input city_translation_obj_rel_insert_input {
+  data: city_translation_insert_input!
+  on_conflict: city_translation_on_conflict
+}
+
+"""
+on conflict condition type for table "city_translation"
+"""
+input city_translation_on_conflict {
+  constraint: city_translation_constraint!
+  update_columns: [city_translation_update_column!]!
+  where: city_translation_bool_exp
+}
+
+"""
+ordering options when selecting data from "city_translation"
+"""
+input city_translation_order_by {
+  city: city_order_by
+  cityId: order_by
+  language: order_by
+  text: order_by
+}
+
+"""
+select columns of table "city_translation"
+"""
+enum city_translation_select_column {
+  """column name"""
+  cityId
+
+  """column name"""
+  language
+
+  """column name"""
+  text
+}
+
+"""
+input type for updating data in table "city_translation"
+"""
+input city_translation_set_input {
+  cityId: uuid
+  language: bpchar
+  text: String
+}
+
+"""
+update columns of table "city_translation"
+"""
+enum city_translation_update_column {
+  """column name"""
+  cityId
+
+  """column name"""
+  language
+
+  """column name"""
+  text
+}
+
+"""
+update columns of table "city"
+"""
+enum city_update_column {
+  """column name"""
+  districtId
+
+  """column name"""
+  id
+
+  """column name"""
+  location
+
+  """column name"""
+  name
+
+  """column name"""
+  postcode
+
+  """column name"""
+  sourceId
+}
+
+"""aggregate var_pop on columns"""
+type city_var_pop_fields {
+  postcode: Float
+  sourceId: Float
+}
+
+"""
+order by var_pop() on columns of table "city"
+"""
+input city_var_pop_order_by {
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""aggregate var_samp on columns"""
+type city_var_samp_fields {
+  postcode: Float
+  sourceId: Float
+}
+
+"""
+order by var_samp() on columns of table "city"
+"""
+input city_var_samp_order_by {
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""aggregate variance on columns"""
+type city_variance_fields {
+  postcode: Float
+  sourceId: Float
+}
+
+"""
+order by variance() on columns of table "city"
+"""
+input city_variance_order_by {
+  postcode: order_by
+  sourceId: order_by
+}
+
+"""
+columns and relationships of "country"
+"""
+type country {
+  code: bpchar!
+
+  """An array relationship"""
+  districts(
+    """distinct select on columns"""
+    distinct_on: [district_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_order_by!]
+
+    """filter the rows returned"""
+    where: district_bool_exp
+  ): [district!]!
+
+  """An aggregated array relationship"""
+  districts_aggregate(
+    """distinct select on columns"""
+    distinct_on: [district_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_order_by!]
+
+    """filter the rows returned"""
+    where: district_bool_exp
+  ): district_aggregate!
+  id: uuid!
+  name: String!
+}
+
+"""
+aggregated selection of "country"
+"""
+type country_aggregate {
+  aggregate: country_aggregate_fields
+  nodes: [country!]!
+}
+
+"""
+aggregate fields of "country"
+"""
+type country_aggregate_fields {
+  count(columns: [country_select_column!], distinct: Boolean): Int
+  max: country_max_fields
+  min: country_min_fields
+}
+
+"""
+order by aggregate values of table "country"
+"""
+input country_aggregate_order_by {
+  count: order_by
+  max: country_max_order_by
+  min: country_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "country"
+"""
+input country_arr_rel_insert_input {
+  data: [country_insert_input!]!
+  on_conflict: country_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "country". All fields are combined with a logical 'AND'.
+"""
+input country_bool_exp {
+  _and: [country_bool_exp]
+  _not: country_bool_exp
+  _or: [country_bool_exp]
+  code: bpchar_comparison_exp
+  districts: district_bool_exp
+  id: uuid_comparison_exp
+  name: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "country"
+"""
+enum country_constraint {
+  """unique or primary key constraint"""
+  country_name_key
+
+  """unique or primary key constraint"""
+  country_pkey
+}
+
+"""
+input type for inserting data into table "country"
+"""
+input country_insert_input {
+  code: bpchar
+  districts: district_arr_rel_insert_input
+  id: uuid
+  name: String
+}
+
+"""aggregate max on columns"""
+type country_max_fields {
+  name: String
+}
+
+"""
+order by max() on columns of table "country"
+"""
+input country_max_order_by {
+  name: order_by
+}
+
+"""aggregate min on columns"""
+type country_min_fields {
+  name: String
+}
+
+"""
+order by min() on columns of table "country"
+"""
+input country_min_order_by {
+  name: order_by
+}
+
+"""
+response of any mutation on the table "country"
+"""
+type country_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [country!]!
+}
+
+"""
+input type for inserting object relation for remote table "country"
+"""
+input country_obj_rel_insert_input {
+  data: country_insert_input!
+  on_conflict: country_on_conflict
+}
+
+"""
+on conflict condition type for table "country"
+"""
+input country_on_conflict {
+  constraint: country_constraint!
+  update_columns: [country_update_column!]!
+  where: country_bool_exp
+}
+
+"""
+ordering options when selecting data from "country"
+"""
+input country_order_by {
+  code: order_by
+  districts_aggregate: district_aggregate_order_by
+  id: order_by
+  name: order_by
+}
+
+"""
+select columns of table "country"
+"""
+enum country_select_column {
+  """column name"""
+  code
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+}
+
+"""
+input type for updating data in table "country"
+"""
+input country_set_input {
+  code: bpchar
+  id: uuid
+  name: String
+}
+
+"""
+update columns of table "country"
+"""
+enum country_update_column {
+  """column name"""
+  code
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+}
+
+"""
+columns and relationships of "distributor"
+"""
+type distributor {
+  active: Boolean!
+  created_at: timestamptz!
+
+  """An array relationship"""
+  distributor_cities(
+    """distinct select on columns"""
+    distinct_on: [distributor_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_city_bool_exp
+  ): [distributor_city!]!
+
+  """An aggregated array relationship"""
+  distributor_cities_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_city_bool_exp
+  ): distributor_city_aggregate!
+
+  """An array relationship"""
+  distributor_items(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_bool_exp
+  ): [distributor_item!]!
+
+  """An aggregated array relationship"""
+  distributor_items_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_bool_exp
+  ): distributor_item_aggregate!
+
+  """An array relationship"""
+  distributor_packs(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_bool_exp
+  ): [distributor_pack!]!
+
+  """An aggregated array relationship"""
+  distributor_packs_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_bool_exp
+  ): distributor_pack_aggregate!
+  email: String
+  id: uuid!
+  name: String!
+  phoneNumber: String!
+  updated_at: timestamptz!
+  website: String
+}
+
+"""
+aggregated selection of "distributor"
+"""
+type distributor_aggregate {
+  aggregate: distributor_aggregate_fields
+  nodes: [distributor!]!
+}
+
+"""
+aggregate fields of "distributor"
+"""
+type distributor_aggregate_fields {
+  count(columns: [distributor_select_column!], distinct: Boolean): Int
+  max: distributor_max_fields
+  min: distributor_min_fields
+}
+
+"""
+order by aggregate values of table "distributor"
+"""
+input distributor_aggregate_order_by {
+  count: order_by
+  max: distributor_max_order_by
+  min: distributor_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "distributor"
+"""
+input distributor_arr_rel_insert_input {
+  data: [distributor_insert_input!]!
+  on_conflict: distributor_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "distributor". All fields are combined with a logical 'AND'.
+"""
+input distributor_bool_exp {
+  _and: [distributor_bool_exp]
+  _not: distributor_bool_exp
+  _or: [distributor_bool_exp]
+  active: Boolean_comparison_exp
+  created_at: timestamptz_comparison_exp
+  distributor_cities: distributor_city_bool_exp
+  distributor_items: distributor_item_bool_exp
+  distributor_packs: distributor_pack_bool_exp
+  email: String_comparison_exp
+  id: uuid_comparison_exp
+  name: String_comparison_exp
+  phoneNumber: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  website: String_comparison_exp
+}
+
+"""
+columns and relationships of "distributor_city"
+"""
+type distributor_city {
+  """An object relationship"""
+  city: city!
+  cityId: uuid!
+
+  """An object relationship"""
+  distributor: distributor!
+  distributorId: uuid!
+  id: uuid!
+}
+
+"""
+aggregated selection of "distributor_city"
+"""
+type distributor_city_aggregate {
+  aggregate: distributor_city_aggregate_fields
+  nodes: [distributor_city!]!
+}
+
+"""
+aggregate fields of "distributor_city"
+"""
+type distributor_city_aggregate_fields {
+  count(columns: [distributor_city_select_column!], distinct: Boolean): Int
+}
+
+"""
+order by aggregate values of table "distributor_city"
+"""
+input distributor_city_aggregate_order_by {
+  count: order_by
+}
+
+"""
+input type for inserting array relation for remote table "distributor_city"
+"""
+input distributor_city_arr_rel_insert_input {
+  data: [distributor_city_insert_input!]!
+  on_conflict: distributor_city_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "distributor_city". All fields are combined with a logical 'AND'.
+"""
+input distributor_city_bool_exp {
+  _and: [distributor_city_bool_exp]
+  _not: distributor_city_bool_exp
+  _or: [distributor_city_bool_exp]
+  city: city_bool_exp
+  cityId: uuid_comparison_exp
+  distributor: distributor_bool_exp
+  distributorId: uuid_comparison_exp
+  id: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "distributor_city"
+"""
+enum distributor_city_constraint {
+  """unique or primary key constraint"""
+  distributor_city_pkey
+}
+
+"""
+input type for inserting data into table "distributor_city"
+"""
+input distributor_city_insert_input {
+  city: city_obj_rel_insert_input
+  cityId: uuid
+  distributor: distributor_obj_rel_insert_input
+  distributorId: uuid
+  id: uuid
+}
+
+"""
+response of any mutation on the table "distributor_city"
+"""
+type distributor_city_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [distributor_city!]!
+}
+
+"""
+input type for inserting object relation for remote table "distributor_city"
+"""
+input distributor_city_obj_rel_insert_input {
+  data: distributor_city_insert_input!
+  on_conflict: distributor_city_on_conflict
+}
+
+"""
+on conflict condition type for table "distributor_city"
+"""
+input distributor_city_on_conflict {
+  constraint: distributor_city_constraint!
+  update_columns: [distributor_city_update_column!]!
+  where: distributor_city_bool_exp
+}
+
+"""
+ordering options when selecting data from "distributor_city"
+"""
+input distributor_city_order_by {
+  city: city_order_by
+  cityId: order_by
+  distributor: distributor_order_by
+  distributorId: order_by
+  id: order_by
+}
+
+"""
+select columns of table "distributor_city"
+"""
+enum distributor_city_select_column {
+  """column name"""
+  cityId
+
+  """column name"""
+  distributorId
+
+  """column name"""
+  id
+}
+
+"""
+input type for updating data in table "distributor_city"
+"""
+input distributor_city_set_input {
+  cityId: uuid
+  distributorId: uuid
+  id: uuid
+}
+
+"""
+update columns of table "distributor_city"
+"""
+enum distributor_city_update_column {
+  """column name"""
+  cityId
+
+  """column name"""
+  distributorId
+
+  """column name"""
+  id
+}
+
+"""
+unique or primary key constraints on table "distributor"
+"""
+enum distributor_constraint {
+  """unique or primary key constraint"""
+  distributor_pkey
+}
+
+"""
+input type for inserting data into table "distributor"
+"""
+input distributor_insert_input {
+  active: Boolean
+  created_at: timestamptz
+  distributor_cities: distributor_city_arr_rel_insert_input
+  distributor_items: distributor_item_arr_rel_insert_input
+  distributor_packs: distributor_pack_arr_rel_insert_input
+  email: String
+  id: uuid
+  name: String
+  phoneNumber: String
+  updated_at: timestamptz
+  website: String
+}
+
+"""
+columns and relationships of "distributor_item"
+"""
+type distributor_item {
+  created_at: timestamptz
+  deliveryFee: Int
+
+  """An object relationship"""
+  distributor: distributor!
+  distributorId: uuid!
+
+  """An array relationship"""
+  distributor_item_cities(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_city_bool_exp
+  ): [distributor_item_city!]!
+
+  """An aggregated array relationship"""
+  distributor_item_cities_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_city_bool_exp
+  ): distributor_item_city_aggregate!
+  id: uuid!
+  itemCategoryId: uuid!
+
+  """An object relationship"""
+  item_category: item_category!
+  name: String!
+  price: Int
+  updated_at: timestamptz
+}
+
+"""
+aggregated selection of "distributor_item"
+"""
+type distributor_item_aggregate {
+  aggregate: distributor_item_aggregate_fields
+  nodes: [distributor_item!]!
+}
+
+"""
+aggregate fields of "distributor_item"
+"""
+type distributor_item_aggregate_fields {
+  avg: distributor_item_avg_fields
+  count(columns: [distributor_item_select_column!], distinct: Boolean): Int
+  max: distributor_item_max_fields
+  min: distributor_item_min_fields
+  stddev: distributor_item_stddev_fields
+  stddev_pop: distributor_item_stddev_pop_fields
+  stddev_samp: distributor_item_stddev_samp_fields
+  sum: distributor_item_sum_fields
+  var_pop: distributor_item_var_pop_fields
+  var_samp: distributor_item_var_samp_fields
+  variance: distributor_item_variance_fields
+}
+
+"""
+order by aggregate values of table "distributor_item"
+"""
+input distributor_item_aggregate_order_by {
+  avg: distributor_item_avg_order_by
+  count: order_by
+  max: distributor_item_max_order_by
+  min: distributor_item_min_order_by
+  stddev: distributor_item_stddev_order_by
+  stddev_pop: distributor_item_stddev_pop_order_by
+  stddev_samp: distributor_item_stddev_samp_order_by
+  sum: distributor_item_sum_order_by
+  var_pop: distributor_item_var_pop_order_by
+  var_samp: distributor_item_var_samp_order_by
+  variance: distributor_item_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "distributor_item"
+"""
+input distributor_item_arr_rel_insert_input {
+  data: [distributor_item_insert_input!]!
+  on_conflict: distributor_item_on_conflict
+}
+
+"""aggregate avg on columns"""
+type distributor_item_avg_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by avg() on columns of table "distributor_item"
+"""
+input distributor_item_avg_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "distributor_item". All fields are combined with a logical 'AND'.
+"""
+input distributor_item_bool_exp {
+  _and: [distributor_item_bool_exp]
+  _not: distributor_item_bool_exp
+  _or: [distributor_item_bool_exp]
+  created_at: timestamptz_comparison_exp
+  deliveryFee: Int_comparison_exp
+  distributor: distributor_bool_exp
+  distributorId: uuid_comparison_exp
+  distributor_item_cities: distributor_item_city_bool_exp
+  id: uuid_comparison_exp
+  itemCategoryId: uuid_comparison_exp
+  item_category: item_category_bool_exp
+  name: String_comparison_exp
+  price: Int_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"""
+columns and relationships of "distributor_item_city"
+"""
+type distributor_item_city {
+  """An object relationship"""
+  city: city!
+  cityId: uuid!
+  distributorItemId: uuid!
+
+  """An object relationship"""
+  distributor_item: distributor_item!
+}
+
+"""
+aggregated selection of "distributor_item_city"
+"""
+type distributor_item_city_aggregate {
+  aggregate: distributor_item_city_aggregate_fields
+  nodes: [distributor_item_city!]!
+}
+
+"""
+aggregate fields of "distributor_item_city"
+"""
+type distributor_item_city_aggregate_fields {
+  count(columns: [distributor_item_city_select_column!], distinct: Boolean): Int
+}
+
+"""
+order by aggregate values of table "distributor_item_city"
+"""
+input distributor_item_city_aggregate_order_by {
+  count: order_by
+}
+
+"""
+input type for inserting array relation for remote table "distributor_item_city"
+"""
+input distributor_item_city_arr_rel_insert_input {
+  data: [distributor_item_city_insert_input!]!
+  on_conflict: distributor_item_city_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "distributor_item_city". All fields are combined with a logical 'AND'.
+"""
+input distributor_item_city_bool_exp {
+  _and: [distributor_item_city_bool_exp]
+  _not: distributor_item_city_bool_exp
+  _or: [distributor_item_city_bool_exp]
+  city: city_bool_exp
+  cityId: uuid_comparison_exp
+  distributorItemId: uuid_comparison_exp
+  distributor_item: distributor_item_bool_exp
+}
+
+"""
+unique or primary key constraints on table "distributor_item_city"
+"""
+enum distributor_item_city_constraint {
+  """unique or primary key constraint"""
+  distributor_item_city_pkey
+}
+
+"""
+input type for inserting data into table "distributor_item_city"
+"""
+input distributor_item_city_insert_input {
+  city: city_obj_rel_insert_input
+  cityId: uuid
+  distributorItemId: uuid
+  distributor_item: distributor_item_obj_rel_insert_input
+}
+
+"""
+response of any mutation on the table "distributor_item_city"
+"""
+type distributor_item_city_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [distributor_item_city!]!
+}
+
+"""
+input type for inserting object relation for remote table "distributor_item_city"
+"""
+input distributor_item_city_obj_rel_insert_input {
+  data: distributor_item_city_insert_input!
+  on_conflict: distributor_item_city_on_conflict
+}
+
+"""
+on conflict condition type for table "distributor_item_city"
+"""
+input distributor_item_city_on_conflict {
+  constraint: distributor_item_city_constraint!
+  update_columns: [distributor_item_city_update_column!]!
+  where: distributor_item_city_bool_exp
+}
+
+"""
+ordering options when selecting data from "distributor_item_city"
+"""
+input distributor_item_city_order_by {
+  city: city_order_by
+  cityId: order_by
+  distributorItemId: order_by
+  distributor_item: distributor_item_order_by
+}
+
+"""
+select columns of table "distributor_item_city"
+"""
+enum distributor_item_city_select_column {
+  """column name"""
+  cityId
+
+  """column name"""
+  distributorItemId
+}
+
+"""
+input type for updating data in table "distributor_item_city"
+"""
+input distributor_item_city_set_input {
+  cityId: uuid
+  distributorItemId: uuid
+}
+
+"""
+update columns of table "distributor_item_city"
+"""
+enum distributor_item_city_update_column {
+  """column name"""
+  cityId
+
+  """column name"""
+  distributorItemId
+}
+
+"""
+unique or primary key constraints on table "distributor_item"
+"""
+enum distributor_item_constraint {
+  """unique or primary key constraint"""
+  distributor_item_pkey
+}
+
+"""
+input type for incrementing integer columne in table "distributor_item"
+"""
+input distributor_item_inc_input {
+  deliveryFee: Int
+  price: Int
+}
+
+"""
+input type for inserting data into table "distributor_item"
+"""
+input distributor_item_insert_input {
+  created_at: timestamptz
+  deliveryFee: Int
+  distributor: distributor_obj_rel_insert_input
+  distributorId: uuid
+  distributor_item_cities: distributor_item_city_arr_rel_insert_input
+  id: uuid
+  itemCategoryId: uuid
+  item_category: item_category_obj_rel_insert_input
+  name: String
+  price: Int
+  updated_at: timestamptz
+}
+
+"""aggregate max on columns"""
+type distributor_item_max_fields {
+  created_at: timestamptz
+  deliveryFee: Int
+  name: String
+  price: Int
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "distributor_item"
+"""
+input distributor_item_max_order_by {
+  created_at: order_by
+  deliveryFee: order_by
+  name: order_by
+  price: order_by
+  updated_at: order_by
+}
+
+"""aggregate min on columns"""
+type distributor_item_min_fields {
+  created_at: timestamptz
+  deliveryFee: Int
+  name: String
+  price: Int
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "distributor_item"
+"""
+input distributor_item_min_order_by {
+  created_at: order_by
+  deliveryFee: order_by
+  name: order_by
+  price: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "distributor_item"
+"""
+type distributor_item_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [distributor_item!]!
+}
+
+"""
+input type for inserting object relation for remote table "distributor_item"
+"""
+input distributor_item_obj_rel_insert_input {
+  data: distributor_item_insert_input!
+  on_conflict: distributor_item_on_conflict
+}
+
+"""
+on conflict condition type for table "distributor_item"
+"""
+input distributor_item_on_conflict {
+  constraint: distributor_item_constraint!
+  update_columns: [distributor_item_update_column!]!
+  where: distributor_item_bool_exp
+}
+
+"""
+ordering options when selecting data from "distributor_item"
+"""
+input distributor_item_order_by {
+  created_at: order_by
+  deliveryFee: order_by
+  distributor: distributor_order_by
+  distributorId: order_by
+  distributor_item_cities_aggregate: distributor_item_city_aggregate_order_by
+  id: order_by
+  itemCategoryId: order_by
+  item_category: item_category_order_by
+  name: order_by
+  price: order_by
+  updated_at: order_by
+}
+
+"""
+select columns of table "distributor_item"
+"""
+enum distributor_item_select_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  deliveryFee
+
+  """column name"""
+  distributorId
+
+  """column name"""
+  id
+
+  """column name"""
+  itemCategoryId
+
+  """column name"""
+  name
+
+  """column name"""
+  price
+
+  """column name"""
+  updated_at
+}
+
+"""
+input type for updating data in table "distributor_item"
+"""
+input distributor_item_set_input {
+  created_at: timestamptz
+  deliveryFee: Int
+  distributorId: uuid
+  id: uuid
+  itemCategoryId: uuid
+  name: String
+  price: Int
+  updated_at: timestamptz
+}
+
+"""aggregate stddev on columns"""
+type distributor_item_stddev_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by stddev() on columns of table "distributor_item"
+"""
+input distributor_item_stddev_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type distributor_item_stddev_pop_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by stddev_pop() on columns of table "distributor_item"
+"""
+input distributor_item_stddev_pop_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type distributor_item_stddev_samp_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by stddev_samp() on columns of table "distributor_item"
+"""
+input distributor_item_stddev_samp_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate sum on columns"""
+type distributor_item_sum_fields {
+  deliveryFee: Int
+  price: Int
+}
+
+"""
+order by sum() on columns of table "distributor_item"
+"""
+input distributor_item_sum_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""
+update columns of table "distributor_item"
+"""
+enum distributor_item_update_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  deliveryFee
+
+  """column name"""
+  distributorId
+
+  """column name"""
+  id
+
+  """column name"""
+  itemCategoryId
+
+  """column name"""
+  name
+
+  """column name"""
+  price
+
+  """column name"""
+  updated_at
+}
+
+"""aggregate var_pop on columns"""
+type distributor_item_var_pop_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by var_pop() on columns of table "distributor_item"
+"""
+input distributor_item_var_pop_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate var_samp on columns"""
+type distributor_item_var_samp_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by var_samp() on columns of table "distributor_item"
+"""
+input distributor_item_var_samp_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate variance on columns"""
+type distributor_item_variance_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by variance() on columns of table "distributor_item"
+"""
+input distributor_item_variance_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate max on columns"""
+type distributor_max_fields {
+  created_at: timestamptz
+  email: String
+  name: String
+  phoneNumber: String
+  updated_at: timestamptz
+  website: String
+}
+
+"""
+order by max() on columns of table "distributor"
+"""
+input distributor_max_order_by {
+  created_at: order_by
+  email: order_by
+  name: order_by
+  phoneNumber: order_by
+  updated_at: order_by
+  website: order_by
+}
+
+"""aggregate min on columns"""
+type distributor_min_fields {
+  created_at: timestamptz
+  email: String
+  name: String
+  phoneNumber: String
+  updated_at: timestamptz
+  website: String
+}
+
+"""
+order by min() on columns of table "distributor"
+"""
+input distributor_min_order_by {
+  created_at: order_by
+  email: order_by
+  name: order_by
+  phoneNumber: order_by
+  updated_at: order_by
+  website: order_by
+}
+
+"""
+response of any mutation on the table "distributor"
+"""
+type distributor_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [distributor!]!
+}
+
+"""
+input type for inserting object relation for remote table "distributor"
+"""
+input distributor_obj_rel_insert_input {
+  data: distributor_insert_input!
+  on_conflict: distributor_on_conflict
+}
+
+"""
+on conflict condition type for table "distributor"
+"""
+input distributor_on_conflict {
+  constraint: distributor_constraint!
+  update_columns: [distributor_update_column!]!
+  where: distributor_bool_exp
+}
+
+"""
+ordering options when selecting data from "distributor"
+"""
+input distributor_order_by {
+  active: order_by
+  created_at: order_by
+  distributor_cities_aggregate: distributor_city_aggregate_order_by
+  distributor_items_aggregate: distributor_item_aggregate_order_by
+  distributor_packs_aggregate: distributor_pack_aggregate_order_by
+  email: order_by
+  id: order_by
+  name: order_by
+  phoneNumber: order_by
+  updated_at: order_by
+  website: order_by
+}
+
+"""
+columns and relationships of "distributor_pack"
+"""
+type distributor_pack {
+  content: String!
+  created_at: timestamptz!
+  deliveryFee: Int
+
+  """An object relationship"""
+  distributor: distributor!
+  distributorId: uuid!
+
+  """An array relationship"""
+  distributor_pack_cities(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_city_bool_exp
+  ): [distributor_pack_city!]!
+
+  """An aggregated array relationship"""
+  distributor_pack_cities_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_city_bool_exp
+  ): distributor_pack_city_aggregate!
+  id: uuid!
+  name: String!
+  price: Int!
+  updated_at: timestamptz!
+}
+
+"""
+aggregated selection of "distributor_pack"
+"""
+type distributor_pack_aggregate {
+  aggregate: distributor_pack_aggregate_fields
+  nodes: [distributor_pack!]!
+}
+
+"""
+aggregate fields of "distributor_pack"
+"""
+type distributor_pack_aggregate_fields {
+  avg: distributor_pack_avg_fields
+  count(columns: [distributor_pack_select_column!], distinct: Boolean): Int
+  max: distributor_pack_max_fields
+  min: distributor_pack_min_fields
+  stddev: distributor_pack_stddev_fields
+  stddev_pop: distributor_pack_stddev_pop_fields
+  stddev_samp: distributor_pack_stddev_samp_fields
+  sum: distributor_pack_sum_fields
+  var_pop: distributor_pack_var_pop_fields
+  var_samp: distributor_pack_var_samp_fields
+  variance: distributor_pack_variance_fields
+}
+
+"""
+order by aggregate values of table "distributor_pack"
+"""
+input distributor_pack_aggregate_order_by {
+  avg: distributor_pack_avg_order_by
+  count: order_by
+  max: distributor_pack_max_order_by
+  min: distributor_pack_min_order_by
+  stddev: distributor_pack_stddev_order_by
+  stddev_pop: distributor_pack_stddev_pop_order_by
+  stddev_samp: distributor_pack_stddev_samp_order_by
+  sum: distributor_pack_sum_order_by
+  var_pop: distributor_pack_var_pop_order_by
+  var_samp: distributor_pack_var_samp_order_by
+  variance: distributor_pack_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "distributor_pack"
+"""
+input distributor_pack_arr_rel_insert_input {
+  data: [distributor_pack_insert_input!]!
+  on_conflict: distributor_pack_on_conflict
+}
+
+"""aggregate avg on columns"""
+type distributor_pack_avg_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by avg() on columns of table "distributor_pack"
+"""
+input distributor_pack_avg_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "distributor_pack". All fields are combined with a logical 'AND'.
+"""
+input distributor_pack_bool_exp {
+  _and: [distributor_pack_bool_exp]
+  _not: distributor_pack_bool_exp
+  _or: [distributor_pack_bool_exp]
+  content: String_comparison_exp
+  created_at: timestamptz_comparison_exp
+  deliveryFee: Int_comparison_exp
+  distributor: distributor_bool_exp
+  distributorId: uuid_comparison_exp
+  distributor_pack_cities: distributor_pack_city_bool_exp
+  id: uuid_comparison_exp
+  name: String_comparison_exp
+  price: Int_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"""
+columns and relationships of "distributor_pack_city"
+"""
+type distributor_pack_city {
+  """An object relationship"""
+  city: city!
+  cityId: uuid!
+  distributorPackId: uuid!
+
+  """An object relationship"""
+  distributor_pack: distributor_pack!
+}
+
+"""
+aggregated selection of "distributor_pack_city"
+"""
+type distributor_pack_city_aggregate {
+  aggregate: distributor_pack_city_aggregate_fields
+  nodes: [distributor_pack_city!]!
+}
+
+"""
+aggregate fields of "distributor_pack_city"
+"""
+type distributor_pack_city_aggregate_fields {
+  count(columns: [distributor_pack_city_select_column!], distinct: Boolean): Int
+}
+
+"""
+order by aggregate values of table "distributor_pack_city"
+"""
+input distributor_pack_city_aggregate_order_by {
+  count: order_by
+}
+
+"""
+input type for inserting array relation for remote table "distributor_pack_city"
+"""
+input distributor_pack_city_arr_rel_insert_input {
+  data: [distributor_pack_city_insert_input!]!
+  on_conflict: distributor_pack_city_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "distributor_pack_city". All fields are combined with a logical 'AND'.
+"""
+input distributor_pack_city_bool_exp {
+  _and: [distributor_pack_city_bool_exp]
+  _not: distributor_pack_city_bool_exp
+  _or: [distributor_pack_city_bool_exp]
+  city: city_bool_exp
+  cityId: uuid_comparison_exp
+  distributorPackId: uuid_comparison_exp
+  distributor_pack: distributor_pack_bool_exp
+}
+
+"""
+unique or primary key constraints on table "distributor_pack_city"
+"""
+enum distributor_pack_city_constraint {
+  """unique or primary key constraint"""
+  distributor_pack_city_pkey
+}
+
+"""
+input type for inserting data into table "distributor_pack_city"
+"""
+input distributor_pack_city_insert_input {
+  city: city_obj_rel_insert_input
+  cityId: uuid
+  distributorPackId: uuid
+  distributor_pack: distributor_pack_obj_rel_insert_input
+}
+
+"""
+response of any mutation on the table "distributor_pack_city"
+"""
+type distributor_pack_city_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [distributor_pack_city!]!
+}
+
+"""
+input type for inserting object relation for remote table "distributor_pack_city"
+"""
+input distributor_pack_city_obj_rel_insert_input {
+  data: distributor_pack_city_insert_input!
+  on_conflict: distributor_pack_city_on_conflict
+}
+
+"""
+on conflict condition type for table "distributor_pack_city"
+"""
+input distributor_pack_city_on_conflict {
+  constraint: distributor_pack_city_constraint!
+  update_columns: [distributor_pack_city_update_column!]!
+  where: distributor_pack_city_bool_exp
+}
+
+"""
+ordering options when selecting data from "distributor_pack_city"
+"""
+input distributor_pack_city_order_by {
+  city: city_order_by
+  cityId: order_by
+  distributorPackId: order_by
+  distributor_pack: distributor_pack_order_by
+}
+
+"""
+select columns of table "distributor_pack_city"
+"""
+enum distributor_pack_city_select_column {
+  """column name"""
+  cityId
+
+  """column name"""
+  distributorPackId
+}
+
+"""
+input type for updating data in table "distributor_pack_city"
+"""
+input distributor_pack_city_set_input {
+  cityId: uuid
+  distributorPackId: uuid
+}
+
+"""
+update columns of table "distributor_pack_city"
+"""
+enum distributor_pack_city_update_column {
+  """column name"""
+  cityId
+
+  """column name"""
+  distributorPackId
+}
+
+"""
+unique or primary key constraints on table "distributor_pack"
+"""
+enum distributor_pack_constraint {
+  """unique or primary key constraint"""
+  distributor_pack_pkey
+}
+
+"""
+input type for incrementing integer columne in table "distributor_pack"
+"""
+input distributor_pack_inc_input {
+  deliveryFee: Int
+  price: Int
+}
+
+"""
+input type for inserting data into table "distributor_pack"
+"""
+input distributor_pack_insert_input {
+  content: String
+  created_at: timestamptz
+  deliveryFee: Int
+  distributor: distributor_obj_rel_insert_input
+  distributorId: uuid
+  distributor_pack_cities: distributor_pack_city_arr_rel_insert_input
+  id: uuid
+  name: String
+  price: Int
+  updated_at: timestamptz
+}
+
+"""aggregate max on columns"""
+type distributor_pack_max_fields {
+  content: String
+  created_at: timestamptz
+  deliveryFee: Int
+  name: String
+  price: Int
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "distributor_pack"
+"""
+input distributor_pack_max_order_by {
+  content: order_by
+  created_at: order_by
+  deliveryFee: order_by
+  name: order_by
+  price: order_by
+  updated_at: order_by
+}
+
+"""aggregate min on columns"""
+type distributor_pack_min_fields {
+  content: String
+  created_at: timestamptz
+  deliveryFee: Int
+  name: String
+  price: Int
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "distributor_pack"
+"""
+input distributor_pack_min_order_by {
+  content: order_by
+  created_at: order_by
+  deliveryFee: order_by
+  name: order_by
+  price: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "distributor_pack"
+"""
+type distributor_pack_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [distributor_pack!]!
+}
+
+"""
+input type for inserting object relation for remote table "distributor_pack"
+"""
+input distributor_pack_obj_rel_insert_input {
+  data: distributor_pack_insert_input!
+  on_conflict: distributor_pack_on_conflict
+}
+
+"""
+on conflict condition type for table "distributor_pack"
+"""
+input distributor_pack_on_conflict {
+  constraint: distributor_pack_constraint!
+  update_columns: [distributor_pack_update_column!]!
+  where: distributor_pack_bool_exp
+}
+
+"""
+ordering options when selecting data from "distributor_pack"
+"""
+input distributor_pack_order_by {
+  content: order_by
+  created_at: order_by
+  deliveryFee: order_by
+  distributor: distributor_order_by
+  distributorId: order_by
+  distributor_pack_cities_aggregate: distributor_pack_city_aggregate_order_by
+  id: order_by
+  name: order_by
+  price: order_by
+  updated_at: order_by
+}
+
+"""
+select columns of table "distributor_pack"
+"""
+enum distributor_pack_select_column {
+  """column name"""
+  content
+
+  """column name"""
+  created_at
+
+  """column name"""
+  deliveryFee
+
+  """column name"""
+  distributorId
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  price
+
+  """column name"""
+  updated_at
+}
+
+"""
+input type for updating data in table "distributor_pack"
+"""
+input distributor_pack_set_input {
+  content: String
+  created_at: timestamptz
+  deliveryFee: Int
+  distributorId: uuid
+  id: uuid
+  name: String
+  price: Int
+  updated_at: timestamptz
+}
+
+"""aggregate stddev on columns"""
+type distributor_pack_stddev_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by stddev() on columns of table "distributor_pack"
+"""
+input distributor_pack_stddev_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type distributor_pack_stddev_pop_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by stddev_pop() on columns of table "distributor_pack"
+"""
+input distributor_pack_stddev_pop_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type distributor_pack_stddev_samp_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by stddev_samp() on columns of table "distributor_pack"
+"""
+input distributor_pack_stddev_samp_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate sum on columns"""
+type distributor_pack_sum_fields {
+  deliveryFee: Int
+  price: Int
+}
+
+"""
+order by sum() on columns of table "distributor_pack"
+"""
+input distributor_pack_sum_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""
+update columns of table "distributor_pack"
+"""
+enum distributor_pack_update_column {
+  """column name"""
+  content
+
+  """column name"""
+  created_at
+
+  """column name"""
+  deliveryFee
+
+  """column name"""
+  distributorId
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  price
+
+  """column name"""
+  updated_at
+}
+
+"""aggregate var_pop on columns"""
+type distributor_pack_var_pop_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by var_pop() on columns of table "distributor_pack"
+"""
+input distributor_pack_var_pop_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate var_samp on columns"""
+type distributor_pack_var_samp_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by var_samp() on columns of table "distributor_pack"
+"""
+input distributor_pack_var_samp_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""aggregate variance on columns"""
+type distributor_pack_variance_fields {
+  deliveryFee: Float
+  price: Float
+}
+
+"""
+order by variance() on columns of table "distributor_pack"
+"""
+input distributor_pack_variance_order_by {
+  deliveryFee: order_by
+  price: order_by
+}
+
+"""
+select columns of table "distributor"
+"""
+enum distributor_select_column {
+  """column name"""
+  active
+
+  """column name"""
+  created_at
+
+  """column name"""
+  email
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  phoneNumber
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  website
+}
+
+"""
+input type for updating data in table "distributor"
+"""
+input distributor_set_input {
+  active: Boolean
+  created_at: timestamptz
+  email: String
+  id: uuid
+  name: String
+  phoneNumber: String
+  updated_at: timestamptz
+  website: String
+}
+
+"""
+update columns of table "distributor"
+"""
+enum distributor_update_column {
+  """column name"""
+  active
+
+  """column name"""
+  created_at
+
+  """column name"""
+  email
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  phoneNumber
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  website
+}
+
+"""
+columns and relationships of "district"
+"""
+type district {
+  """An array relationship"""
+  cities(
+    """distinct select on columns"""
+    distinct_on: [city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_order_by!]
+
+    """filter the rows returned"""
+    where: city_bool_exp
+  ): [city!]!
+
+  """An aggregated array relationship"""
+  cities_aggregate(
+    """distinct select on columns"""
+    distinct_on: [city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_order_by!]
+
+    """filter the rows returned"""
+    where: city_bool_exp
+  ): city_aggregate!
+
+  """An object relationship"""
+  country: country!
+  countryId: uuid!
+
+  """An array relationship"""
+  district_translations(
+    """distinct select on columns"""
+    distinct_on: [district_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_translation_order_by!]
+
+    """filter the rows returned"""
+    where: district_translation_bool_exp
+  ): [district_translation!]!
+
+  """An aggregated array relationship"""
+  district_translations_aggregate(
+    """distinct select on columns"""
+    distinct_on: [district_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_translation_order_by!]
+
+    """filter the rows returned"""
+    where: district_translation_bool_exp
+  ): district_translation_aggregate!
+  id: uuid!
+  name: String!
+  sourceId: Int
+}
+
+"""
+aggregated selection of "district"
+"""
+type district_aggregate {
+  aggregate: district_aggregate_fields
+  nodes: [district!]!
+}
+
+"""
+aggregate fields of "district"
+"""
+type district_aggregate_fields {
+  avg: district_avg_fields
+  count(columns: [district_select_column!], distinct: Boolean): Int
+  max: district_max_fields
+  min: district_min_fields
+  stddev: district_stddev_fields
+  stddev_pop: district_stddev_pop_fields
+  stddev_samp: district_stddev_samp_fields
+  sum: district_sum_fields
+  var_pop: district_var_pop_fields
+  var_samp: district_var_samp_fields
+  variance: district_variance_fields
+}
+
+"""
+order by aggregate values of table "district"
+"""
+input district_aggregate_order_by {
+  avg: district_avg_order_by
+  count: order_by
+  max: district_max_order_by
+  min: district_min_order_by
+  stddev: district_stddev_order_by
+  stddev_pop: district_stddev_pop_order_by
+  stddev_samp: district_stddev_samp_order_by
+  sum: district_sum_order_by
+  var_pop: district_var_pop_order_by
+  var_samp: district_var_samp_order_by
+  variance: district_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "district"
+"""
+input district_arr_rel_insert_input {
+  data: [district_insert_input!]!
+  on_conflict: district_on_conflict
+}
+
+"""aggregate avg on columns"""
+type district_avg_fields {
+  sourceId: Float
+}
+
+"""
+order by avg() on columns of table "district"
+"""
+input district_avg_order_by {
+  sourceId: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "district". All fields are combined with a logical 'AND'.
+"""
+input district_bool_exp {
+  _and: [district_bool_exp]
+  _not: district_bool_exp
+  _or: [district_bool_exp]
+  cities: city_bool_exp
+  country: country_bool_exp
+  countryId: uuid_comparison_exp
+  district_translations: district_translation_bool_exp
+  id: uuid_comparison_exp
+  name: String_comparison_exp
+  sourceId: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "district"
+"""
+enum district_constraint {
+  """unique or primary key constraint"""
+  district_pkey
+}
+
+"""
+input type for incrementing integer columne in table "district"
+"""
+input district_inc_input {
+  sourceId: Int
+}
+
+"""
+input type for inserting data into table "district"
+"""
+input district_insert_input {
+  cities: city_arr_rel_insert_input
+  country: country_obj_rel_insert_input
+  countryId: uuid
+  district_translations: district_translation_arr_rel_insert_input
+  id: uuid
+  name: String
+  sourceId: Int
+}
+
+"""aggregate max on columns"""
+type district_max_fields {
+  name: String
+  sourceId: Int
+}
+
+"""
+order by max() on columns of table "district"
+"""
+input district_max_order_by {
+  name: order_by
+  sourceId: order_by
+}
+
+"""aggregate min on columns"""
+type district_min_fields {
+  name: String
+  sourceId: Int
+}
+
+"""
+order by min() on columns of table "district"
+"""
+input district_min_order_by {
+  name: order_by
+  sourceId: order_by
+}
+
+"""
+response of any mutation on the table "district"
+"""
+type district_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [district!]!
+}
+
+"""
+input type for inserting object relation for remote table "district"
+"""
+input district_obj_rel_insert_input {
+  data: district_insert_input!
+  on_conflict: district_on_conflict
+}
+
+"""
+on conflict condition type for table "district"
+"""
+input district_on_conflict {
+  constraint: district_constraint!
+  update_columns: [district_update_column!]!
+  where: district_bool_exp
+}
+
+"""
+ordering options when selecting data from "district"
+"""
+input district_order_by {
+  cities_aggregate: city_aggregate_order_by
+  country: country_order_by
+  countryId: order_by
+  district_translations_aggregate: district_translation_aggregate_order_by
+  id: order_by
+  name: order_by
+  sourceId: order_by
+}
+
+"""
+select columns of table "district"
+"""
+enum district_select_column {
+  """column name"""
+  countryId
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  sourceId
+}
+
+"""
+input type for updating data in table "district"
+"""
+input district_set_input {
+  countryId: uuid
+  id: uuid
+  name: String
+  sourceId: Int
+}
+
+"""aggregate stddev on columns"""
+type district_stddev_fields {
+  sourceId: Float
+}
+
+"""
+order by stddev() on columns of table "district"
+"""
+input district_stddev_order_by {
+  sourceId: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type district_stddev_pop_fields {
+  sourceId: Float
+}
+
+"""
+order by stddev_pop() on columns of table "district"
+"""
+input district_stddev_pop_order_by {
+  sourceId: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type district_stddev_samp_fields {
+  sourceId: Float
+}
+
+"""
+order by stddev_samp() on columns of table "district"
+"""
+input district_stddev_samp_order_by {
+  sourceId: order_by
+}
+
+"""aggregate sum on columns"""
+type district_sum_fields {
+  sourceId: Int
+}
+
+"""
+order by sum() on columns of table "district"
+"""
+input district_sum_order_by {
+  sourceId: order_by
+}
+
+"""
+columns and relationships of "district_translation"
+"""
+type district_translation {
+  """An object relationship"""
+  district: district!
+  districtId: uuid!
+  language: bpchar!
+  text: String!
+}
+
+"""
+aggregated selection of "district_translation"
+"""
+type district_translation_aggregate {
+  aggregate: district_translation_aggregate_fields
+  nodes: [district_translation!]!
+}
+
+"""
+aggregate fields of "district_translation"
+"""
+type district_translation_aggregate_fields {
+  count(columns: [district_translation_select_column!], distinct: Boolean): Int
+  max: district_translation_max_fields
+  min: district_translation_min_fields
+}
+
+"""
+order by aggregate values of table "district_translation"
+"""
+input district_translation_aggregate_order_by {
+  count: order_by
+  max: district_translation_max_order_by
+  min: district_translation_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "district_translation"
+"""
+input district_translation_arr_rel_insert_input {
+  data: [district_translation_insert_input!]!
+  on_conflict: district_translation_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "district_translation". All fields are combined with a logical 'AND'.
+"""
+input district_translation_bool_exp {
+  _and: [district_translation_bool_exp]
+  _not: district_translation_bool_exp
+  _or: [district_translation_bool_exp]
+  district: district_bool_exp
+  districtId: uuid_comparison_exp
+  language: bpchar_comparison_exp
+  text: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "district_translation"
+"""
+enum district_translation_constraint {
+  """unique or primary key constraint"""
+  district_translation_pkey
+}
+
+"""
+input type for inserting data into table "district_translation"
+"""
+input district_translation_insert_input {
+  district: district_obj_rel_insert_input
+  districtId: uuid
+  language: bpchar
+  text: String
+}
+
+"""aggregate max on columns"""
+type district_translation_max_fields {
+  text: String
+}
+
+"""
+order by max() on columns of table "district_translation"
+"""
+input district_translation_max_order_by {
+  text: order_by
+}
+
+"""aggregate min on columns"""
+type district_translation_min_fields {
+  text: String
+}
+
+"""
+order by min() on columns of table "district_translation"
+"""
+input district_translation_min_order_by {
+  text: order_by
+}
+
+"""
+response of any mutation on the table "district_translation"
+"""
+type district_translation_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [district_translation!]!
+}
+
+"""
+input type for inserting object relation for remote table "district_translation"
+"""
+input district_translation_obj_rel_insert_input {
+  data: district_translation_insert_input!
+  on_conflict: district_translation_on_conflict
+}
+
+"""
+on conflict condition type for table "district_translation"
+"""
+input district_translation_on_conflict {
+  constraint: district_translation_constraint!
+  update_columns: [district_translation_update_column!]!
+  where: district_translation_bool_exp
+}
+
+"""
+ordering options when selecting data from "district_translation"
+"""
+input district_translation_order_by {
+  district: district_order_by
+  districtId: order_by
+  language: order_by
+  text: order_by
+}
+
+"""
+select columns of table "district_translation"
+"""
+enum district_translation_select_column {
+  """column name"""
+  districtId
+
+  """column name"""
+  language
+
+  """column name"""
+  text
+}
+
+"""
+input type for updating data in table "district_translation"
+"""
+input district_translation_set_input {
+  districtId: uuid
+  language: bpchar
+  text: String
+}
+
+"""
+update columns of table "district_translation"
+"""
+enum district_translation_update_column {
+  """column name"""
+  districtId
+
+  """column name"""
+  language
+
+  """column name"""
+  text
+}
+
+"""
+update columns of table "district"
+"""
+enum district_update_column {
+  """column name"""
+  countryId
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  sourceId
+}
+
+"""aggregate var_pop on columns"""
+type district_var_pop_fields {
+  sourceId: Float
+}
+
+"""
+order by var_pop() on columns of table "district"
+"""
+input district_var_pop_order_by {
+  sourceId: order_by
+}
+
+"""aggregate var_samp on columns"""
+type district_var_samp_fields {
+  sourceId: Float
+}
+
+"""
+order by var_samp() on columns of table "district"
+"""
+input district_var_samp_order_by {
+  sourceId: order_by
+}
+
+"""aggregate variance on columns"""
+type district_variance_fields {
+  sourceId: Float
+}
+
+"""
+order by variance() on columns of table "district"
+"""
+input district_variance_order_by {
+  sourceId: order_by
+}
+
+scalar geography
+
+"""
+Expression to compare the result of casting a column of type geography. Multiple
+cast targets are combined with logical 'AND'.
+"""
+input geography_cast_exp {
+  geometry: geometry_comparison_exp
+}
+
+"""
+columns and relationships of "geography_columns"
+"""
+type geography_columns {
+  coord_dimension: Int
+  f_geography_column: name
+  f_table_catalog: name
+  f_table_name: name
+  f_table_schema: name
+  srid: Int
+  type: String
+}
+
+"""
+aggregated selection of "geography_columns"
+"""
+type geography_columns_aggregate {
+  aggregate: geography_columns_aggregate_fields
+  nodes: [geography_columns!]!
+}
+
+"""
+aggregate fields of "geography_columns"
+"""
+type geography_columns_aggregate_fields {
+  avg: geography_columns_avg_fields
+  count(columns: [geography_columns_select_column!], distinct: Boolean): Int
+  max: geography_columns_max_fields
+  min: geography_columns_min_fields
+  stddev: geography_columns_stddev_fields
+  stddev_pop: geography_columns_stddev_pop_fields
+  stddev_samp: geography_columns_stddev_samp_fields
+  sum: geography_columns_sum_fields
+  var_pop: geography_columns_var_pop_fields
+  var_samp: geography_columns_var_samp_fields
+  variance: geography_columns_variance_fields
+}
+
+"""
+order by aggregate values of table "geography_columns"
+"""
+input geography_columns_aggregate_order_by {
+  avg: geography_columns_avg_order_by
+  count: order_by
+  max: geography_columns_max_order_by
+  min: geography_columns_min_order_by
+  stddev: geography_columns_stddev_order_by
+  stddev_pop: geography_columns_stddev_pop_order_by
+  stddev_samp: geography_columns_stddev_samp_order_by
+  sum: geography_columns_sum_order_by
+  var_pop: geography_columns_var_pop_order_by
+  var_samp: geography_columns_var_samp_order_by
+  variance: geography_columns_variance_order_by
+}
+
+"""aggregate avg on columns"""
+type geography_columns_avg_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by avg() on columns of table "geography_columns"
+"""
+input geography_columns_avg_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "geography_columns". All fields are combined with a logical 'AND'.
+"""
+input geography_columns_bool_exp {
+  _and: [geography_columns_bool_exp]
+  _not: geography_columns_bool_exp
+  _or: [geography_columns_bool_exp]
+  coord_dimension: Int_comparison_exp
+  f_geography_column: name_comparison_exp
+  f_table_catalog: name_comparison_exp
+  f_table_name: name_comparison_exp
+  f_table_schema: name_comparison_exp
+  srid: Int_comparison_exp
+  type: String_comparison_exp
+}
+
+"""aggregate max on columns"""
+type geography_columns_max_fields {
+  coord_dimension: Int
+  srid: Int
+  type: String
+}
+
+"""
+order by max() on columns of table "geography_columns"
+"""
+input geography_columns_max_order_by {
+  coord_dimension: order_by
+  srid: order_by
+  type: order_by
+}
+
+"""aggregate min on columns"""
+type geography_columns_min_fields {
+  coord_dimension: Int
+  srid: Int
+  type: String
+}
+
+"""
+order by min() on columns of table "geography_columns"
+"""
+input geography_columns_min_order_by {
+  coord_dimension: order_by
+  srid: order_by
+  type: order_by
+}
+
+"""
+ordering options when selecting data from "geography_columns"
+"""
+input geography_columns_order_by {
+  coord_dimension: order_by
+  f_geography_column: order_by
+  f_table_catalog: order_by
+  f_table_name: order_by
+  f_table_schema: order_by
+  srid: order_by
+  type: order_by
+}
+
+"""
+select columns of table "geography_columns"
+"""
+enum geography_columns_select_column {
+  """column name"""
+  coord_dimension
+
+  """column name"""
+  f_geography_column
+
+  """column name"""
+  f_table_catalog
+
+  """column name"""
+  f_table_name
+
+  """column name"""
+  f_table_schema
+
+  """column name"""
+  srid
+
+  """column name"""
+  type
+}
+
+"""aggregate stddev on columns"""
+type geography_columns_stddev_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by stddev() on columns of table "geography_columns"
+"""
+input geography_columns_stddev_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type geography_columns_stddev_pop_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by stddev_pop() on columns of table "geography_columns"
+"""
+input geography_columns_stddev_pop_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type geography_columns_stddev_samp_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by stddev_samp() on columns of table "geography_columns"
+"""
+input geography_columns_stddev_samp_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate sum on columns"""
+type geography_columns_sum_fields {
+  coord_dimension: Int
+  srid: Int
+}
+
+"""
+order by sum() on columns of table "geography_columns"
+"""
+input geography_columns_sum_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate var_pop on columns"""
+type geography_columns_var_pop_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by var_pop() on columns of table "geography_columns"
+"""
+input geography_columns_var_pop_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate var_samp on columns"""
+type geography_columns_var_samp_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by var_samp() on columns of table "geography_columns"
+"""
+input geography_columns_var_samp_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate variance on columns"""
+type geography_columns_variance_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by variance() on columns of table "geography_columns"
+"""
+input geography_columns_variance_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""
+expression to compare columns of type geography. All fields are combined with logical 'AND'.
+"""
+input geography_comparison_exp {
+  _cast: geography_cast_exp
+  _eq: geography
+  _gt: geography
+  _gte: geography
+  _in: [geography!]
+  _is_null: Boolean
+  _lt: geography
+  _lte: geography
+  _neq: geography
+  _nin: [geography!]
+
+  """is the column within a distance from a geography value"""
+  _st_d_within: st_d_within_geography_input
+
+  """does the column spatially intersect the given geography value"""
+  _st_intersects: geography
+}
+
+scalar geometry
+
+"""
+Expression to compare the result of casting a column of type geometry. Multiple
+cast targets are combined with logical 'AND'.
+"""
+input geometry_cast_exp {
+  geography: geography_comparison_exp
+}
+
+"""
+columns and relationships of "geometry_columns"
+"""
+type geometry_columns {
+  coord_dimension: Int
+  f_geometry_column: name
+  f_table_catalog: String
+  f_table_name: name
+  f_table_schema: name
+  srid: Int
+  type: String
+}
+
+"""
+aggregated selection of "geometry_columns"
+"""
+type geometry_columns_aggregate {
+  aggregate: geometry_columns_aggregate_fields
+  nodes: [geometry_columns!]!
+}
+
+"""
+aggregate fields of "geometry_columns"
+"""
+type geometry_columns_aggregate_fields {
+  avg: geometry_columns_avg_fields
+  count(columns: [geometry_columns_select_column!], distinct: Boolean): Int
+  max: geometry_columns_max_fields
+  min: geometry_columns_min_fields
+  stddev: geometry_columns_stddev_fields
+  stddev_pop: geometry_columns_stddev_pop_fields
+  stddev_samp: geometry_columns_stddev_samp_fields
+  sum: geometry_columns_sum_fields
+  var_pop: geometry_columns_var_pop_fields
+  var_samp: geometry_columns_var_samp_fields
+  variance: geometry_columns_variance_fields
+}
+
+"""
+order by aggregate values of table "geometry_columns"
+"""
+input geometry_columns_aggregate_order_by {
+  avg: geometry_columns_avg_order_by
+  count: order_by
+  max: geometry_columns_max_order_by
+  min: geometry_columns_min_order_by
+  stddev: geometry_columns_stddev_order_by
+  stddev_pop: geometry_columns_stddev_pop_order_by
+  stddev_samp: geometry_columns_stddev_samp_order_by
+  sum: geometry_columns_sum_order_by
+  var_pop: geometry_columns_var_pop_order_by
+  var_samp: geometry_columns_var_samp_order_by
+  variance: geometry_columns_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "geometry_columns"
+"""
+input geometry_columns_arr_rel_insert_input {
+  data: [geometry_columns_insert_input!]!
+}
+
+"""aggregate avg on columns"""
+type geometry_columns_avg_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by avg() on columns of table "geometry_columns"
+"""
+input geometry_columns_avg_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "geometry_columns". All fields are combined with a logical 'AND'.
+"""
+input geometry_columns_bool_exp {
+  _and: [geometry_columns_bool_exp]
+  _not: geometry_columns_bool_exp
+  _or: [geometry_columns_bool_exp]
+  coord_dimension: Int_comparison_exp
+  f_geometry_column: name_comparison_exp
+  f_table_catalog: String_comparison_exp
+  f_table_name: name_comparison_exp
+  f_table_schema: name_comparison_exp
+  srid: Int_comparison_exp
+  type: String_comparison_exp
+}
+
+"""
+input type for incrementing integer columne in table "geometry_columns"
+"""
+input geometry_columns_inc_input {
+  coord_dimension: Int
+  srid: Int
+}
+
+"""
+input type for inserting data into table "geometry_columns"
+"""
+input geometry_columns_insert_input {
+  coord_dimension: Int
+  f_geometry_column: name
+  f_table_catalog: String
+  f_table_name: name
+  f_table_schema: name
+  srid: Int
+  type: String
+}
+
+"""aggregate max on columns"""
+type geometry_columns_max_fields {
+  coord_dimension: Int
+  f_table_catalog: String
+  srid: Int
+  type: String
+}
+
+"""
+order by max() on columns of table "geometry_columns"
+"""
+input geometry_columns_max_order_by {
+  coord_dimension: order_by
+  f_table_catalog: order_by
+  srid: order_by
+  type: order_by
+}
+
+"""aggregate min on columns"""
+type geometry_columns_min_fields {
+  coord_dimension: Int
+  f_table_catalog: String
+  srid: Int
+  type: String
+}
+
+"""
+order by min() on columns of table "geometry_columns"
+"""
+input geometry_columns_min_order_by {
+  coord_dimension: order_by
+  f_table_catalog: order_by
+  srid: order_by
+  type: order_by
+}
+
+"""
+response of any mutation on the table "geometry_columns"
+"""
+type geometry_columns_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [geometry_columns!]!
+}
+
+"""
+input type for inserting object relation for remote table "geometry_columns"
+"""
+input geometry_columns_obj_rel_insert_input {
+  data: geometry_columns_insert_input!
+}
+
+"""
+ordering options when selecting data from "geometry_columns"
+"""
+input geometry_columns_order_by {
+  coord_dimension: order_by
+  f_geometry_column: order_by
+  f_table_catalog: order_by
+  f_table_name: order_by
+  f_table_schema: order_by
+  srid: order_by
+  type: order_by
+}
+
+"""
+select columns of table "geometry_columns"
+"""
+enum geometry_columns_select_column {
+  """column name"""
+  coord_dimension
+
+  """column name"""
+  f_geometry_column
+
+  """column name"""
+  f_table_catalog
+
+  """column name"""
+  f_table_name
+
+  """column name"""
+  f_table_schema
+
+  """column name"""
+  srid
+
+  """column name"""
+  type
+}
+
+"""
+input type for updating data in table "geometry_columns"
+"""
+input geometry_columns_set_input {
+  coord_dimension: Int
+  f_geometry_column: name
+  f_table_catalog: String
+  f_table_name: name
+  f_table_schema: name
+  srid: Int
+  type: String
+}
+
+"""aggregate stddev on columns"""
+type geometry_columns_stddev_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by stddev() on columns of table "geometry_columns"
+"""
+input geometry_columns_stddev_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type geometry_columns_stddev_pop_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by stddev_pop() on columns of table "geometry_columns"
+"""
+input geometry_columns_stddev_pop_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type geometry_columns_stddev_samp_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by stddev_samp() on columns of table "geometry_columns"
+"""
+input geometry_columns_stddev_samp_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate sum on columns"""
+type geometry_columns_sum_fields {
+  coord_dimension: Int
+  srid: Int
+}
+
+"""
+order by sum() on columns of table "geometry_columns"
+"""
+input geometry_columns_sum_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate var_pop on columns"""
+type geometry_columns_var_pop_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by var_pop() on columns of table "geometry_columns"
+"""
+input geometry_columns_var_pop_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate var_samp on columns"""
+type geometry_columns_var_samp_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by var_samp() on columns of table "geometry_columns"
+"""
+input geometry_columns_var_samp_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""aggregate variance on columns"""
+type geometry_columns_variance_fields {
+  coord_dimension: Float
+  srid: Float
+}
+
+"""
+order by variance() on columns of table "geometry_columns"
+"""
+input geometry_columns_variance_order_by {
+  coord_dimension: order_by
+  srid: order_by
+}
+
+"""
+expression to compare columns of type geometry. All fields are combined with logical 'AND'.
+"""
+input geometry_comparison_exp {
+  _cast: geometry_cast_exp
+  _eq: geometry
+  _gt: geometry
+  _gte: geometry
+  _in: [geometry!]
+  _is_null: Boolean
+  _lt: geometry
+  _lte: geometry
+  _neq: geometry
+  _nin: [geometry!]
+
+  """does the column contain the given geometry value"""
+  _st_contains: geometry
+
+  """does the column crosses the given geometry value"""
+  _st_crosses: geometry
+
+  """is the column within a distance from a geometry value"""
+  _st_d_within: st_d_within_input
+
+  """is the column equal to given geometry value. Directionality is ignored"""
+  _st_equals: geometry
+
+  """does the column spatially intersect the given geometry value"""
+  _st_intersects: geometry
+
+  """
+  does the column 'spatially overlap' (intersect but not completely contain) the given geometry value
+  """
+  _st_overlaps: geometry
+
+  """
+  does the column have atleast one point in common with the given geometry value
+  """
+  _st_touches: geometry
+
+  """is the column contained in the given geometry value"""
+  _st_within: geometry
+}
+
+"""
+expression to compare columns of type Int. All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+"""
+columns and relationships of "item_category"
+"""
+type item_category {
+  """An array relationship"""
+  distributor_items(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_bool_exp
+  ): [distributor_item!]!
+
+  """An aggregated array relationship"""
+  distributor_items_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_bool_exp
+  ): distributor_item_aggregate!
+  id: uuid!
+
+  """An array relationship"""
+  item_category_needs(
+    """distinct select on columns"""
+    distinct_on: [item_category_need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_need_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_need_bool_exp
+  ): [item_category_need!]!
+
+  """An aggregated array relationship"""
+  item_category_needs_aggregate(
+    """distinct select on columns"""
+    distinct_on: [item_category_need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_need_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_need_bool_exp
+  ): item_category_need_aggregate!
+  name: String!
+}
+
+"""
+aggregated selection of "item_category"
+"""
+type item_category_aggregate {
+  aggregate: item_category_aggregate_fields
+  nodes: [item_category!]!
+}
+
+"""
+aggregate fields of "item_category"
+"""
+type item_category_aggregate_fields {
+  count(columns: [item_category_select_column!], distinct: Boolean): Int
+  max: item_category_max_fields
+  min: item_category_min_fields
+}
+
+"""
+order by aggregate values of table "item_category"
+"""
+input item_category_aggregate_order_by {
+  count: order_by
+  max: item_category_max_order_by
+  min: item_category_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "item_category"
+"""
+input item_category_arr_rel_insert_input {
+  data: [item_category_insert_input!]!
+  on_conflict: item_category_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "item_category". All fields are combined with a logical 'AND'.
+"""
+input item_category_bool_exp {
+  _and: [item_category_bool_exp]
+  _not: item_category_bool_exp
+  _or: [item_category_bool_exp]
+  distributor_items: distributor_item_bool_exp
+  id: uuid_comparison_exp
+  item_category_needs: item_category_need_bool_exp
+  name: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "item_category"
+"""
+enum item_category_constraint {
+  """unique or primary key constraint"""
+  item_category_name_key
+
+  """unique or primary key constraint"""
+  item_category_pkey
+}
+
+"""
+input type for inserting data into table "item_category"
+"""
+input item_category_insert_input {
+  distributor_items: distributor_item_arr_rel_insert_input
+  id: uuid
+  item_category_needs: item_category_need_arr_rel_insert_input
+  name: String
+}
+
+"""aggregate max on columns"""
+type item_category_max_fields {
+  name: String
+}
+
+"""
+order by max() on columns of table "item_category"
+"""
+input item_category_max_order_by {
+  name: order_by
+}
+
+"""aggregate min on columns"""
+type item_category_min_fields {
+  name: String
+}
+
+"""
+order by min() on columns of table "item_category"
+"""
+input item_category_min_order_by {
+  name: order_by
+}
+
+"""
+response of any mutation on the table "item_category"
+"""
+type item_category_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [item_category!]!
+}
+
+"""
+columns and relationships of "item_category_need"
+"""
+type item_category_need {
+  itemCategoryId: uuid!
+
+  """An object relationship"""
+  item_category: item_category!
+
+  """An object relationship"""
+  need: need!
+  needId: uuid!
+}
+
+"""
+aggregated selection of "item_category_need"
+"""
+type item_category_need_aggregate {
+  aggregate: item_category_need_aggregate_fields
+  nodes: [item_category_need!]!
+}
+
+"""
+aggregate fields of "item_category_need"
+"""
+type item_category_need_aggregate_fields {
+  count(columns: [item_category_need_select_column!], distinct: Boolean): Int
+}
+
+"""
+order by aggregate values of table "item_category_need"
+"""
+input item_category_need_aggregate_order_by {
+  count: order_by
+}
+
+"""
+input type for inserting array relation for remote table "item_category_need"
+"""
+input item_category_need_arr_rel_insert_input {
+  data: [item_category_need_insert_input!]!
+  on_conflict: item_category_need_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "item_category_need". All fields are combined with a logical 'AND'.
+"""
+input item_category_need_bool_exp {
+  _and: [item_category_need_bool_exp]
+  _not: item_category_need_bool_exp
+  _or: [item_category_need_bool_exp]
+  itemCategoryId: uuid_comparison_exp
+  item_category: item_category_bool_exp
+  need: need_bool_exp
+  needId: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "item_category_need"
+"""
+enum item_category_need_constraint {
+  """unique or primary key constraint"""
+  item_category_need_pkey
+}
+
+"""
+input type for inserting data into table "item_category_need"
+"""
+input item_category_need_insert_input {
+  itemCategoryId: uuid
+  item_category: item_category_obj_rel_insert_input
+  need: need_obj_rel_insert_input
+  needId: uuid
+}
+
+"""
+response of any mutation on the table "item_category_need"
+"""
+type item_category_need_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [item_category_need!]!
+}
+
+"""
+input type for inserting object relation for remote table "item_category_need"
+"""
+input item_category_need_obj_rel_insert_input {
+  data: item_category_need_insert_input!
+  on_conflict: item_category_need_on_conflict
+}
+
+"""
+on conflict condition type for table "item_category_need"
+"""
+input item_category_need_on_conflict {
+  constraint: item_category_need_constraint!
+  update_columns: [item_category_need_update_column!]!
+  where: item_category_need_bool_exp
+}
+
+"""
+ordering options when selecting data from "item_category_need"
+"""
+input item_category_need_order_by {
+  itemCategoryId: order_by
+  item_category: item_category_order_by
+  need: need_order_by
+  needId: order_by
+}
+
+"""
+select columns of table "item_category_need"
+"""
+enum item_category_need_select_column {
+  """column name"""
+  itemCategoryId
+
+  """column name"""
+  needId
+}
+
+"""
+input type for updating data in table "item_category_need"
+"""
+input item_category_need_set_input {
+  itemCategoryId: uuid
+  needId: uuid
+}
+
+"""
+update columns of table "item_category_need"
+"""
+enum item_category_need_update_column {
+  """column name"""
+  itemCategoryId
+
+  """column name"""
+  needId
+}
+
+"""
+input type for inserting object relation for remote table "item_category"
+"""
+input item_category_obj_rel_insert_input {
+  data: item_category_insert_input!
+  on_conflict: item_category_on_conflict
+}
+
+"""
+on conflict condition type for table "item_category"
+"""
+input item_category_on_conflict {
+  constraint: item_category_constraint!
+  update_columns: [item_category_update_column!]!
+  where: item_category_bool_exp
+}
+
+"""
+ordering options when selecting data from "item_category"
+"""
+input item_category_order_by {
+  distributor_items_aggregate: distributor_item_aggregate_order_by
+  id: order_by
+  item_category_needs_aggregate: item_category_need_aggregate_order_by
+  name: order_by
+}
+
+"""
+select columns of table "item_category"
+"""
+enum item_category_select_column {
+  """column name"""
+  id
+
+  """column name"""
+  name
+}
+
+"""
+input type for updating data in table "item_category"
+"""
+input item_category_set_input {
+  id: uuid
+  name: String
+}
+
+"""
+update columns of table "item_category"
+"""
+enum item_category_update_column {
+  """column name"""
+  id
+
+  """column name"""
+  name
+}
+
+"""mutation root"""
+type mutation_root {
+  """
+  delete data from the table: "city"
+  """
+  delete_city(
+    """filter the rows which have to be deleted"""
+    where: city_bool_exp!
+  ): city_mutation_response
+
+  """
+  delete data from the table: "city_translation"
+  """
+  delete_city_translation(
+    """filter the rows which have to be deleted"""
+    where: city_translation_bool_exp!
+  ): city_translation_mutation_response
+
+  """
+  delete data from the table: "country"
+  """
+  delete_country(
+    """filter the rows which have to be deleted"""
+    where: country_bool_exp!
+  ): country_mutation_response
+
+  """
+  delete data from the table: "distributor"
+  """
+  delete_distributor(
+    """filter the rows which have to be deleted"""
+    where: distributor_bool_exp!
+  ): distributor_mutation_response
+
+  """
+  delete data from the table: "distributor_city"
+  """
+  delete_distributor_city(
+    """filter the rows which have to be deleted"""
+    where: distributor_city_bool_exp!
+  ): distributor_city_mutation_response
+
+  """
+  delete data from the table: "distributor_item"
+  """
+  delete_distributor_item(
+    """filter the rows which have to be deleted"""
+    where: distributor_item_bool_exp!
+  ): distributor_item_mutation_response
+
+  """
+  delete data from the table: "distributor_item_city"
+  """
+  delete_distributor_item_city(
+    """filter the rows which have to be deleted"""
+    where: distributor_item_city_bool_exp!
+  ): distributor_item_city_mutation_response
+
+  """
+  delete data from the table: "distributor_pack"
+  """
+  delete_distributor_pack(
+    """filter the rows which have to be deleted"""
+    where: distributor_pack_bool_exp!
+  ): distributor_pack_mutation_response
+
+  """
+  delete data from the table: "distributor_pack_city"
+  """
+  delete_distributor_pack_city(
+    """filter the rows which have to be deleted"""
+    where: distributor_pack_city_bool_exp!
+  ): distributor_pack_city_mutation_response
+
+  """
+  delete data from the table: "district"
+  """
+  delete_district(
+    """filter the rows which have to be deleted"""
+    where: district_bool_exp!
+  ): district_mutation_response
+
+  """
+  delete data from the table: "district_translation"
+  """
+  delete_district_translation(
+    """filter the rows which have to be deleted"""
+    where: district_translation_bool_exp!
+  ): district_translation_mutation_response
+
+  """
+  delete data from the table: "geometry_columns"
+  """
+  delete_geometry_columns(
+    """filter the rows which have to be deleted"""
+    where: geometry_columns_bool_exp!
+  ): geometry_columns_mutation_response
+
+  """
+  delete data from the table: "item_category"
+  """
+  delete_item_category(
+    """filter the rows which have to be deleted"""
+    where: item_category_bool_exp!
+  ): item_category_mutation_response
+
+  """
+  delete data from the table: "item_category_need"
+  """
+  delete_item_category_need(
+    """filter the rows which have to be deleted"""
+    where: item_category_need_bool_exp!
+  ): item_category_need_mutation_response
+
+  """
+  delete data from the table: "need"
+  """
+  delete_need(
+    """filter the rows which have to be deleted"""
+    where: need_bool_exp!
+  ): need_mutation_response
+
+  """
+  delete data from the table: "spatial_ref_sys"
+  """
+  delete_spatial_ref_sys(
+    """filter the rows which have to be deleted"""
+    where: spatial_ref_sys_bool_exp!
+  ): spatial_ref_sys_mutation_response
+
+  """
+  insert data into the table: "city"
+  """
+  insert_city(
+    """the rows to be inserted"""
+    objects: [city_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: city_on_conflict
+  ): city_mutation_response
+
+  """
+  insert data into the table: "city_translation"
+  """
+  insert_city_translation(
+    """the rows to be inserted"""
+    objects: [city_translation_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: city_translation_on_conflict
+  ): city_translation_mutation_response
+
+  """
+  insert data into the table: "country"
+  """
+  insert_country(
+    """the rows to be inserted"""
+    objects: [country_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: country_on_conflict
+  ): country_mutation_response
+
+  """
+  insert data into the table: "distributor"
+  """
+  insert_distributor(
+    """the rows to be inserted"""
+    objects: [distributor_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: distributor_on_conflict
+  ): distributor_mutation_response
+
+  """
+  insert data into the table: "distributor_city"
+  """
+  insert_distributor_city(
+    """the rows to be inserted"""
+    objects: [distributor_city_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: distributor_city_on_conflict
+  ): distributor_city_mutation_response
+
+  """
+  insert data into the table: "distributor_item"
+  """
+  insert_distributor_item(
+    """the rows to be inserted"""
+    objects: [distributor_item_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: distributor_item_on_conflict
+  ): distributor_item_mutation_response
+
+  """
+  insert data into the table: "distributor_item_city"
+  """
+  insert_distributor_item_city(
+    """the rows to be inserted"""
+    objects: [distributor_item_city_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: distributor_item_city_on_conflict
+  ): distributor_item_city_mutation_response
+
+  """
+  insert data into the table: "distributor_pack"
+  """
+  insert_distributor_pack(
+    """the rows to be inserted"""
+    objects: [distributor_pack_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: distributor_pack_on_conflict
+  ): distributor_pack_mutation_response
+
+  """
+  insert data into the table: "distributor_pack_city"
+  """
+  insert_distributor_pack_city(
+    """the rows to be inserted"""
+    objects: [distributor_pack_city_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: distributor_pack_city_on_conflict
+  ): distributor_pack_city_mutation_response
+
+  """
+  insert data into the table: "district"
+  """
+  insert_district(
+    """the rows to be inserted"""
+    objects: [district_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: district_on_conflict
+  ): district_mutation_response
+
+  """
+  insert data into the table: "district_translation"
+  """
+  insert_district_translation(
+    """the rows to be inserted"""
+    objects: [district_translation_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: district_translation_on_conflict
+  ): district_translation_mutation_response
+
+  """
+  insert data into the table: "geometry_columns"
+  """
+  insert_geometry_columns(
+    """the rows to be inserted"""
+    objects: [geometry_columns_insert_input!]!
+  ): geometry_columns_mutation_response
+
+  """
+  insert data into the table: "item_category"
+  """
+  insert_item_category(
+    """the rows to be inserted"""
+    objects: [item_category_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: item_category_on_conflict
+  ): item_category_mutation_response
+
+  """
+  insert data into the table: "item_category_need"
+  """
+  insert_item_category_need(
+    """the rows to be inserted"""
+    objects: [item_category_need_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: item_category_need_on_conflict
+  ): item_category_need_mutation_response
+
+  """
+  insert data into the table: "need"
+  """
+  insert_need(
+    """the rows to be inserted"""
+    objects: [need_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: need_on_conflict
+  ): need_mutation_response
+
+  """
+  insert data into the table: "spatial_ref_sys"
+  """
+  insert_spatial_ref_sys(
+    """the rows to be inserted"""
+    objects: [spatial_ref_sys_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: spatial_ref_sys_on_conflict
+  ): spatial_ref_sys_mutation_response
+
+  """
+  update data of the table: "city"
+  """
+  update_city(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: city_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: city_set_input
+
+    """filter the rows which have to be updated"""
+    where: city_bool_exp!
+  ): city_mutation_response
+
+  """
+  update data of the table: "city_translation"
+  """
+  update_city_translation(
+    """sets the columns of the filtered rows to the given values"""
+    _set: city_translation_set_input
+
+    """filter the rows which have to be updated"""
+    where: city_translation_bool_exp!
+  ): city_translation_mutation_response
+
+  """
+  update data of the table: "country"
+  """
+  update_country(
+    """sets the columns of the filtered rows to the given values"""
+    _set: country_set_input
+
+    """filter the rows which have to be updated"""
+    where: country_bool_exp!
+  ): country_mutation_response
+
+  """
+  update data of the table: "distributor"
+  """
+  update_distributor(
+    """sets the columns of the filtered rows to the given values"""
+    _set: distributor_set_input
+
+    """filter the rows which have to be updated"""
+    where: distributor_bool_exp!
+  ): distributor_mutation_response
+
+  """
+  update data of the table: "distributor_city"
+  """
+  update_distributor_city(
+    """sets the columns of the filtered rows to the given values"""
+    _set: distributor_city_set_input
+
+    """filter the rows which have to be updated"""
+    where: distributor_city_bool_exp!
+  ): distributor_city_mutation_response
+
+  """
+  update data of the table: "distributor_item"
+  """
+  update_distributor_item(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: distributor_item_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: distributor_item_set_input
+
+    """filter the rows which have to be updated"""
+    where: distributor_item_bool_exp!
+  ): distributor_item_mutation_response
+
+  """
+  update data of the table: "distributor_item_city"
+  """
+  update_distributor_item_city(
+    """sets the columns of the filtered rows to the given values"""
+    _set: distributor_item_city_set_input
+
+    """filter the rows which have to be updated"""
+    where: distributor_item_city_bool_exp!
+  ): distributor_item_city_mutation_response
+
+  """
+  update data of the table: "distributor_pack"
+  """
+  update_distributor_pack(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: distributor_pack_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: distributor_pack_set_input
+
+    """filter the rows which have to be updated"""
+    where: distributor_pack_bool_exp!
+  ): distributor_pack_mutation_response
+
+  """
+  update data of the table: "distributor_pack_city"
+  """
+  update_distributor_pack_city(
+    """sets the columns of the filtered rows to the given values"""
+    _set: distributor_pack_city_set_input
+
+    """filter the rows which have to be updated"""
+    where: distributor_pack_city_bool_exp!
+  ): distributor_pack_city_mutation_response
+
+  """
+  update data of the table: "district"
+  """
+  update_district(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: district_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: district_set_input
+
+    """filter the rows which have to be updated"""
+    where: district_bool_exp!
+  ): district_mutation_response
+
+  """
+  update data of the table: "district_translation"
+  """
+  update_district_translation(
+    """sets the columns of the filtered rows to the given values"""
+    _set: district_translation_set_input
+
+    """filter the rows which have to be updated"""
+    where: district_translation_bool_exp!
+  ): district_translation_mutation_response
+
+  """
+  update data of the table: "geometry_columns"
+  """
+  update_geometry_columns(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: geometry_columns_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: geometry_columns_set_input
+
+    """filter the rows which have to be updated"""
+    where: geometry_columns_bool_exp!
+  ): geometry_columns_mutation_response
+
+  """
+  update data of the table: "item_category"
+  """
+  update_item_category(
+    """sets the columns of the filtered rows to the given values"""
+    _set: item_category_set_input
+
+    """filter the rows which have to be updated"""
+    where: item_category_bool_exp!
+  ): item_category_mutation_response
+
+  """
+  update data of the table: "item_category_need"
+  """
+  update_item_category_need(
+    """sets the columns of the filtered rows to the given values"""
+    _set: item_category_need_set_input
+
+    """filter the rows which have to be updated"""
+    where: item_category_need_bool_exp!
+  ): item_category_need_mutation_response
+
+  """
+  update data of the table: "need"
+  """
+  update_need(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: need_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: need_set_input
+
+    """filter the rows which have to be updated"""
+    where: need_bool_exp!
+  ): need_mutation_response
+
+  """
+  update data of the table: "spatial_ref_sys"
+  """
+  update_spatial_ref_sys(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: spatial_ref_sys_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: spatial_ref_sys_set_input
+
+    """filter the rows which have to be updated"""
+    where: spatial_ref_sys_bool_exp!
+  ): spatial_ref_sys_mutation_response
+}
+
+scalar name
+
+"""
+expression to compare columns of type name. All fields are combined with logical 'AND'.
+"""
+input name_comparison_exp {
+  _eq: name
+  _gt: name
+  _gte: name
+  _in: [name!]
+  _is_null: Boolean
+  _lt: name
+  _lte: name
+  _neq: name
+  _nin: [name!]
+}
+
+"""
+columns and relationships of "need"
+"""
+type need {
+  active: Boolean!
+
+  """An object relationship"""
+  city: city!
+  cityId: uuid!
+  contactNumber: String!
+  contactPersonName: String!
+  created_at: timestamptz!
+  id: uuid!
+
+  """An array relationship"""
+  item_category_needs(
+    """distinct select on columns"""
+    distinct_on: [item_category_need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_need_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_need_bool_exp
+  ): [item_category_need!]!
+
+  """An aggregated array relationship"""
+  item_category_needs_aggregate(
+    """distinct select on columns"""
+    distinct_on: [item_category_need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_need_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_need_bool_exp
+  ): item_category_need_aggregate!
+  numberOfPeople: Int!
+  updated_at: timestamptz!
+}
+
+"""
+aggregated selection of "need"
+"""
+type need_aggregate {
+  aggregate: need_aggregate_fields
+  nodes: [need!]!
+}
+
+"""
+aggregate fields of "need"
+"""
+type need_aggregate_fields {
+  avg: need_avg_fields
+  count(columns: [need_select_column!], distinct: Boolean): Int
+  max: need_max_fields
+  min: need_min_fields
+  stddev: need_stddev_fields
+  stddev_pop: need_stddev_pop_fields
+  stddev_samp: need_stddev_samp_fields
+  sum: need_sum_fields
+  var_pop: need_var_pop_fields
+  var_samp: need_var_samp_fields
+  variance: need_variance_fields
+}
+
+"""
+order by aggregate values of table "need"
+"""
+input need_aggregate_order_by {
+  avg: need_avg_order_by
+  count: order_by
+  max: need_max_order_by
+  min: need_min_order_by
+  stddev: need_stddev_order_by
+  stddev_pop: need_stddev_pop_order_by
+  stddev_samp: need_stddev_samp_order_by
+  sum: need_sum_order_by
+  var_pop: need_var_pop_order_by
+  var_samp: need_var_samp_order_by
+  variance: need_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "need"
+"""
+input need_arr_rel_insert_input {
+  data: [need_insert_input!]!
+  on_conflict: need_on_conflict
+}
+
+"""aggregate avg on columns"""
+type need_avg_fields {
+  numberOfPeople: Float
+}
+
+"""
+order by avg() on columns of table "need"
+"""
+input need_avg_order_by {
+  numberOfPeople: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "need". All fields are combined with a logical 'AND'.
+"""
+input need_bool_exp {
+  _and: [need_bool_exp]
+  _not: need_bool_exp
+  _or: [need_bool_exp]
+  active: Boolean_comparison_exp
+  city: city_bool_exp
+  cityId: uuid_comparison_exp
+  contactNumber: String_comparison_exp
+  contactPersonName: String_comparison_exp
+  created_at: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  item_category_needs: item_category_need_bool_exp
+  numberOfPeople: Int_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "need"
+"""
+enum need_constraint {
+  """unique or primary key constraint"""
+  need_pkey
+}
+
+"""
+input type for incrementing integer columne in table "need"
+"""
+input need_inc_input {
+  numberOfPeople: Int
+}
+
+"""
+input type for inserting data into table "need"
+"""
+input need_insert_input {
+  active: Boolean
+  city: city_obj_rel_insert_input
+  cityId: uuid
+  contactNumber: String
+  contactPersonName: String
+  created_at: timestamptz
+  id: uuid
+  item_category_needs: item_category_need_arr_rel_insert_input
+  numberOfPeople: Int
+  updated_at: timestamptz
+}
+
+"""aggregate max on columns"""
+type need_max_fields {
+  contactNumber: String
+  contactPersonName: String
+  created_at: timestamptz
+  numberOfPeople: Int
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "need"
+"""
+input need_max_order_by {
+  contactNumber: order_by
+  contactPersonName: order_by
+  created_at: order_by
+  numberOfPeople: order_by
+  updated_at: order_by
+}
+
+"""aggregate min on columns"""
+type need_min_fields {
+  contactNumber: String
+  contactPersonName: String
+  created_at: timestamptz
+  numberOfPeople: Int
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "need"
+"""
+input need_min_order_by {
+  contactNumber: order_by
+  contactPersonName: order_by
+  created_at: order_by
+  numberOfPeople: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "need"
+"""
+type need_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [need!]!
+}
+
+"""
+input type for inserting object relation for remote table "need"
+"""
+input need_obj_rel_insert_input {
+  data: need_insert_input!
+  on_conflict: need_on_conflict
+}
+
+"""
+on conflict condition type for table "need"
+"""
+input need_on_conflict {
+  constraint: need_constraint!
+  update_columns: [need_update_column!]!
+  where: need_bool_exp
+}
+
+"""
+ordering options when selecting data from "need"
+"""
+input need_order_by {
+  active: order_by
+  city: city_order_by
+  cityId: order_by
+  contactNumber: order_by
+  contactPersonName: order_by
+  created_at: order_by
+  id: order_by
+  item_category_needs_aggregate: item_category_need_aggregate_order_by
+  numberOfPeople: order_by
+  updated_at: order_by
+}
+
+"""
+select columns of table "need"
+"""
+enum need_select_column {
+  """column name"""
+  active
+
+  """column name"""
+  cityId
+
+  """column name"""
+  contactNumber
+
+  """column name"""
+  contactPersonName
+
+  """column name"""
+  created_at
+
+  """column name"""
+  id
+
+  """column name"""
+  numberOfPeople
+
+  """column name"""
+  updated_at
+}
+
+"""
+input type for updating data in table "need"
+"""
+input need_set_input {
+  active: Boolean
+  cityId: uuid
+  contactNumber: String
+  contactPersonName: String
+  created_at: timestamptz
+  id: uuid
+  numberOfPeople: Int
+  updated_at: timestamptz
+}
+
+"""aggregate stddev on columns"""
+type need_stddev_fields {
+  numberOfPeople: Float
+}
+
+"""
+order by stddev() on columns of table "need"
+"""
+input need_stddev_order_by {
+  numberOfPeople: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type need_stddev_pop_fields {
+  numberOfPeople: Float
+}
+
+"""
+order by stddev_pop() on columns of table "need"
+"""
+input need_stddev_pop_order_by {
+  numberOfPeople: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type need_stddev_samp_fields {
+  numberOfPeople: Float
+}
+
+"""
+order by stddev_samp() on columns of table "need"
+"""
+input need_stddev_samp_order_by {
+  numberOfPeople: order_by
+}
+
+"""aggregate sum on columns"""
+type need_sum_fields {
+  numberOfPeople: Int
+}
+
+"""
+order by sum() on columns of table "need"
+"""
+input need_sum_order_by {
+  numberOfPeople: order_by
+}
+
+"""
+update columns of table "need"
+"""
+enum need_update_column {
+  """column name"""
+  active
+
+  """column name"""
+  cityId
+
+  """column name"""
+  contactNumber
+
+  """column name"""
+  contactPersonName
+
+  """column name"""
+  created_at
+
+  """column name"""
+  id
+
+  """column name"""
+  numberOfPeople
+
+  """column name"""
+  updated_at
+}
+
+"""aggregate var_pop on columns"""
+type need_var_pop_fields {
+  numberOfPeople: Float
+}
+
+"""
+order by var_pop() on columns of table "need"
+"""
+input need_var_pop_order_by {
+  numberOfPeople: order_by
+}
+
+"""aggregate var_samp on columns"""
+type need_var_samp_fields {
+  numberOfPeople: Float
+}
+
+"""
+order by var_samp() on columns of table "need"
+"""
+input need_var_samp_order_by {
+  numberOfPeople: order_by
+}
+
+"""aggregate variance on columns"""
+type need_variance_fields {
+  numberOfPeople: Float
+}
+
+"""
+order by variance() on columns of table "need"
+"""
+input need_variance_order_by {
+  numberOfPeople: order_by
+}
+
+"""column ordering options"""
+enum order_by {
+  """in the ascending order, nulls last"""
+  asc
+
+  """in the ascending order, nulls first"""
+  asc_nulls_first
+
+  """in the ascending order, nulls last"""
+  asc_nulls_last
+
+  """in the descending order, nulls first"""
+  desc
+
+  """in the descending order, nulls first"""
+  desc_nulls_first
+
+  """in the descending order, nulls last"""
+  desc_nulls_last
+}
+
+"""query root"""
+type query_root {
+  """
+  fetch data from the table: "city"
+  """
+  city(
+    """distinct select on columns"""
+    distinct_on: [city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_order_by!]
+
+    """filter the rows returned"""
+    where: city_bool_exp
+  ): [city!]!
+
+  """
+  fetch aggregated fields from the table: "city"
+  """
+  city_aggregate(
+    """distinct select on columns"""
+    distinct_on: [city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_order_by!]
+
+    """filter the rows returned"""
+    where: city_bool_exp
+  ): city_aggregate!
+
+  """fetch data from the table: "city" using primary key columns"""
+  city_by_pk(id: uuid!): city
+
+  """
+  fetch data from the table: "city_translation"
+  """
+  city_translation(
+    """distinct select on columns"""
+    distinct_on: [city_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_translation_order_by!]
+
+    """filter the rows returned"""
+    where: city_translation_bool_exp
+  ): [city_translation!]!
+
+  """
+  fetch aggregated fields from the table: "city_translation"
+  """
+  city_translation_aggregate(
+    """distinct select on columns"""
+    distinct_on: [city_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_translation_order_by!]
+
+    """filter the rows returned"""
+    where: city_translation_bool_exp
+  ): city_translation_aggregate!
+
+  """
+  fetch data from the table: "city_translation" using primary key columns
+  """
+  city_translation_by_pk(cityId: uuid!, language: bpchar!): city_translation
+
+  """
+  fetch data from the table: "country"
+  """
+  country(
+    """distinct select on columns"""
+    distinct_on: [country_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [country_order_by!]
+
+    """filter the rows returned"""
+    where: country_bool_exp
+  ): [country!]!
+
+  """
+  fetch aggregated fields from the table: "country"
+  """
+  country_aggregate(
+    """distinct select on columns"""
+    distinct_on: [country_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [country_order_by!]
+
+    """filter the rows returned"""
+    where: country_bool_exp
+  ): country_aggregate!
+
+  """fetch data from the table: "country" using primary key columns"""
+  country_by_pk(id: uuid!): country
+
+  """
+  fetch data from the table: "distributor"
+  """
+  distributor(
+    """distinct select on columns"""
+    distinct_on: [distributor_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_bool_exp
+  ): [distributor!]!
+
+  """
+  fetch aggregated fields from the table: "distributor"
+  """
+  distributor_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_bool_exp
+  ): distributor_aggregate!
+
+  """fetch data from the table: "distributor" using primary key columns"""
+  distributor_by_pk(id: uuid!): distributor
+
+  """
+  fetch data from the table: "distributor_city"
+  """
+  distributor_city(
+    """distinct select on columns"""
+    distinct_on: [distributor_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_city_bool_exp
+  ): [distributor_city!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_city"
+  """
+  distributor_city_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_city_bool_exp
+  ): distributor_city_aggregate!
+
+  """
+  fetch data from the table: "distributor_city" using primary key columns
+  """
+  distributor_city_by_pk(id: uuid!): distributor_city
+
+  """
+  fetch data from the table: "distributor_item"
+  """
+  distributor_item(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_bool_exp
+  ): [distributor_item!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_item"
+  """
+  distributor_item_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_bool_exp
+  ): distributor_item_aggregate!
+
+  """
+  fetch data from the table: "distributor_item" using primary key columns
+  """
+  distributor_item_by_pk(id: uuid!): distributor_item
+
+  """
+  fetch data from the table: "distributor_item_city"
+  """
+  distributor_item_city(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_city_bool_exp
+  ): [distributor_item_city!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_item_city"
+  """
+  distributor_item_city_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_city_bool_exp
+  ): distributor_item_city_aggregate!
+
+  """
+  fetch data from the table: "distributor_item_city" using primary key columns
+  """
+  distributor_item_city_by_pk(cityId: uuid!, distributorItemId: uuid!): distributor_item_city
+
+  """
+  fetch data from the table: "distributor_pack"
+  """
+  distributor_pack(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_bool_exp
+  ): [distributor_pack!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_pack"
+  """
+  distributor_pack_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_bool_exp
+  ): distributor_pack_aggregate!
+
+  """
+  fetch data from the table: "distributor_pack" using primary key columns
+  """
+  distributor_pack_by_pk(id: uuid!): distributor_pack
+
+  """
+  fetch data from the table: "distributor_pack_city"
+  """
+  distributor_pack_city(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_city_bool_exp
+  ): [distributor_pack_city!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_pack_city"
+  """
+  distributor_pack_city_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_city_bool_exp
+  ): distributor_pack_city_aggregate!
+
+  """
+  fetch data from the table: "distributor_pack_city" using primary key columns
+  """
+  distributor_pack_city_by_pk(cityId: uuid!, distributorPackId: uuid!): distributor_pack_city
+
+  """
+  fetch data from the table: "district"
+  """
+  district(
+    """distinct select on columns"""
+    distinct_on: [district_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_order_by!]
+
+    """filter the rows returned"""
+    where: district_bool_exp
+  ): [district!]!
+
+  """
+  fetch aggregated fields from the table: "district"
+  """
+  district_aggregate(
+    """distinct select on columns"""
+    distinct_on: [district_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_order_by!]
+
+    """filter the rows returned"""
+    where: district_bool_exp
+  ): district_aggregate!
+
+  """fetch data from the table: "district" using primary key columns"""
+  district_by_pk(id: uuid!): district
+
+  """
+  fetch data from the table: "district_translation"
+  """
+  district_translation(
+    """distinct select on columns"""
+    distinct_on: [district_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_translation_order_by!]
+
+    """filter the rows returned"""
+    where: district_translation_bool_exp
+  ): [district_translation!]!
+
+  """
+  fetch aggregated fields from the table: "district_translation"
+  """
+  district_translation_aggregate(
+    """distinct select on columns"""
+    distinct_on: [district_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_translation_order_by!]
+
+    """filter the rows returned"""
+    where: district_translation_bool_exp
+  ): district_translation_aggregate!
+
+  """
+  fetch data from the table: "district_translation" using primary key columns
+  """
+  district_translation_by_pk(districtId: uuid!, language: bpchar!): district_translation
+
+  """
+  fetch data from the table: "geography_columns"
+  """
+  geography_columns(
+    """distinct select on columns"""
+    distinct_on: [geography_columns_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [geography_columns_order_by!]
+
+    """filter the rows returned"""
+    where: geography_columns_bool_exp
+  ): [geography_columns!]!
+
+  """
+  fetch aggregated fields from the table: "geography_columns"
+  """
+  geography_columns_aggregate(
+    """distinct select on columns"""
+    distinct_on: [geography_columns_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [geography_columns_order_by!]
+
+    """filter the rows returned"""
+    where: geography_columns_bool_exp
+  ): geography_columns_aggregate!
+
+  """
+  fetch data from the table: "geometry_columns"
+  """
+  geometry_columns(
+    """distinct select on columns"""
+    distinct_on: [geometry_columns_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [geometry_columns_order_by!]
+
+    """filter the rows returned"""
+    where: geometry_columns_bool_exp
+  ): [geometry_columns!]!
+
+  """
+  fetch aggregated fields from the table: "geometry_columns"
+  """
+  geometry_columns_aggregate(
+    """distinct select on columns"""
+    distinct_on: [geometry_columns_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [geometry_columns_order_by!]
+
+    """filter the rows returned"""
+    where: geometry_columns_bool_exp
+  ): geometry_columns_aggregate!
+
+  """
+  fetch data from the table: "item_category"
+  """
+  item_category(
+    """distinct select on columns"""
+    distinct_on: [item_category_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_bool_exp
+  ): [item_category!]!
+
+  """
+  fetch aggregated fields from the table: "item_category"
+  """
+  item_category_aggregate(
+    """distinct select on columns"""
+    distinct_on: [item_category_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_bool_exp
+  ): item_category_aggregate!
+
+  """fetch data from the table: "item_category" using primary key columns"""
+  item_category_by_pk(id: uuid!): item_category
+
+  """
+  fetch data from the table: "item_category_need"
+  """
+  item_category_need(
+    """distinct select on columns"""
+    distinct_on: [item_category_need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_need_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_need_bool_exp
+  ): [item_category_need!]!
+
+  """
+  fetch aggregated fields from the table: "item_category_need"
+  """
+  item_category_need_aggregate(
+    """distinct select on columns"""
+    distinct_on: [item_category_need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_need_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_need_bool_exp
+  ): item_category_need_aggregate!
+
+  """
+  fetch data from the table: "item_category_need" using primary key columns
+  """
+  item_category_need_by_pk(itemCategoryId: uuid!, needId: uuid!): item_category_need
+
+  """
+  fetch data from the table: "need"
+  """
+  need(
+    """distinct select on columns"""
+    distinct_on: [need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [need_order_by!]
+
+    """filter the rows returned"""
+    where: need_bool_exp
+  ): [need!]!
+
+  """
+  fetch aggregated fields from the table: "need"
+  """
+  need_aggregate(
+    """distinct select on columns"""
+    distinct_on: [need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [need_order_by!]
+
+    """filter the rows returned"""
+    where: need_bool_exp
+  ): need_aggregate!
+
+  """fetch data from the table: "need" using primary key columns"""
+  need_by_pk(id: uuid!): need
+
+  """
+  fetch data from the table: "spatial_ref_sys"
+  """
+  spatial_ref_sys(
+    """distinct select on columns"""
+    distinct_on: [spatial_ref_sys_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [spatial_ref_sys_order_by!]
+
+    """filter the rows returned"""
+    where: spatial_ref_sys_bool_exp
+  ): [spatial_ref_sys!]!
+
+  """
+  fetch aggregated fields from the table: "spatial_ref_sys"
+  """
+  spatial_ref_sys_aggregate(
+    """distinct select on columns"""
+    distinct_on: [spatial_ref_sys_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [spatial_ref_sys_order_by!]
+
+    """filter the rows returned"""
+    where: spatial_ref_sys_bool_exp
+  ): spatial_ref_sys_aggregate!
+
+  """fetch data from the table: "spatial_ref_sys" using primary key columns"""
+  spatial_ref_sys_by_pk(srid: Int!): spatial_ref_sys
+}
+
+"""
+columns and relationships of "spatial_ref_sys"
+"""
+type spatial_ref_sys {
+  auth_name: String
+  auth_srid: Int
+  proj4text: String
+  srid: Int!
+  srtext: String
+}
+
+"""
+aggregated selection of "spatial_ref_sys"
+"""
+type spatial_ref_sys_aggregate {
+  aggregate: spatial_ref_sys_aggregate_fields
+  nodes: [spatial_ref_sys!]!
+}
+
+"""
+aggregate fields of "spatial_ref_sys"
+"""
+type spatial_ref_sys_aggregate_fields {
+  avg: spatial_ref_sys_avg_fields
+  count(columns: [spatial_ref_sys_select_column!], distinct: Boolean): Int
+  max: spatial_ref_sys_max_fields
+  min: spatial_ref_sys_min_fields
+  stddev: spatial_ref_sys_stddev_fields
+  stddev_pop: spatial_ref_sys_stddev_pop_fields
+  stddev_samp: spatial_ref_sys_stddev_samp_fields
+  sum: spatial_ref_sys_sum_fields
+  var_pop: spatial_ref_sys_var_pop_fields
+  var_samp: spatial_ref_sys_var_samp_fields
+  variance: spatial_ref_sys_variance_fields
+}
+
+"""
+order by aggregate values of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_aggregate_order_by {
+  avg: spatial_ref_sys_avg_order_by
+  count: order_by
+  max: spatial_ref_sys_max_order_by
+  min: spatial_ref_sys_min_order_by
+  stddev: spatial_ref_sys_stddev_order_by
+  stddev_pop: spatial_ref_sys_stddev_pop_order_by
+  stddev_samp: spatial_ref_sys_stddev_samp_order_by
+  sum: spatial_ref_sys_sum_order_by
+  var_pop: spatial_ref_sys_var_pop_order_by
+  var_samp: spatial_ref_sys_var_samp_order_by
+  variance: spatial_ref_sys_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "spatial_ref_sys"
+"""
+input spatial_ref_sys_arr_rel_insert_input {
+  data: [spatial_ref_sys_insert_input!]!
+  on_conflict: spatial_ref_sys_on_conflict
+}
+
+"""aggregate avg on columns"""
+type spatial_ref_sys_avg_fields {
+  auth_srid: Float
+  srid: Float
+}
+
+"""
+order by avg() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_avg_order_by {
+  auth_srid: order_by
+  srid: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "spatial_ref_sys". All fields are combined with a logical 'AND'.
+"""
+input spatial_ref_sys_bool_exp {
+  _and: [spatial_ref_sys_bool_exp]
+  _not: spatial_ref_sys_bool_exp
+  _or: [spatial_ref_sys_bool_exp]
+  auth_name: String_comparison_exp
+  auth_srid: Int_comparison_exp
+  proj4text: String_comparison_exp
+  srid: Int_comparison_exp
+  srtext: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "spatial_ref_sys"
+"""
+enum spatial_ref_sys_constraint {
+  """unique or primary key constraint"""
+  spatial_ref_sys_pkey
+}
+
+"""
+input type for incrementing integer columne in table "spatial_ref_sys"
+"""
+input spatial_ref_sys_inc_input {
+  auth_srid: Int
+  srid: Int
+}
+
+"""
+input type for inserting data into table "spatial_ref_sys"
+"""
+input spatial_ref_sys_insert_input {
+  auth_name: String
+  auth_srid: Int
+  proj4text: String
+  srid: Int
+  srtext: String
+}
+
+"""aggregate max on columns"""
+type spatial_ref_sys_max_fields {
+  auth_name: String
+  auth_srid: Int
+  proj4text: String
+  srid: Int
+  srtext: String
+}
+
+"""
+order by max() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_max_order_by {
+  auth_name: order_by
+  auth_srid: order_by
+  proj4text: order_by
+  srid: order_by
+  srtext: order_by
+}
+
+"""aggregate min on columns"""
+type spatial_ref_sys_min_fields {
+  auth_name: String
+  auth_srid: Int
+  proj4text: String
+  srid: Int
+  srtext: String
+}
+
+"""
+order by min() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_min_order_by {
+  auth_name: order_by
+  auth_srid: order_by
+  proj4text: order_by
+  srid: order_by
+  srtext: order_by
+}
+
+"""
+response of any mutation on the table "spatial_ref_sys"
+"""
+type spatial_ref_sys_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [spatial_ref_sys!]!
+}
+
+"""
+input type for inserting object relation for remote table "spatial_ref_sys"
+"""
+input spatial_ref_sys_obj_rel_insert_input {
+  data: spatial_ref_sys_insert_input!
+  on_conflict: spatial_ref_sys_on_conflict
+}
+
+"""
+on conflict condition type for table "spatial_ref_sys"
+"""
+input spatial_ref_sys_on_conflict {
+  constraint: spatial_ref_sys_constraint!
+  update_columns: [spatial_ref_sys_update_column!]!
+  where: spatial_ref_sys_bool_exp
+}
+
+"""
+ordering options when selecting data from "spatial_ref_sys"
+"""
+input spatial_ref_sys_order_by {
+  auth_name: order_by
+  auth_srid: order_by
+  proj4text: order_by
+  srid: order_by
+  srtext: order_by
+}
+
+"""
+select columns of table "spatial_ref_sys"
+"""
+enum spatial_ref_sys_select_column {
+  """column name"""
+  auth_name
+
+  """column name"""
+  auth_srid
+
+  """column name"""
+  proj4text
+
+  """column name"""
+  srid
+
+  """column name"""
+  srtext
+}
+
+"""
+input type for updating data in table "spatial_ref_sys"
+"""
+input spatial_ref_sys_set_input {
+  auth_name: String
+  auth_srid: Int
+  proj4text: String
+  srid: Int
+  srtext: String
+}
+
+"""aggregate stddev on columns"""
+type spatial_ref_sys_stddev_fields {
+  auth_srid: Float
+  srid: Float
+}
+
+"""
+order by stddev() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_stddev_order_by {
+  auth_srid: order_by
+  srid: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type spatial_ref_sys_stddev_pop_fields {
+  auth_srid: Float
+  srid: Float
+}
+
+"""
+order by stddev_pop() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_stddev_pop_order_by {
+  auth_srid: order_by
+  srid: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type spatial_ref_sys_stddev_samp_fields {
+  auth_srid: Float
+  srid: Float
+}
+
+"""
+order by stddev_samp() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_stddev_samp_order_by {
+  auth_srid: order_by
+  srid: order_by
+}
+
+"""aggregate sum on columns"""
+type spatial_ref_sys_sum_fields {
+  auth_srid: Int
+  srid: Int
+}
+
+"""
+order by sum() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_sum_order_by {
+  auth_srid: order_by
+  srid: order_by
+}
+
+"""
+update columns of table "spatial_ref_sys"
+"""
+enum spatial_ref_sys_update_column {
+  """column name"""
+  auth_name
+
+  """column name"""
+  auth_srid
+
+  """column name"""
+  proj4text
+
+  """column name"""
+  srid
+
+  """column name"""
+  srtext
+}
+
+"""aggregate var_pop on columns"""
+type spatial_ref_sys_var_pop_fields {
+  auth_srid: Float
+  srid: Float
+}
+
+"""
+order by var_pop() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_var_pop_order_by {
+  auth_srid: order_by
+  srid: order_by
+}
+
+"""aggregate var_samp on columns"""
+type spatial_ref_sys_var_samp_fields {
+  auth_srid: Float
+  srid: Float
+}
+
+"""
+order by var_samp() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_var_samp_order_by {
+  auth_srid: order_by
+  srid: order_by
+}
+
+"""aggregate variance on columns"""
+type spatial_ref_sys_variance_fields {
+  auth_srid: Float
+  srid: Float
+}
+
+"""
+order by variance() on columns of table "spatial_ref_sys"
+"""
+input spatial_ref_sys_variance_order_by {
+  auth_srid: order_by
+  srid: order_by
+}
+
+input st_d_within_geography_input {
+  distance: Float!
+  from: geography!
+  use_spheroid: Boolean = true
+}
+
+input st_d_within_input {
+  distance: Float!
+  from: geometry!
+}
+
+"""
+expression to compare columns of type String. All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+"""subscription root"""
+type subscription_root {
+  """
+  fetch data from the table: "city"
+  """
+  city(
+    """distinct select on columns"""
+    distinct_on: [city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_order_by!]
+
+    """filter the rows returned"""
+    where: city_bool_exp
+  ): [city!]!
+
+  """
+  fetch aggregated fields from the table: "city"
+  """
+  city_aggregate(
+    """distinct select on columns"""
+    distinct_on: [city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_order_by!]
+
+    """filter the rows returned"""
+    where: city_bool_exp
+  ): city_aggregate!
+
+  """fetch data from the table: "city" using primary key columns"""
+  city_by_pk(id: uuid!): city
+
+  """
+  fetch data from the table: "city_translation"
+  """
+  city_translation(
+    """distinct select on columns"""
+    distinct_on: [city_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_translation_order_by!]
+
+    """filter the rows returned"""
+    where: city_translation_bool_exp
+  ): [city_translation!]!
+
+  """
+  fetch aggregated fields from the table: "city_translation"
+  """
+  city_translation_aggregate(
+    """distinct select on columns"""
+    distinct_on: [city_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [city_translation_order_by!]
+
+    """filter the rows returned"""
+    where: city_translation_bool_exp
+  ): city_translation_aggregate!
+
+  """
+  fetch data from the table: "city_translation" using primary key columns
+  """
+  city_translation_by_pk(cityId: uuid!, language: bpchar!): city_translation
+
+  """
+  fetch data from the table: "country"
+  """
+  country(
+    """distinct select on columns"""
+    distinct_on: [country_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [country_order_by!]
+
+    """filter the rows returned"""
+    where: country_bool_exp
+  ): [country!]!
+
+  """
+  fetch aggregated fields from the table: "country"
+  """
+  country_aggregate(
+    """distinct select on columns"""
+    distinct_on: [country_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [country_order_by!]
+
+    """filter the rows returned"""
+    where: country_bool_exp
+  ): country_aggregate!
+
+  """fetch data from the table: "country" using primary key columns"""
+  country_by_pk(id: uuid!): country
+
+  """
+  fetch data from the table: "distributor"
+  """
+  distributor(
+    """distinct select on columns"""
+    distinct_on: [distributor_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_bool_exp
+  ): [distributor!]!
+
+  """
+  fetch aggregated fields from the table: "distributor"
+  """
+  distributor_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_bool_exp
+  ): distributor_aggregate!
+
+  """fetch data from the table: "distributor" using primary key columns"""
+  distributor_by_pk(id: uuid!): distributor
+
+  """
+  fetch data from the table: "distributor_city"
+  """
+  distributor_city(
+    """distinct select on columns"""
+    distinct_on: [distributor_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_city_bool_exp
+  ): [distributor_city!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_city"
+  """
+  distributor_city_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_city_bool_exp
+  ): distributor_city_aggregate!
+
+  """
+  fetch data from the table: "distributor_city" using primary key columns
+  """
+  distributor_city_by_pk(id: uuid!): distributor_city
+
+  """
+  fetch data from the table: "distributor_item"
+  """
+  distributor_item(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_bool_exp
+  ): [distributor_item!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_item"
+  """
+  distributor_item_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_bool_exp
+  ): distributor_item_aggregate!
+
+  """
+  fetch data from the table: "distributor_item" using primary key columns
+  """
+  distributor_item_by_pk(id: uuid!): distributor_item
+
+  """
+  fetch data from the table: "distributor_item_city"
+  """
+  distributor_item_city(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_city_bool_exp
+  ): [distributor_item_city!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_item_city"
+  """
+  distributor_item_city_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_item_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_item_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_item_city_bool_exp
+  ): distributor_item_city_aggregate!
+
+  """
+  fetch data from the table: "distributor_item_city" using primary key columns
+  """
+  distributor_item_city_by_pk(cityId: uuid!, distributorItemId: uuid!): distributor_item_city
+
+  """
+  fetch data from the table: "distributor_pack"
+  """
+  distributor_pack(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_bool_exp
+  ): [distributor_pack!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_pack"
+  """
+  distributor_pack_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_bool_exp
+  ): distributor_pack_aggregate!
+
+  """
+  fetch data from the table: "distributor_pack" using primary key columns
+  """
+  distributor_pack_by_pk(id: uuid!): distributor_pack
+
+  """
+  fetch data from the table: "distributor_pack_city"
+  """
+  distributor_pack_city(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_city_bool_exp
+  ): [distributor_pack_city!]!
+
+  """
+  fetch aggregated fields from the table: "distributor_pack_city"
+  """
+  distributor_pack_city_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_pack_city_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_pack_city_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_pack_city_bool_exp
+  ): distributor_pack_city_aggregate!
+
+  """
+  fetch data from the table: "distributor_pack_city" using primary key columns
+  """
+  distributor_pack_city_by_pk(cityId: uuid!, distributorPackId: uuid!): distributor_pack_city
+
+  """
+  fetch data from the table: "district"
+  """
+  district(
+    """distinct select on columns"""
+    distinct_on: [district_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_order_by!]
+
+    """filter the rows returned"""
+    where: district_bool_exp
+  ): [district!]!
+
+  """
+  fetch aggregated fields from the table: "district"
+  """
+  district_aggregate(
+    """distinct select on columns"""
+    distinct_on: [district_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_order_by!]
+
+    """filter the rows returned"""
+    where: district_bool_exp
+  ): district_aggregate!
+
+  """fetch data from the table: "district" using primary key columns"""
+  district_by_pk(id: uuid!): district
+
+  """
+  fetch data from the table: "district_translation"
+  """
+  district_translation(
+    """distinct select on columns"""
+    distinct_on: [district_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_translation_order_by!]
+
+    """filter the rows returned"""
+    where: district_translation_bool_exp
+  ): [district_translation!]!
+
+  """
+  fetch aggregated fields from the table: "district_translation"
+  """
+  district_translation_aggregate(
+    """distinct select on columns"""
+    distinct_on: [district_translation_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [district_translation_order_by!]
+
+    """filter the rows returned"""
+    where: district_translation_bool_exp
+  ): district_translation_aggregate!
+
+  """
+  fetch data from the table: "district_translation" using primary key columns
+  """
+  district_translation_by_pk(districtId: uuid!, language: bpchar!): district_translation
+
+  """
+  fetch data from the table: "geography_columns"
+  """
+  geography_columns(
+    """distinct select on columns"""
+    distinct_on: [geography_columns_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [geography_columns_order_by!]
+
+    """filter the rows returned"""
+    where: geography_columns_bool_exp
+  ): [geography_columns!]!
+
+  """
+  fetch aggregated fields from the table: "geography_columns"
+  """
+  geography_columns_aggregate(
+    """distinct select on columns"""
+    distinct_on: [geography_columns_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [geography_columns_order_by!]
+
+    """filter the rows returned"""
+    where: geography_columns_bool_exp
+  ): geography_columns_aggregate!
+
+  """
+  fetch data from the table: "geometry_columns"
+  """
+  geometry_columns(
+    """distinct select on columns"""
+    distinct_on: [geometry_columns_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [geometry_columns_order_by!]
+
+    """filter the rows returned"""
+    where: geometry_columns_bool_exp
+  ): [geometry_columns!]!
+
+  """
+  fetch aggregated fields from the table: "geometry_columns"
+  """
+  geometry_columns_aggregate(
+    """distinct select on columns"""
+    distinct_on: [geometry_columns_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [geometry_columns_order_by!]
+
+    """filter the rows returned"""
+    where: geometry_columns_bool_exp
+  ): geometry_columns_aggregate!
+
+  """
+  fetch data from the table: "item_category"
+  """
+  item_category(
+    """distinct select on columns"""
+    distinct_on: [item_category_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_bool_exp
+  ): [item_category!]!
+
+  """
+  fetch aggregated fields from the table: "item_category"
+  """
+  item_category_aggregate(
+    """distinct select on columns"""
+    distinct_on: [item_category_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_bool_exp
+  ): item_category_aggregate!
+
+  """fetch data from the table: "item_category" using primary key columns"""
+  item_category_by_pk(id: uuid!): item_category
+
+  """
+  fetch data from the table: "item_category_need"
+  """
+  item_category_need(
+    """distinct select on columns"""
+    distinct_on: [item_category_need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_need_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_need_bool_exp
+  ): [item_category_need!]!
+
+  """
+  fetch aggregated fields from the table: "item_category_need"
+  """
+  item_category_need_aggregate(
+    """distinct select on columns"""
+    distinct_on: [item_category_need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [item_category_need_order_by!]
+
+    """filter the rows returned"""
+    where: item_category_need_bool_exp
+  ): item_category_need_aggregate!
+
+  """
+  fetch data from the table: "item_category_need" using primary key columns
+  """
+  item_category_need_by_pk(itemCategoryId: uuid!, needId: uuid!): item_category_need
+
+  """
+  fetch data from the table: "need"
+  """
+  need(
+    """distinct select on columns"""
+    distinct_on: [need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [need_order_by!]
+
+    """filter the rows returned"""
+    where: need_bool_exp
+  ): [need!]!
+
+  """
+  fetch aggregated fields from the table: "need"
+  """
+  need_aggregate(
+    """distinct select on columns"""
+    distinct_on: [need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [need_order_by!]
+
+    """filter the rows returned"""
+    where: need_bool_exp
+  ): need_aggregate!
+
+  """fetch data from the table: "need" using primary key columns"""
+  need_by_pk(id: uuid!): need
+
+  """
+  fetch data from the table: "spatial_ref_sys"
+  """
+  spatial_ref_sys(
+    """distinct select on columns"""
+    distinct_on: [spatial_ref_sys_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [spatial_ref_sys_order_by!]
+
+    """filter the rows returned"""
+    where: spatial_ref_sys_bool_exp
+  ): [spatial_ref_sys!]!
+
+  """
+  fetch aggregated fields from the table: "spatial_ref_sys"
+  """
+  spatial_ref_sys_aggregate(
+    """distinct select on columns"""
+    distinct_on: [spatial_ref_sys_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [spatial_ref_sys_order_by!]
+
+    """filter the rows returned"""
+    where: spatial_ref_sys_bool_exp
+  ): spatial_ref_sys_aggregate!
+
+  """fetch data from the table: "spatial_ref_sys" using primary key columns"""
+  spatial_ref_sys_by_pk(srid: Int!): spatial_ref_sys
+}
+
+scalar timestamptz
+
+"""
+expression to compare columns of type timestamptz. All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+scalar uuid
+
+"""
+expression to compare columns of type uuid. All fields are combined with logical 'AND'.
+"""
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}
