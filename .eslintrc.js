@@ -38,7 +38,8 @@ module.exports = {
         "tsx": "never"
       }
     ],
-    "lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }]
+    "lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }],
+    "jsx-a11y/label-has-associated-control": 0
   },
   settings: {
     "import/resolver": {
