@@ -1,12 +1,51 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { STRequesterCard } from "../components/shared/STRequesterCard";
+import { STDistributorCard } from "../components/shared/STDistributorCard";
+
+const distributorData = [
+  {
+    id: "ae50e9c0-e987-4fdd-8998-85e68cac5164",
+    name: "Keels",
+    phoneNumber: "+94 77 000 0000",
+    email: "keels@gmail.com",
+    website: "www.keels.com",
+    active: false,
+    distributor_items: [
+      {
+        id: "01",
+        name: "Item 01",
+        price: "200",
+        deliveryFee: "20",
+      },
+    ],
+    distributor_packs: [
+      {
+        id: "01",
+        name: "Package 01",
+        price: "200",
+        deliveryFee: "20",
+        content: ["Item 01", "Item 02", "Item 03", "Item 04"],
+        distributor_pack_cities: {
+          city: {
+            id: "01",
+            name: "Kottawa",
+            postcode: "1212",
+            location: "123123",
+            sourceId: "2ew3",
+          },
+        },
+      },
+    ],
+  },
+];
 
 export const Home = () => {
   return (
     <div>
-      {/* content */}
       <section className="section">
         <div className="container">
-          <div className="columns">
+          <div className="columns is-vcentered">
             <div className="column is-7 is-full-mobile">
               <div className="column is-9">
                 <h1 className="title is-1 is-spaced">
@@ -91,36 +130,26 @@ export const Home = () => {
 
       <section className="section">
         <div className="container">
-          <p className="title is-3 is-spaced">Popular Distributors</p>
+          <div className="columns is-mobile">
+            <div className="column">
+              <div>
+                <p className="title is-3 is-spaced">Popular Distributors</p>
+              </div>
+            </div>
+            <div className="column is-right">
+              <div className="is-pulled-right">
+                <Link to="/distributors" className="navbar-item">
+                  <button type="button" className="button">
+                    Show more...
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
           <div className="columns ">
             <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns is-mobile">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">Keels super</h5>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <h6 className="title is-6 has-text-primary">
-                    +94 77 65456456
-                  </h6>
-                  <div>
-                    <h6 className="subtitle is-6 has-text-grey-light">
-                      Available on 30 cities
-                    </h6>
-                    <p>Galle, Kottawa, Kasbawa, Horana, Kandy, Jaffna</p>
-                  </div>
-                </div>
-              </div>
+              <STDistributorCard />
             </div>
           </div>
         </div>
@@ -128,7 +157,25 @@ export const Home = () => {
 
       <section className="section">
         <div className="container">
-          <p className="title is-3 is-spaced">Cities with most requests</p>
+          <div className="columns is-mobile">
+            <div className="column">
+              <div>
+                <p className="title is-3 is-spaced">
+                  Cities with most requests
+                </p>
+              </div>
+            </div>
+            <div className="column is-right">
+              <div className="is-pulled-right">
+                <Link to="/districts" className="navbar-item">
+                  <button type="button" className="button">
+                    Show more...
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
           <div className="columns ">
             <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
               <div className="card">
@@ -157,6 +204,40 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="columns is-mobile">
+            <div className="column">
+              <div>
+                <p className="title is-3 is-spaced">Latest requests</p>
+              </div>
+            </div>
+            <div className="column is-right">
+              <div className="is-pulled-right">
+                <Link to="/districts" className="navbar-item">
+                  <button type="button" className="button">
+                    Show more...
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns ">
+            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+              <STRequesterCard
+                requesterData={{
+                  requesterName: "John Doe",
+                  city: "Kottawa north",
+                  contactNo: "+94 77 000 0000",
+                  peopleCount: 100,
+                }}
+              />
             </div>
           </div>
         </div>
