@@ -290,6 +290,7 @@ export const CreateDistributor = () => {
                       register={register}
                       name={`itemPacks[${index}].content`}
                       label="Content *"
+                      help="Please add a comma separated list."
                     />
                   </div>
 
