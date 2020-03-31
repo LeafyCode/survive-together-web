@@ -1,37 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
     <div>
-      <div
-        className="navbar is-primary"
-        role="navigation"
-        aria-label="main navigation"
-      >
-        <div className="navbar-brand">
-          <Link to="/" className="navbar-item">
-            <h1>Survive Together</h1>
-          </Link>
-        </div>
-
-        <div className="navbar-menu">
-          <div className="navbar-start">
-            <Link className="navbar-item" to="/">
-              Home
-            </Link>
-          </div>
-
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <Link className="button is-primary" to="/login">
-                <strong>Sign up</strong>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* content */}
       <section className="section">
         <div className="container">
@@ -46,7 +17,7 @@ export const Home = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempo
                 </h2>
-                <button className="button is-warning is-medium">
+                <button type="button" className="button is-warning is-medium">
                   Enroll as a distributor
                 </button>
               </div>
