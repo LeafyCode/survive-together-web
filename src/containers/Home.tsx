@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -17,9 +18,13 @@ export const Home = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempo
                 </h2>
-                <button type="button" className="button is-warning is-medium">
-                  Enroll as a distributor
-                </button>
+                <Link
+                  to="/distributor/create"
+                  type="button"
+                  className="button is-warning is-medium"
+                >
+                  Add a Distributor
+                </Link>
               </div>
             </div>
 
