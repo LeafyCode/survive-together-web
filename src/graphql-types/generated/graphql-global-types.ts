@@ -334,11 +334,36 @@ export interface bpchar_comparison_exp {
 }
 
 /**
+ * order by aggregate values of table "city"
+ */
+export interface city_aggregate_order_by {
+  avg?: city_avg_order_by | null;
+  count?: order_by | null;
+  max?: city_max_order_by | null;
+  min?: city_min_order_by | null;
+  stddev?: city_stddev_order_by | null;
+  stddev_pop?: city_stddev_pop_order_by | null;
+  stddev_samp?: city_stddev_samp_order_by | null;
+  sum?: city_sum_order_by | null;
+  var_pop?: city_var_pop_order_by | null;
+  var_samp?: city_var_samp_order_by | null;
+  variance?: city_variance_order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "city"
  */
 export interface city_arr_rel_insert_input {
   data: city_insert_input[];
   on_conflict?: city_on_conflict | null;
+}
+
+/**
+ * order by avg() on columns of table "city"
+ */
+export interface city_avg_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
 }
 
 /**
@@ -381,6 +406,24 @@ export interface city_insert_input {
 }
 
 /**
+ * order by max() on columns of table "city"
+ */
+export interface city_max_order_by {
+  name?: order_by | null;
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "city"
+ */
+export interface city_min_order_by {
+  name?: order_by | null;
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
  * input type for inserting object relation for remote table "city"
  */
 export interface city_obj_rel_insert_input {
@@ -395,6 +438,65 @@ export interface city_on_conflict {
   constraint: city_constraint;
   update_columns: city_update_column[];
   where?: city_bool_exp | null;
+}
+
+/**
+ * ordering options when selecting data from "city"
+ */
+export interface city_order_by {
+  city_translations_aggregate?: city_translation_aggregate_order_by | null;
+  distributor_cities_aggregate?: distributor_city_aggregate_order_by | null;
+  distributor_item_cities_aggregate?: distributor_item_city_aggregate_order_by | null;
+  distributor_pack_cities_aggregate?: distributor_pack_city_aggregate_order_by | null;
+  district?: district_order_by | null;
+  districtId?: order_by | null;
+  id?: order_by | null;
+  location?: order_by | null;
+  name?: order_by | null;
+  needs_aggregate?: need_aggregate_order_by | null;
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev() on columns of table "city"
+ */
+export interface city_stddev_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev_pop() on columns of table "city"
+ */
+export interface city_stddev_pop_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev_samp() on columns of table "city"
+ */
+export interface city_stddev_samp_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by sum() on columns of table "city"
+ */
+export interface city_sum_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by aggregate values of table "city_translation"
+ */
+export interface city_translation_aggregate_order_by {
+  count?: order_by | null;
+  max?: city_translation_max_order_by | null;
+  min?: city_translation_min_order_by | null;
 }
 
 /**
@@ -429,12 +531,50 @@ export interface city_translation_insert_input {
 }
 
 /**
+ * order by max() on columns of table "city_translation"
+ */
+export interface city_translation_max_order_by {
+  text?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "city_translation"
+ */
+export interface city_translation_min_order_by {
+  text?: order_by | null;
+}
+
+/**
  * on conflict condition type for table "city_translation"
  */
 export interface city_translation_on_conflict {
   constraint: city_translation_constraint;
   update_columns: city_translation_update_column[];
   where?: city_translation_bool_exp | null;
+}
+
+/**
+ * order by var_pop() on columns of table "city"
+ */
+export interface city_var_pop_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by var_samp() on columns of table "city"
+ */
+export interface city_var_samp_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by variance() on columns of table "city"
+ */
+export interface city_variance_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
 }
 
 /**
@@ -651,6 +791,13 @@ export interface distributor_item_bool_exp {
   name?: String_comparison_exp | null;
   price?: Int_comparison_exp | null;
   updated_at?: timestamptz_comparison_exp | null;
+}
+
+/**
+ * order by aggregate values of table "distributor_item_city"
+ */
+export interface distributor_item_city_aggregate_order_by {
+  count?: order_by | null;
 }
 
 /**
@@ -918,6 +1065,13 @@ export interface distributor_pack_bool_exp {
 }
 
 /**
+ * order by aggregate values of table "distributor_pack_city"
+ */
+export interface distributor_pack_city_aggregate_order_by {
+  count?: order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "distributor_pack_city"
  */
 export interface distributor_pack_city_arr_rel_insert_input {
@@ -1165,6 +1319,19 @@ export interface district_on_conflict {
 }
 
 /**
+ * ordering options when selecting data from "district"
+ */
+export interface district_order_by {
+  cities_aggregate?: city_aggregate_order_by | null;
+  country?: country_order_by | null;
+  countryId?: order_by | null;
+  district_translations_aggregate?: district_translation_aggregate_order_by | null;
+  id?: order_by | null;
+  name?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
  * order by stddev() on columns of table "district"
  */
 export interface district_stddev_order_by {
@@ -1190,6 +1357,15 @@ export interface district_stddev_samp_order_by {
  */
 export interface district_sum_order_by {
   sourceId?: order_by | null;
+}
+
+/**
+ * order by aggregate values of table "district_translation"
+ */
+export interface district_translation_aggregate_order_by {
+  count?: order_by | null;
+  max?: district_translation_max_order_by | null;
+  min?: district_translation_min_order_by | null;
 }
 
 /**
@@ -1221,6 +1397,20 @@ export interface district_translation_insert_input {
   districtId?: any | null;
   language?: any | null;
   text?: string | null;
+}
+
+/**
+ * order by max() on columns of table "district_translation"
+ */
+export interface district_translation_max_order_by {
+  text?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "district_translation"
+ */
+export interface district_translation_min_order_by {
+  text?: order_by | null;
 }
 
 /**

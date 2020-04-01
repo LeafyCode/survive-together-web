@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useLazyQuery, useQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useQuery, useSubscription } from "@apollo/react-hooks";
 import { STRequesterCard } from "../components/shared/STRequesterCard";
 import { STDistributorCard } from "../components/shared/STDistributorCard";
 import {
@@ -12,7 +12,7 @@ import { order_by } from "../graphql-types/generated/graphql-global-types";
 import { Hero } from "../components/home/Hero";
 import { AreaSelection } from "../components/home/AreaSelection";
 import { City, CityVariables } from "../graphql-types/generated/City";
-import { CITIES } from "../graphql-types/city";
+import { CITIES, CITY_BY_NEEDS } from "../graphql-types/city";
 import { DISTRICT } from "../graphql-types/district";
 import { District } from "../graphql-types/generated/District";
 import { STSelectOption } from "../types";
@@ -20,6 +20,11 @@ import {
   getCitiesForSelect,
   getDistrictsForSelect,
 } from "../helpers/sharedHelpers";
+import {
+  CityByNeeds,
+  CityByNeedsVariables,
+} from "../graphql-types/generated/CityByNeeds";
+import { STCitySummaryCard } from "../components/shared/STCitySummaryCard";
 
 export const Home = () => {
   const [selectedCity, setSelectedCity] = useState<STSelectOption>();
@@ -58,6 +63,22 @@ export const Home = () => {
     error: districtsDataError,
     data: districtsData,
   } = useQuery<District>(DISTRICT);
+  const {
+    loading: cityByNeedsDataLoading,
+    error: cityByNeedsDataError,
+    data: cityByNeedsData,
+  } = useSubscription<CityByNeeds, CityByNeedsVariables>(CITY_BY_NEEDS, {
+    variables: {
+      order_by: [
+        {
+          needs_aggregate: {
+            count: order_by.desc,
+          },
+        },
+      ],
+      limit: 8,
+    },
+  });
 
   const citiesForSelect: STSelectOption[] = getCitiesForSelect(
     citiesData?.city
@@ -141,54 +162,43 @@ export const Home = () => {
 
       <section className="section">
         <div className="container">
-          <div className="columns is-mobile">
+          <div className="columns is-mobile is-multiline">
             <div className="column">
               <div>
-                <p className="title is-3 is-spaced">
-                  Cities with most requests
-                </p>
-              </div>
-            </div>
-            <div className="column is-right">
-              <div className="is-pulled-right">
-                <Link to="/districts" className="navbar-item">
-                  <button type="button" className="button">
-                    Show more...
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns ">
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns is-mobile">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">District name</h5>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-primary">
-                          <h6 className="subtitle is-6 is-right">
-                            2000 requests
-                          </h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="subtitle is-6 has-text-grey-light">
-                      Cities
-                    </h6>
-                    <p>Galle, Kottawa, Kasbawa, Horana, Kandy, Jaffna</p>
-                  </div>
+                <div className="title is-3 is-spaced">
+                  Cities with most requests{" "}
+                  <span className="tag is-danger">LIVE</span>{" "}
+                  <div className="blob" />
                 </div>
               </div>
             </div>
+            <div className="column" style={{ flexGrow: "inherit" }}>
+              <Link to="/districts" className="  button">
+                Show more...
+              </Link>
+            </div>
+          </div>
+
+          <div className="columns is-multiline">
+            {cityByNeedsDataError && (
+              <div className="full-notification notification is-danger is-centered">
+                Something went wrong. I think our servers are getting fried due
+                to the heavy load. Or something else... We&apos;ll look into it!
+              </div>
+            )}
+            {cityByNeedsDataLoading && (
+              <progress className="progress is-small is-primary" max="100" />
+            )}
+            {cityByNeedsData && cityByNeedsData.city.length === 0 && (
+              <div className="full-notification notification  is-centered">
+                No cities found. Please be patient.
+              </div>
+            )}
+            {!cityByNeedsDataLoading &&
+              cityByNeedsData &&
+              cityByNeedsData.city.map((city) => (
+                <STCitySummaryCard key={city.id} city={city} />
+              ))}
           </div>
         </div>
       </section>
