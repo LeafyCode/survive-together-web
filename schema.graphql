@@ -799,6 +799,42 @@ type country {
   code: bpchar!
 
   """An array relationship"""
+  distributors(
+    """distinct select on columns"""
+    distinct_on: [distributor_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_bool_exp
+  ): [distributor!]!
+
+  """An aggregated array relationship"""
+  distributors_aggregate(
+    """distinct select on columns"""
+    distinct_on: [distributor_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [distributor_order_by!]
+
+    """filter the rows returned"""
+    where: distributor_bool_exp
+  ): distributor_aggregate!
+
+  """An array relationship"""
   districts(
     """distinct select on columns"""
     distinct_on: [district_select_column!]
@@ -835,6 +871,42 @@ type country {
   ): district_aggregate!
   id: uuid!
   name: String!
+
+  """An array relationship"""
+  needs(
+    """distinct select on columns"""
+    distinct_on: [need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [need_order_by!]
+
+    """filter the rows returned"""
+    where: need_bool_exp
+  ): [need!]!
+
+  """An aggregated array relationship"""
+  needs_aggregate(
+    """distinct select on columns"""
+    distinct_on: [need_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [need_order_by!]
+
+    """filter the rows returned"""
+    where: need_bool_exp
+  ): need_aggregate!
 }
 
 """
@@ -879,9 +951,11 @@ input country_bool_exp {
   _not: country_bool_exp
   _or: [country_bool_exp]
   code: bpchar_comparison_exp
+  distributors: distributor_bool_exp
   districts: district_bool_exp
   id: uuid_comparison_exp
   name: String_comparison_exp
+  needs: need_bool_exp
 }
 
 """
@@ -900,9 +974,11 @@ input type for inserting data into table "country"
 """
 input country_insert_input {
   code: bpchar
+  distributors: distributor_arr_rel_insert_input
   districts: district_arr_rel_insert_input
   id: uuid
   name: String
+  needs: need_arr_rel_insert_input
 }
 
 """aggregate max on columns"""
@@ -962,9 +1038,11 @@ ordering options when selecting data from "country"
 """
 input country_order_by {
   code: order_by
+  distributors_aggregate: distributor_aggregate_order_by
   districts_aggregate: district_aggregate_order_by
   id: order_by
   name: order_by
+  needs_aggregate: need_aggregate_order_by
 }
 
 """
@@ -1009,6 +1087,10 @@ columns and relationships of "distributor"
 """
 type distributor {
   active: Boolean!
+
+  """An object relationship"""
+  country: country!
+  countryId: uuid!
   created_at: timestamptz!
 
   """An array relationship"""
@@ -1168,6 +1250,8 @@ input distributor_bool_exp {
   _not: distributor_bool_exp
   _or: [distributor_bool_exp]
   active: Boolean_comparison_exp
+  country: country_bool_exp
+  countryId: uuid_comparison_exp
   created_at: timestamptz_comparison_exp
   distributor_cities: distributor_city_bool_exp
   distributor_items: distributor_item_bool_exp
@@ -1346,6 +1430,8 @@ input type for inserting data into table "distributor"
 """
 input distributor_insert_input {
   active: Boolean
+  country: country_obj_rel_insert_input
+  countryId: uuid
   created_at: timestamptz
   distributor_cities: distributor_city_arr_rel_insert_input
   distributor_items: distributor_item_arr_rel_insert_input
@@ -2005,6 +2091,8 @@ ordering options when selecting data from "distributor"
 """
 input distributor_order_by {
   active: order_by
+  country: country_order_by
+  countryId: order_by
   created_at: order_by
   distributor_cities_aggregate: distributor_city_aggregate_order_by
   distributor_items_aggregate: distributor_item_aggregate_order_by
@@ -2593,6 +2681,9 @@ enum distributor_select_column {
   active
 
   """column name"""
+  countryId
+
+  """column name"""
   created_at
 
   """column name"""
@@ -2619,6 +2710,7 @@ input type for updating data in table "distributor"
 """
 input distributor_set_input {
   active: Boolean
+  countryId: uuid
   created_at: timestamptz
   email: String
   id: uuid
@@ -2634,6 +2726,9 @@ update columns of table "distributor"
 enum distributor_update_column {
   """column name"""
   active
+
+  """column name"""
+  countryId
 
   """column name"""
   created_at
@@ -4802,6 +4897,10 @@ type need {
   cityId: uuid!
   contactNumber: String!
   contactPersonName: String!
+
+  """An object relationship"""
+  country: country!
+  countryId: uuid!
   created_at: timestamptz!
   id: uuid!
 
@@ -4918,6 +5017,8 @@ input need_bool_exp {
   cityId: uuid_comparison_exp
   contactNumber: String_comparison_exp
   contactPersonName: String_comparison_exp
+  country: country_bool_exp
+  countryId: uuid_comparison_exp
   created_at: timestamptz_comparison_exp
   id: uuid_comparison_exp
   item_category_needs: item_category_need_bool_exp
@@ -4949,6 +5050,8 @@ input need_insert_input {
   cityId: uuid
   contactNumber: String
   contactPersonName: String
+  country: country_obj_rel_insert_input
+  countryId: uuid
   created_at: timestamptz
   id: uuid
   item_category_needs: item_category_need_arr_rel_insert_input
@@ -5033,6 +5136,8 @@ input need_order_by {
   cityId: order_by
   contactNumber: order_by
   contactPersonName: order_by
+  country: country_order_by
+  countryId: order_by
   created_at: order_by
   id: order_by
   item_category_needs_aggregate: item_category_need_aggregate_order_by
@@ -5057,6 +5162,9 @@ enum need_select_column {
   contactPersonName
 
   """column name"""
+  countryId
+
+  """column name"""
   created_at
 
   """column name"""
@@ -5077,6 +5185,7 @@ input need_set_input {
   cityId: uuid
   contactNumber: String
   contactPersonName: String
+  countryId: uuid
   created_at: timestamptz
   id: uuid
   numberOfPeople: Int
@@ -5146,6 +5255,9 @@ enum need_update_column {
 
   """column name"""
   contactPersonName
+
+  """column name"""
+  countryId
 
   """column name"""
   created_at

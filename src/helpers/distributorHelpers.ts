@@ -9,6 +9,7 @@ import {
   InsertDistributorVariables,
 } from "../graphql-types/generated/InsertDistributor";
 import { distributor_insert_input } from "../graphql-types/generated/graphql-global-types";
+import { COUNTRY_ID } from "../config";
 
 export const executeCreateDistributorMutation = async (
   distributorData: DistributorDataType,
@@ -21,27 +22,8 @@ export const executeCreateDistributorMutation = async (
   try {
     setIsLoading(true);
 
-    // Check whether there's an item or an item pack
-    const itemsWithData = distributorData.items.filter(
-      (item) => !isEmpty(item.name) && !isEmpty(item.category)
-    );
-    const itemPacksWithData = distributorData.itemPacks.filter(
-      (itemPack) => !isEmpty(itemPack.name) && !isEmpty(itemPack.content)
-    );
-
-    if (itemsWithData.length === 0 && itemPacksWithData.length === 0) {
-      setIsLoading(false);
-
-      return addToast(
-        "There should be at least one item or one item pack. Make sure you fill all the required fields denoted by *",
-        {
-          appearance: "error",
-          autoDismiss: true,
-        }
-      );
-    }
-
     const distributorInput: distributor_insert_input = {
+      countryId: COUNTRY_ID,
       name: distributorData.name,
       phoneNumber: distributorData.phoneNumber,
       website: distributorData.website,

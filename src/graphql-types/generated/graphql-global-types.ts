@@ -159,6 +159,7 @@ export enum distributor_pack_update_column {
  */
 export enum distributor_update_column {
   active = "active",
+  countryId = "countryId",
   created_at = "created_at",
   email = "email",
   id = "id",
@@ -247,6 +248,7 @@ export enum need_update_column {
   cityId = "cityId",
   contactNumber = "contactNumber",
   contactPersonName = "contactPersonName",
+  countryId = "countryId",
   created_at = "created_at",
   id = "id",
   numberOfPeople = "numberOfPeople",
@@ -431,9 +433,11 @@ export interface country_bool_exp {
   _not?: country_bool_exp | null;
   _or?: (country_bool_exp | null)[] | null;
   code?: bpchar_comparison_exp | null;
+  distributors?: distributor_bool_exp | null;
   districts?: district_bool_exp | null;
   id?: uuid_comparison_exp | null;
   name?: String_comparison_exp | null;
+  needs?: need_bool_exp | null;
 }
 
 /**
@@ -441,9 +445,11 @@ export interface country_bool_exp {
  */
 export interface country_insert_input {
   code?: any | null;
+  distributors?: distributor_arr_rel_insert_input | null;
   districts?: district_arr_rel_insert_input | null;
   id?: any | null;
   name?: string | null;
+  needs?: need_arr_rel_insert_input | null;
 }
 
 /**
@@ -464,6 +470,14 @@ export interface country_on_conflict {
 }
 
 /**
+ * input type for inserting array relation for remote table "distributor"
+ */
+export interface distributor_arr_rel_insert_input {
+  data: distributor_insert_input[];
+  on_conflict?: distributor_on_conflict | null;
+}
+
+/**
  * Boolean expression to filter rows from the table "distributor". All fields are combined with a logical 'AND'.
  */
 export interface distributor_bool_exp {
@@ -471,6 +485,8 @@ export interface distributor_bool_exp {
   _not?: distributor_bool_exp | null;
   _or?: (distributor_bool_exp | null)[] | null;
   active?: Boolean_comparison_exp | null;
+  country?: country_bool_exp | null;
+  countryId?: uuid_comparison_exp | null;
   created_at?: timestamptz_comparison_exp | null;
   distributor_cities?: distributor_city_bool_exp | null;
   distributor_items?: distributor_item_bool_exp | null;
@@ -530,6 +546,8 @@ export interface distributor_city_on_conflict {
  */
 export interface distributor_insert_input {
   active?: boolean | null;
+  country?: country_obj_rel_insert_input | null;
+  countryId?: any | null;
   created_at?: any | null;
   distributor_cities?: distributor_city_arr_rel_insert_input | null;
   distributor_items?: distributor_item_arr_rel_insert_input | null;
@@ -1013,6 +1031,8 @@ export interface need_bool_exp {
   cityId?: uuid_comparison_exp | null;
   contactNumber?: String_comparison_exp | null;
   contactPersonName?: String_comparison_exp | null;
+  country?: country_bool_exp | null;
+  countryId?: uuid_comparison_exp | null;
   created_at?: timestamptz_comparison_exp | null;
   id?: uuid_comparison_exp | null;
   item_category_needs?: item_category_need_bool_exp | null;
@@ -1029,6 +1049,8 @@ export interface need_insert_input {
   cityId?: any | null;
   contactNumber?: string | null;
   contactPersonName?: string | null;
+  country?: country_obj_rel_insert_input | null;
+  countryId?: any | null;
   created_at?: any | null;
   id?: any | null;
   item_category_needs?: item_category_need_arr_rel_insert_input | null;

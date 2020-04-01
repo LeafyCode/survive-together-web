@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
@@ -18,14 +17,10 @@ import { ITEM_CATEGORIES } from "../graphql-types/itemCategory";
 import { City } from "../graphql-types/generated/City";
 import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { DistributorValidationSchema } from "../validations";
-
-const STFormContainer = styled.div`
-  padding: 20px;
-`;
-
-const STFormArrayRemoveButton = styled.button`
-  margin-top: 31px;
-`;
+import {
+  STFormArrayRemoveButton,
+  STFormContainer,
+} from "../components/shared/styledComponents";
 
 export const CreateDistributor = () => {
   const { addToast } = useToasts();

@@ -26,3 +26,12 @@ export type DistributorDataType = {
   items: DistributorItemDataType[];
   itemPacks: DistributorItemPacksDataType[];
 };
+
+export type RequestDataType = {
+  contactPersonName: string;
+  contactNumber: string;
+  city: STSelectOption;
+  numberOfPeople: number;
+  categories: STSelectOption[];
+  agreeToTerms: boolean;
+};
