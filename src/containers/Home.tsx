@@ -3,43 +3,73 @@ import { Link } from "react-router-dom";
 import { STRequesterCard } from "../components/shared/STRequesterCard";
 import { STDistributorCard } from "../components/shared/STDistributorCard";
 
-const distributorData = [
-  {
-    id: "ae50e9c0-e987-4fdd-8998-85e68cac5164",
-    name: "Keels",
-    phoneNumber: "+94 77 000 0000",
-    email: "keels@gmail.com",
-    website: "www.keels.com",
-    active: false,
-    distributor_items: [
-      {
-        id: "01",
-        name: "Item 01",
-        price: "200",
-        deliveryFee: "20",
-      },
-    ],
-    distributor_packs: [
-      {
-        id: "01",
-        name: "Package 01",
-        price: "200",
-        deliveryFee: "20",
-        content: ["Item 01", "Item 02", "Item 03", "Item 04"],
-        distributor_pack_cities: {
-          city: {
-            id: "01",
-            name: "Kottawa",
-            postcode: "1212",
-            location: "123123",
-            sourceId: "2ew3",
+const distributorData = {
+  id: "fdc20b63-6bcf-42f0-a866-46c9d0518caa",
+  name: "gfdg",
+  phoneNumber: "dfg",
+  email: "dfg@leafycode.com",
+  website: "dfg",
+  active: false,
+  distributor_items: [
+    {
+      id: "01",
+      name: "Item 01",
+      price: "200",
+      deliveryFee: "20",
+    },
+    {
+      id: "02",
+      name: "Item 02",
+      price: "300",
+      deliveryFee: "30",
+    },
+  ],
+  distributor_packs: [
+    {
+      id: "01",
+      name: "Package 01",
+      price: "200",
+      deliveryFee: "20",
+      content: ["Item 01", "Item 02", "Item 03", "Item 04"],
+    },
+  ],
+  distributor_cities: [
+    {
+      city: {
+        id: "cd649328-18cb-4830-a6cf-4f24b357ecac",
+        name: "Colombo 15 (Modara)",
+        location: {
+          type: "Point",
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326",
+            },
           },
+          coordinates: [6.959444, 79.875278],
         },
+        districtId: "e9132a5f-0d47-4d38-b692-a2787bccd821",
       },
-    ],
-  },
-];
-
+    },
+    {
+      city: {
+        id: "cd649328-18cb-4830-a6cf-4fa24b357ecac",
+        name: "Kottawa",
+        location: {
+          type: "Point",
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326",
+            },
+          },
+          coordinates: [6.959444, 79.875278],
+        },
+        districtId: "e9132a5f-0d47-4d38-b692-a2787bccd821",
+      },
+    },
+  ],
+};
 export const Home = () => {
   return (
     <div>
@@ -149,7 +179,7 @@ export const Home = () => {
 
           <div className="columns ">
             <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <STDistributorCard />
+              <STDistributorCard distributorData={distributorData} />
             </div>
           </div>
         </div>
