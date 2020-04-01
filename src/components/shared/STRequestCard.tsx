@@ -1,24 +1,16 @@
 import React from "react";
 import { STModal } from "./STModal";
+import { LatestNeeds_need } from "../../graphql-types/generated/LatestNeeds";
 
-interface RequesterDataTypes {
-  requesterName: string;
-  city: string;
-  contactNo: string;
-  peopleCount: number;
+interface STRequestCardPropsTypes {
+  needData: LatestNeeds_need;
 }
 
-interface STRequesterCardPropsTypes {
-  requesterData: RequesterDataTypes;
-}
-
-export const STRequesterCard = ({
-  requesterData,
-}: STRequesterCardPropsTypes) => {
+export const STRequestCard = ({ needData }: STRequestCardPropsTypes) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   return (
-    <>
+    <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
       <div
         role="menuitem"
         aria-hidden="true"
@@ -29,36 +21,36 @@ export const STRequesterCard = ({
           <div className="columns is-mobile">
             <div className="column">
               <div>
-                <h5 className="title is-5">{requesterData.requesterName}</h5>
+                <p className="title is-5">{needData.contactPersonName}</p>
               </div>
             </div>
             <div className="column is-right">
               <div className="is-pulled-right">
                 <span className="tag is-warning">
-                  <h6 className="subtitle is-6 is-right">
-                    {requesterData.city}
-                  </h6>
+                  <p className="subtitle is-6 is-right">{needData.city.name}</p>
                 </span>
               </div>
             </div>
           </div>
           <div className="columns is-mobile">
             <div className="column">
-              <h6 className="title is-6 has-text-primary">
-                {requesterData.contactNo}
-              </h6>
+              <p className="has-text-grey-light ">{needData.contactNumber}</p>
             </div>
             <div className="column is-right">
               <div className="is-pulled-right">
-                <h6 className="subtitle is-6 has-text-grey-light">
-                  {requesterData.peopleCount} People
-                </h6>
+                <div className="tags has-addons">
+                  <span className="tag is-primary">
+                    {needData.numberOfPeople}
+                  </span>
+                  <span className="tag ">people</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <STModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-    </>
+    </div>
   );
 };

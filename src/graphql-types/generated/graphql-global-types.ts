@@ -1525,6 +1525,13 @@ export interface item_category_insert_input {
 }
 
 /**
+ * order by aggregate values of table "item_category_need"
+ */
+export interface item_category_need_aggregate_order_by {
+  count?: order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "item_category_need"
  */
 export interface item_category_need_arr_rel_insert_input {
@@ -1689,6 +1696,24 @@ export interface need_on_conflict {
   constraint: need_constraint;
   update_columns: need_update_column[];
   where?: need_bool_exp | null;
+}
+
+/**
+ * ordering options when selecting data from "need"
+ */
+export interface need_order_by {
+  active?: order_by | null;
+  city?: city_order_by | null;
+  cityId?: order_by | null;
+  contactNumber?: order_by | null;
+  contactPersonName?: order_by | null;
+  country?: country_order_by | null;
+  countryId?: order_by | null;
+  created_at?: order_by | null;
+  id?: order_by | null;
+  item_category_needs_aggregate?: item_category_need_aggregate_order_by | null;
+  numberOfPeople?: order_by | null;
+  updated_at?: order_by | null;
 }
 
 /**

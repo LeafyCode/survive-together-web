@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLazyQuery, useQuery, useSubscription } from "@apollo/react-hooks";
-import { STRequesterCard } from "../components/shared/STRequesterCard";
+import { STRequestCard } from "../components/shared/STRequestCard";
 import { STDistributorCard } from "../components/shared/STDistributorCard";
 import {
   Distributor,
@@ -25,6 +25,11 @@ import {
   CityByNeedsVariables,
 } from "../graphql-types/generated/CityByNeeds";
 import { STCitySummaryCard } from "../components/shared/STCitySummaryCard";
+import {
+  LatestNeeds,
+  LatestNeedsVariables,
+} from "../graphql-types/generated/LatestNeeds";
+import { LATEST_NEEDS } from "../graphql-types/need";
 
 export const Home = () => {
   const [selectedCity, setSelectedCity] = useState<STSelectOption>();
@@ -74,6 +79,20 @@ export const Home = () => {
           needs_aggregate: {
             count: order_by.desc,
           },
+        },
+      ],
+      limit: 8,
+    },
+  });
+  const {
+    loading: latestNeedsDataLoading,
+    error: latestNeedsDataError,
+    data: latestNeedsData,
+  } = useSubscription<LatestNeeds, LatestNeedsVariables>(LATEST_NEEDS, {
+    variables: {
+      order_by: [
+        {
+          created_at: order_by.desc,
         },
       ],
       limit: 8,
@@ -173,7 +192,7 @@ export const Home = () => {
               </div>
             </div>
             <div className="column" style={{ flexGrow: "inherit" }}>
-              <Link to="/districts" className="  button">
+              <Link to="/districts" className="button">
                 Show more...
               </Link>
             </div>
@@ -208,74 +227,82 @@ export const Home = () => {
           <div className="columns is-mobile">
             <div className="column">
               <div>
-                <p className="title is-3 is-spaced">Latest requests</p>
+                <p className="title is-3 is-spaced">
+                  Latest requests <span className="tag is-danger">LIVE</span>{" "}
+                  <div className="blob" />
+                </p>
               </div>
             </div>
-            <div className="column is-right">
-              <div className="is-pulled-right">
-                <Link to="/districts" className="navbar-item">
-                  <button type="button" className="button">
-                    Show more...
-                  </button>
-                </Link>
-              </div>
+            <div className="column" style={{ flexGrow: "inherit" }}>
+              <Link to="/districts" className="button">
+                Show more...
+              </Link>
             </div>
           </div>
 
-          <div className="columns ">
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <STRequesterCard
-                requesterData={{
-                  requesterName: "John Doe",
-                  city: "Kottawa north",
-                  contactNo: "+94 77 000 0000",
-                  peopleCount: 100,
-                }}
-              />
-            </div>
+          <div className="columns is-multiline">
+            {latestNeedsDataError && (
+              <div className="full-notification notification is-danger is-centered">
+                Something went wrong. I think our servers are getting fried due
+                to the heavy load. Or something else... We&apos;ll look into it!
+              </div>
+            )}
+            {latestNeedsDataLoading && (
+              <progress className="progress is-small is-primary" max="100" />
+            )}
+            {latestNeedsData && latestNeedsData.need.length === 0 && (
+              <div className="full-notification notification  is-centered">
+                No requests found. Please be patient.
+              </div>
+            )}
+            {!latestNeedsDataLoading &&
+              latestNeedsData &&
+              latestNeedsData.need.map((need) => (
+                <STRequestCard needData={need} key={need.id} />
+              ))}
           </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <p className="title is-3 is-spaced has-text-centered">Sponsors</p>
-          <div className="columns ">
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <figure className="image is-2by1">
-                <img
-                  alt="sponsor-logo"
-                  src="https://bulma.io/images/placeholders/256x256.png"
-                />
-              </figure>
-            </div>
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <figure className="image is-2by1">
-                <img
-                  alt="sponsor-logo"
-                  src="https://bulma.io/images/placeholders/256x256.png"
-                />
-              </figure>
-            </div>
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <figure className="image is-2by1">
-                <img
-                  alt="sponsor-logo"
-                  src="https://bulma.io/images/placeholders/256x256.png"
-                />
-              </figure>
-            </div>
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <figure className="image is-2by1">
-                <img
-                  alt="sponsor-logo"
-                  src="https://bulma.io/images/placeholders/256x256.png"
-                />
-              </figure>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* <section className="section"> */}
+      {/*  <div className="container"> */}
+      {/*    <p className="title is-3 is-spaced has-text-centered">Sponsors</p> */}
+      {/*    <div className="columns "> */}
+      {/*      <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop"> */}
+      {/*        <figure className="image is-2by1"> */}
+      {/*          <img */}
+      {/*            alt="sponsor-logo" */}
+      {/*            src="https://bulma.io/images/placeholders/256x256.png" */}
+      {/*          /> */}
+      {/*        </figure> */}
+      {/*      </div> */}
+      {/*      <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop"> */}
+      {/*        <figure className="image is-2by1"> */}
+      {/*          <img */}
+      {/*            alt="sponsor-logo" */}
+      {/*            src="https://bulma.io/images/placeholders/256x256.png" */}
+      {/*          /> */}
+      {/*        </figure> */}
+      {/*      </div> */}
+      {/*      <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop"> */}
+      {/*        <figure className="image is-2by1"> */}
+      {/*          <img */}
+      {/*            alt="sponsor-logo" */}
+      {/*            src="https://bulma.io/images/placeholders/256x256.png" */}
+      {/*          /> */}
+      {/*        </figure> */}
+      {/*      </div> */}
+      {/*      <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop"> */}
+      {/*        <figure className="image is-2by1"> */}
+      {/*          <img */}
+      {/*            alt="sponsor-logo" */}
+      {/*            src="https://bulma.io/images/placeholders/256x256.png" */}
+      {/*          /> */}
+      {/*        </figure> */}
+      {/*      </div> */}
+      {/*    </div> */}
+      {/*  </div> */}
+      {/* </section> */}
     </div>
   );
 };
