@@ -18,8 +18,8 @@ export const PrivacyPolicy = () => {
           <br />
           <p>
             At Survive Together, accessible from{" "}
-            <a href="https://survivetogether.org/">
-              https://survivetogether.org/
+            <a href="https://survivetogether.org">
+              https://survivetogether.org
             </a>
             , one of our main priorities is the privacy of our visitors. This
             Privacy Policy document contains types of information that is

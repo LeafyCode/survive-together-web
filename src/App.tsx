@@ -5,6 +5,7 @@ import { CreateDistributor } from "./containers/CreateDistributor";
 import { AppLayout } from "./components/app/AppLayout";
 import { CreateRequest } from "./containers/CreateRequest";
 import { PrivacyPolicy } from "./containers/PrivacyPolicy";
+import { TermsAndConditions } from "./containers/TermsAndConditions";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
 
             <Route path="/privacy">
               <PrivacyPolicy />
+            </Route>
+
+            <Route path="/terms">
+              <TermsAndConditions />
             </Route>
           </Switch>
         </AppLayout>
