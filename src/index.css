@@ -2,3 +2,7 @@
   border-color: hsl(348, 100%, 61%) !important;
   box-shadow: 0 0 0 0.125em rgba(241, 70, 104, 0.25);
 }
+
+.full-notification{
+  width: 100%;
+}

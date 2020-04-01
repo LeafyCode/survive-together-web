@@ -1,53 +1,12 @@
 import React from "react";
 import { STModal } from "./STModal";
-
-interface CityType {
-  id: string;
-  name: string;
-  location: {
-    type: string;
-    crs: {
-      type: string;
-      properties: {
-        name: string;
-      };
-    };
-    coordinates: number[];
-  };
-  districtId: string;
-}
-
-interface DistributorCityType {
-  city: CityType;
-}
-
-interface DistributorPackageType {
-  id: string;
-  name: string;
-  price: string;
-  deliveryFee: string;
-  content: string[];
-}
-
-interface DistributorItemTypes {
-  id: string;
-  name: string;
-  price: string;
-  deliveryFee: string;
-}
+import {
+  Distributor_distributor,
+  Distributor_distributor_distributor_cities,
+} from "../../graphql-types/generated/Distributor";
 
 interface DistributorCardPropsTypes {
-  distributorData: {
-    id?: string;
-    name?: string;
-    phoneNumber?: string;
-    email?: string;
-    website?: string;
-    active?: boolean;
-    distributor_items?: DistributorItemTypes[];
-    distributor_packs?: DistributorPackageType[];
-    distributor_cities?: DistributorCityType[];
-  };
+  distributorData: Distributor_distributor;
 }
 
 export const STDistributorCard = ({
@@ -56,7 +15,10 @@ export const STDistributorCard = ({
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   return (
-    <>
+    <div
+      key={distributorData.id}
+      className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
+    >
       <div
         role="menuitem"
         aria-hidden="true"
@@ -94,7 +56,7 @@ export const STDistributorCard = ({
             </h6>
             <p>
               {distributorData.distributor_cities?.map(
-                (city: DistributorCityType) => {
+                (city: Distributor_distributor_distributor_cities) => {
                   return `${city.city.name}, `;
                 }
               )}
@@ -103,6 +65,6 @@ export const STDistributorCard = ({
         </div>
       </div>
       <STModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-    </>
+    </div>
   );
 };

@@ -7,3 +7,47 @@ export const INSERT_DISTRIBUTOR = gql`
     }
   }
 `;
+
+export const DISTRIBUTOR = gql`
+  query Distributor(
+    $where: distributor_bool_exp
+    $limit: Int
+    $offset: Int
+    $order_by: [distributor_order_by!]
+  ) {
+    distributor(
+      where: $where
+      limit: $limit
+      offset: $offset
+      order_by: $order_by
+    ) {
+      distributor_cities {
+        city {
+          name
+          id
+        }
+      }
+      distributor_items {
+        id
+        name
+        price
+        item_category {
+          name
+          id
+        }
+      }
+      distributor_packs {
+        name
+        id
+        price
+        deliveryFee
+        content
+      }
+      name
+      phoneNumber
+      email
+      id
+      website
+    }
+  }
+`;
