@@ -4,6 +4,7 @@ import { Home } from "./containers/Home";
 import { CreateDistributor } from "./containers/CreateDistributor";
 import { AppLayout } from "./components/app/AppLayout";
 import { CreateRequest } from "./containers/CreateRequest";
+import { PrivacyPolicy } from "./containers/PrivacyPolicy";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
 
             <Route path="/request/create">
               <CreateRequest />
+            </Route>
+
+            <Route path="/privacy">
+              <PrivacyPolicy />
             </Route>
           </Switch>
         </AppLayout>

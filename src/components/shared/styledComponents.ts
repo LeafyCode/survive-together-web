@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
-export const STFormContainer = styled.div`
+export const STPageContainer = styled.div`
   padding: 20px;
+`;
+
+export const STPageContentWrapper = styled.div`
+  p {
+    margin-bottom: 13px;
+  }
 `;
 
 export const STFormArrayRemoveButton = styled.button`

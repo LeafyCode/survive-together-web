@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { Link, useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import { STPageHeader } from "../components/shared/STPageHeader";
-import { STFormContainer } from "../components/shared/styledComponents";
+import { STPageContainer } from "../components/shared/styledComponents";
 import { STInput } from "../components/shared/STInput";
 import { RequestDataType, STSelectOption } from "../types";
 import { RequestValidationSchema } from "../validations";
@@ -76,7 +76,7 @@ export const CreateRequest = () => {
         subTitle="State your needs and make a request"
       />
 
-      <STFormContainer className="container">
+      <STPageContainer className="container">
         {citiesDataError || itemCategoriesDataError ? (
           <div className="notification is-danger">
             Something went wrong! Please try again in few minutes. Maybe our
@@ -198,7 +198,7 @@ export const CreateRequest = () => {
             </form>
           </div>
         )}
-      </STFormContainer>
+      </STPageContainer>
     </div>
   );
 };

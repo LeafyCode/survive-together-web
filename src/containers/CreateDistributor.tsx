@@ -19,7 +19,7 @@ import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { DistributorValidationSchema } from "../validations";
 import {
   STFormArrayRemoveButton,
-  STFormContainer,
+  STPageContainer,
 } from "../components/shared/styledComponents";
 
 export const CreateDistributor = () => {
@@ -99,7 +99,7 @@ export const CreateDistributor = () => {
         subTitle="Enter new distributor details"
       />
 
-      <STFormContainer className="container">
+      <STPageContainer className="container">
         {citiesDataError || itemCategoriesDataError ? (
           <div className="notification is-danger">
             Something went wrong! Please try again in few minutes. Maybe our
@@ -354,7 +354,7 @@ export const CreateDistributor = () => {
             </form>
           </div>
         )}
-      </STFormContainer>
+      </STPageContainer>
     </div>
   );
 };
