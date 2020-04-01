@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const NavBar = () => {
+  const { i18n } = useTranslation();
+
   return (
     <div
       className="navbar is-primary"
@@ -19,6 +22,31 @@ export const NavBar = () => {
           <Link className="navbar-item" to="/">
             Home
           </Link>
+
+          <div className="buttons  are-small has-addons navbar-item">
+            <button
+              type="button"
+              className={`button is-outlined ${
+                i18n.language === "si" ? "is-primary is-inverted" : ""
+              }`}
+              onClick={() => {
+                i18n.changeLanguage("si");
+              }}
+            >
+              සිංහල
+            </button>
+            <button
+              type="button"
+              className={`button is-outlined ${
+                i18n.language === "en" ? "is-primary is-inverted" : ""
+              }`}
+              onClick={() => {
+                i18n.changeLanguage("en");
+              }}
+            >
+              English
+            </button>
+          </div>
         </div>
 
         <div className="navbar-end">
