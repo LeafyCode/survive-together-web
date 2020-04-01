@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
       {/* content */}
@@ -11,10 +14,11 @@ export const Home = () => {
             <div className="column is-7 is-full-mobile">
               <div className="column is-9">
                 <h1 className="title is-1 is-spaced">
-                  Help the people When They Need
+                  {t("homeWelcomeTitle")}
                 </h1>
 
                 <h2 className="subtitle is-spaced">
+                  {t("homeWelcomeSubTitle")}
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempo
                 </h2>

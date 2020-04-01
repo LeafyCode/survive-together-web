@@ -5,6 +5,7 @@ import { ToastProvider } from "react-toast-notifications";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+import "./localization/i18n";
 import "bulma/css/bulma.css";
 import "./index.css";
 import { apolloClient } from "./lib/apollo";
