@@ -15,10 +15,7 @@ export const STDistributorCard = ({
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   return (
-    <div
-      key={distributorData.id}
-      className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
-    >
+    <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
       <div
         role="menuitem"
         aria-hidden="true"

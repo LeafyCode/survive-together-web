@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useQuery } from "@apollo/react-hooks";
 import { STRequesterCard } from "../components/shared/STRequesterCard";
 import { STDistributorCard } from "../components/shared/STDistributorCard";
 import {
@@ -11,8 +11,19 @@ import { DISTRIBUTOR } from "../graphql-types/distributor";
 import { order_by } from "../graphql-types/generated/graphql-global-types";
 import { Hero } from "../components/home/Hero";
 import { AreaSelection } from "../components/home/AreaSelection";
+import { City, CityVariables } from "../graphql-types/generated/City";
+import { CITIES } from "../graphql-types/city";
+import { DISTRICT } from "../graphql-types/district";
+import { District } from "../graphql-types/generated/District";
+import { STSelectOption } from "../types";
+import {
+  getCitiesForSelect,
+  getDistrictsForSelect,
+} from "../helpers/sharedHelpers";
 
 export const Home = () => {
+  const [selectedCity, setSelectedCity] = useState<STSelectOption>();
+
   // Graphql queries
   const {
     loading: distributorsDataLoading,
@@ -25,6 +36,11 @@ export const Home = () => {
         active: {
           _eq: true,
         },
+        distributor_cities: {
+          cityId: {
+            _eq: selectedCity?.value,
+          },
+        },
       },
       order_by: [
         {
@@ -33,12 +49,49 @@ export const Home = () => {
       ],
     },
   });
+  const [
+    getCities,
+    { loading: citiesDataLoading, error: citiesDataError, data: citiesData },
+  ] = useLazyQuery<City, CityVariables>(CITIES);
+  const {
+    loading: districtsDataLoading,
+    error: districtsDataError,
+    data: districtsData,
+  } = useQuery<District>(DISTRICT);
+
+  const citiesForSelect: STSelectOption[] = getCitiesForSelect(
+    citiesData?.city
+  );
+  const districtsForSelect: STSelectOption[] = getDistrictsForSelect(
+    districtsData?.district
+  );
 
   return (
     <div>
       <Hero />
 
-      <AreaSelection />
+      {citiesDataError || districtsDataError ? (
+        <div className="section">
+          <div className="container">
+            <div className="columns">
+              <div className="full-notification notification is-danger is-centered">
+                Something went wrong. I think our servers are getting fried due
+                to the heavy load. Or something else... We&apos;ll look into it!
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <AreaSelection
+          citiesForSelect={citiesForSelect}
+          districtsForSelect={districtsForSelect}
+          districtsDataLoading={districtsDataLoading}
+          citiesDataLoading={citiesDataLoading}
+          selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
+          getCities={getCities}
+        />
+      )}
 
       <section className="section">
         <div className="container">
@@ -77,7 +130,10 @@ export const Home = () => {
             {!distributorsDataLoading &&
               distributorsData &&
               distributorsData.distributor.map((distributor) => (
-                <STDistributorCard distributorData={distributor} />
+                <STDistributorCard
+                  distributorData={distributor}
+                  key={distributor.id}
+                />
               ))}
           </div>
         </div>
