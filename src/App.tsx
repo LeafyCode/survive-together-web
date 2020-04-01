@@ -2,10 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home } from "./containers/Home";
 import { CreateDistributor } from "./containers/CreateDistributor";
+import { Distributors } from "./containers/Distributors";
 import { AppLayout } from "./components/app/AppLayout";
 import { CreateRequest } from "./containers/CreateRequest";
 import { PrivacyPolicy } from "./containers/PrivacyPolicy";
 import { TermsAndConditions } from "./containers/TermsAndConditions";
+import { Districts } from "./containers/Districts";
 
 function App() {
   return (
@@ -31,6 +33,14 @@ function App() {
 
             <Route path="/terms">
               <TermsAndConditions />
+            </Route>
+
+            <Route path="/distributors">
+              <Distributors />
+            </Route>
+
+            <Route path="/districts">
+              <Districts />
             </Route>
           </Switch>
         </AppLayout>
