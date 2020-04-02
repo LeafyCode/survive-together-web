@@ -15,12 +15,36 @@ export const NavBar = () => {
         <Link to="/" className="navbar-item">
           <h1>Survive Together</h1>
         </Link>
+
+        <span
+          role="button"
+          className="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+        </span>
       </div>
 
       <div className="navbar-menu">
         <div className="navbar-start">
-          <Link className="navbar-item" to="/">
-            Home
+          <Link className="navbar-item" to="/distributors">
+            Distributors
+          </Link>
+
+          <Link className="navbar-item" to="/requests">
+            Requests
+          </Link>
+
+          <Link className="navbar-item" to="/about">
+            About Us
+          </Link>
+
+          <Link className="navbar-item" to="/contact">
+            Contact Us
           </Link>
 
           <div className="buttons  are-small has-addons navbar-item">
@@ -51,8 +75,8 @@ export const NavBar = () => {
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <Link className="button is-primary" to="/login">
-              <strong>Sign up</strong>
+            <Link className="button is-white" to="/distributor/create">
+              Add Distributor
             </Link>
           </div>
         </div>

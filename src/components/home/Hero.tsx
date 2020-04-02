@@ -19,11 +19,11 @@ export const Hero = () => {
                 eiusmod tempo
               </h2>
               <Link
-                to="/distributor/create"
+                to="/request/create"
                 type="button"
                 className="button is-warning is-medium"
               >
-                Add a Distributor
+                Request for Help
               </Link>
             </div>
           </div>
