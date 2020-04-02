@@ -19,7 +19,6 @@ export const STCitySummaryCard = ({ city }: STCitySummaryCardProps) => {
   // );
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
       className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
       style={{

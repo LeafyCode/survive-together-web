@@ -212,7 +212,7 @@ export const Home = () => {
             {!cityByNeedsDataLoading &&
               cityByNeedsData &&
               cityByNeedsData.city.map((needCity) => (
-                <div key={needCity.id}  >ggg</div>
+                <STCitySummaryCard key={needCity.id} city={needCity} />
               ))}
           </div>
         </div>
