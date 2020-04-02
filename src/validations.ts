@@ -18,6 +18,7 @@ export const DistributorValidationSchema: Yup.ObjectSchema = Yup.object().shape(
 export const RequestValidationSchema: Yup.ObjectSchema = Yup.object().shape({
   contactPersonName: Yup.string().required("Contact person name is required."),
   contactNumber: Yup.string().required("Contact number is required."),
+  city: Yup.object().nullable().required("City is required."),
   numberOfPeople: Yup.number()
     .typeError("Number of people should be a number.")
     .required("Number of people value is required.")

@@ -166,6 +166,27 @@ export const CreateDistributor = () => {
                     help="Showing the most matching 100 cities based on your input."
                     errors={errors}
                   />
+
+                  <STInput
+                    register={register}
+                    name="bannerImageUrl"
+                    label="Banner image URL"
+                    errors={errors}
+                    help={
+                      <span>
+                        If you have the item details in a banner, please upload
+                        it to a service like{" "}
+                        <a
+                          href="https://imgur.com/upload"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          https://imgur.com/upload
+                        </a>{" "}
+                        and paste the link here.
+                      </span>
+                    }
+                  />
                 </div>
               </div>
 

@@ -4,7 +4,7 @@ interface STInputProps {
   register: (ref: Element | null) => void;
   name: string;
   label: string;
-  help?: string;
+  help?: React.ReactNode;
   type?: "text" | "number" | "email";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   errors?: any;

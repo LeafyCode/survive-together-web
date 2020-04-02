@@ -1087,6 +1087,7 @@ columns and relationships of "distributor"
 """
 type distributor {
   active: Boolean!
+  bannerImageUrl: String
 
   """An object relationship"""
   country: country!
@@ -1250,6 +1251,7 @@ input distributor_bool_exp {
   _not: distributor_bool_exp
   _or: [distributor_bool_exp]
   active: Boolean_comparison_exp
+  bannerImageUrl: String_comparison_exp
   country: country_bool_exp
   countryId: uuid_comparison_exp
   created_at: timestamptz_comparison_exp
@@ -1430,6 +1432,7 @@ input type for inserting data into table "distributor"
 """
 input distributor_insert_input {
   active: Boolean
+  bannerImageUrl: String
   country: country_obj_rel_insert_input
   countryId: uuid
   created_at: timestamptz
@@ -2016,6 +2019,7 @@ input distributor_item_variance_order_by {
 
 """aggregate max on columns"""
 type distributor_max_fields {
+  bannerImageUrl: String
   created_at: timestamptz
   email: String
   name: String
@@ -2028,6 +2032,7 @@ type distributor_max_fields {
 order by max() on columns of table "distributor"
 """
 input distributor_max_order_by {
+  bannerImageUrl: order_by
   created_at: order_by
   email: order_by
   name: order_by
@@ -2038,6 +2043,7 @@ input distributor_max_order_by {
 
 """aggregate min on columns"""
 type distributor_min_fields {
+  bannerImageUrl: String
   created_at: timestamptz
   email: String
   name: String
@@ -2050,6 +2056,7 @@ type distributor_min_fields {
 order by min() on columns of table "distributor"
 """
 input distributor_min_order_by {
+  bannerImageUrl: order_by
   created_at: order_by
   email: order_by
   name: order_by
@@ -2091,6 +2098,7 @@ ordering options when selecting data from "distributor"
 """
 input distributor_order_by {
   active: order_by
+  bannerImageUrl: order_by
   country: country_order_by
   countryId: order_by
   created_at: order_by
@@ -2681,6 +2689,9 @@ enum distributor_select_column {
   active
 
   """column name"""
+  bannerImageUrl
+
+  """column name"""
   countryId
 
   """column name"""
@@ -2710,6 +2721,7 @@ input type for updating data in table "distributor"
 """
 input distributor_set_input {
   active: Boolean
+  bannerImageUrl: String
   countryId: uuid
   created_at: timestamptz
   email: String
@@ -2726,6 +2738,9 @@ update columns of table "distributor"
 enum distributor_update_column {
   """column name"""
   active
+
+  """column name"""
+  bannerImageUrl
 
   """column name"""
   countryId

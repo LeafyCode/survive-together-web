@@ -159,6 +159,7 @@ export enum distributor_pack_update_column {
  */
 export enum distributor_update_column {
   active = "active",
+  bannerImageUrl = "bannerImageUrl",
   countryId = "countryId",
   created_at = "created_at",
   email = "email",
@@ -658,6 +659,7 @@ export interface distributor_bool_exp {
   _not?: distributor_bool_exp | null;
   _or?: (distributor_bool_exp | null)[] | null;
   active?: Boolean_comparison_exp | null;
+  bannerImageUrl?: String_comparison_exp | null;
   country?: country_bool_exp | null;
   countryId?: uuid_comparison_exp | null;
   created_at?: timestamptz_comparison_exp | null;
@@ -726,6 +728,7 @@ export interface distributor_city_on_conflict {
  */
 export interface distributor_insert_input {
   active?: boolean | null;
+  bannerImageUrl?: string | null;
   country?: country_obj_rel_insert_input | null;
   countryId?: any | null;
   created_at?: any | null;
@@ -956,6 +959,7 @@ export interface distributor_item_variance_order_by {
  * order by max() on columns of table "distributor"
  */
 export interface distributor_max_order_by {
+  bannerImageUrl?: order_by | null;
   created_at?: order_by | null;
   email?: order_by | null;
   name?: order_by | null;
@@ -968,6 +972,7 @@ export interface distributor_max_order_by {
  * order by min() on columns of table "distributor"
  */
 export interface distributor_min_order_by {
+  bannerImageUrl?: order_by | null;
   created_at?: order_by | null;
   email?: order_by | null;
   name?: order_by | null;
@@ -998,6 +1003,7 @@ export interface distributor_on_conflict {
  */
 export interface distributor_order_by {
   active?: order_by | null;
+  bannerImageUrl?: order_by | null;
   country?: country_order_by | null;
   countryId?: order_by | null;
   created_at?: order_by | null;

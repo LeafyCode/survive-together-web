@@ -63,6 +63,7 @@ export interface Distributor_distributor {
    * An array relationship
    */
   distributor_packs: Distributor_distributor_distributor_packs[];
+  bannerImageUrl: string | null;
   name: string;
   phoneNumber: string;
   email: string | null;

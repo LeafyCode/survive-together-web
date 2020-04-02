@@ -26,6 +26,7 @@ export type DistributorDataType = {
   website: string;
   email: string;
   cities: STSelectOption[];
+  bannerImageUrl: string;
   items: DistributorItemDataType[];
   itemPacks: DistributorItemPacksDataType[];
 };

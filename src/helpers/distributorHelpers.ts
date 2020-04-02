@@ -28,6 +28,7 @@ export const executeCreateDistributorMutation = async (
       phoneNumber: distributorData.phoneNumber,
       website: distributorData.website,
       email: distributorData.email,
+      bannerImageUrl: distributorData.bannerImageUrl,
       distributor_cities: {
         data: distributorData.cities.map((city) => ({
           cityId: city.value,

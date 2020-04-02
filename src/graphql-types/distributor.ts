@@ -43,6 +43,7 @@ export const DISTRIBUTOR = gql`
         deliveryFee
         content
       }
+      bannerImageUrl
       name
       phoneNumber
       email
