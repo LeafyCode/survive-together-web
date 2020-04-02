@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { CityByNeeds_city } from "../../graphql-types/generated/CityByNeeds";
 import { City_city_city_translations } from "../../graphql-types/generated/City";
-import { useStoreActions } from "../../store";
 
 interface STCitySummaryCardProps {
   city: CityByNeeds_city;
@@ -13,17 +12,15 @@ export const STCitySummaryCard = ({ city }: STCitySummaryCardProps) => {
   // const setCity = useStoreActions((actions) => actions.area.setCity);
   //
   // const history = useHistory();
-  const cityNameSI = city?.city_translations.find(
-    (cityTranslation: City_city_city_translations) => {
-      return cityTranslation.language === "si";
-    }
-  );
+  // const cityNameSI = city?.city_translations.find(
+  //   (cityTranslation: City_city_city_translations) => {
+  //     return cityTranslation.language === "si";
+  //   }
+  // );
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
-      tabIndex={0}
-      role="button"
       className="column is-full-mobile is-half-tablet is-one-quarter-desktop"
       style={{
         cursor: "pointer",
