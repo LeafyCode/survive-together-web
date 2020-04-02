@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import surviveTogetherLogoInverted from "../../assets/survive-together-logo-inverted-small.png";
 
 export const NavBar = () => {
   const { i18n } = useTranslation();
+  const [isMobileMenuActive, setIsMobileMenuActive] = useState<boolean>(false);
 
   return (
     <div
@@ -13,15 +15,27 @@ export const NavBar = () => {
     >
       <div className="navbar-brand">
         <Link to="/" className="navbar-item">
+          <img
+            alt="Survive Together Logo"
+            src={surviveTogetherLogoInverted}
+            width="28"
+            height="28"
+            style={{ marginRight: 9 }}
+          />
           <h1>Survive Together</h1>
         </Link>
 
         <span
           role="button"
-          className="navbar-burger burger"
+          className={`navbar-burger burger ${
+            isMobileMenuActive ? "is-active" : ""
+          }`}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
+          onClick={() => {
+            setIsMobileMenuActive(!isMobileMenuActive);
+          }}
         >
           <span aria-hidden="true" />
           <span aria-hidden="true" />
@@ -29,7 +43,7 @@ export const NavBar = () => {
         </span>
       </div>
 
-      <div className="navbar-menu">
+      <div className={`navbar-menu ${isMobileMenuActive ? "is-active" : ""}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/distributors">
             Distributors
@@ -51,7 +65,7 @@ export const NavBar = () => {
             <button
               type="button"
               className={`button is-outlined ${
-                i18n.language === "si" ? "is-primary is-inverted" : ""
+                i18n.language === "si" ? "is- is-inverted" : ""
               }`}
               onClick={() => {
                 i18n.changeLanguage("si");
@@ -61,8 +75,10 @@ export const NavBar = () => {
             </button>
             <button
               type="button"
-              className={`button is-outlined ${
-                i18n.language === "en" ? "is-primary is-inverted" : ""
+              className={`button ${isMobileMenuActive ? "" : "is-outlined"} ${
+                i18n.language === "en"
+                  ? `is-primary ${isMobileMenuActive ? "" : "is-inverted"}`
+                  : ""
               }`}
               onClick={() => {
                 i18n.changeLanguage("en");
@@ -75,7 +91,12 @@ export const NavBar = () => {
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <Link className="button is-white" to="/distributor/create">
+            <Link
+              className={`button ${
+                isMobileMenuActive ? "is-warning" : "is-white"
+              }`}
+              to="/distributor/create"
+            >
               Add Distributor
             </Link>
           </div>

@@ -51,8 +51,8 @@ export const AboutUs = () => {
                   We have one big request from everyone. Please try your best to
                   help those in need. This is not the time to make profits. This
                   is not the time to think about marketing. People are dying
-                  from a pandemic. We don&apos;t anyone dying from hunger. So
-                  please get together, put aside your differences and help
+                  from a pandemic. We don&apos;t want anyone dying from hunger.
+                  So please get together, put aside your differences and help
                   whoever you can.
                 </p>
 
