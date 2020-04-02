@@ -10,6 +10,7 @@ import { TermsAndConditions } from "./containers/TermsAndConditions";
 import { Districts } from "./containers/Districts";
 import { Requests } from "./containers/Requests";
 import { AboutUs } from "./containers/AboutUs";
+import { ContactUs } from "./containers/ContactUs";
 
 function App() {
   return (
@@ -51,6 +52,10 @@ function App() {
 
             <Route path="/about">
               <AboutUs />
+            </Route>
+
+            <Route path="/contact">
+              <ContactUs />
             </Route>
           </Switch>
         </AppLayout>
