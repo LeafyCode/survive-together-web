@@ -9,6 +9,7 @@ import { PrivacyPolicy } from "./containers/PrivacyPolicy";
 import { TermsAndConditions } from "./containers/TermsAndConditions";
 import { Districts } from "./containers/Districts";
 import { Requests } from "./containers/Requests";
+import { AboutUs } from "./containers/AboutUs";
 
 function App() {
   return (
@@ -46,6 +47,10 @@ function App() {
 
             <Route path="/districts">
               <Districts />
+            </Route>
+
+            <Route path="/about">
+              <AboutUs />
             </Route>
           </Switch>
         </AppLayout>
