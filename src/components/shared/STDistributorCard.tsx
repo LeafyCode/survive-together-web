@@ -85,6 +85,48 @@ export const STDistributorCard = ({
           ))}
         </div>
 
+        {distributorData.website && (
+          <section
+            style={{
+              marginBottom: 20,
+              display: "block",
+            }}
+          >
+            <h4 className="title is-4">Website</h4>
+
+            <p>
+              <a
+                href={distributorData.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {distributorData.website}
+              </a>
+            </p>
+          </section>
+        )}
+
+        {distributorData.email && (
+          <section
+            style={{
+              marginBottom: 20,
+              display: "block",
+            }}
+          >
+            <h4 className="title is-4">Email</h4>
+
+            <p>
+              <a
+                href={`mailto:${distributorData.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {distributorData.email}
+              </a>
+            </p>
+          </section>
+        )}
+
         {distributorData.bannerImageUrl ? (
           <>
             <a

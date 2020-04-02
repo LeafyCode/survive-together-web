@@ -163,7 +163,16 @@ export const CreateDistributor = () => {
                     options={citiesForSelect}
                     loading={citiesDataLoading}
                     isAsync
-                    help="Showing the most matching 100 cities based on your input."
+                    help={
+                      <span>
+                        Showing the most matching 100 cities based on your
+                        input. If your city is not there. Please{" "}
+                        <Link to="/contact" target="_blank">
+                          contact us
+                        </Link>
+                        . We&apos;ll fix it.
+                      </span>
+                    }
                     errors={errors}
                   />
 
