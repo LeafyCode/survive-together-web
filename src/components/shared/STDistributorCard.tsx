@@ -1,4 +1,5 @@
 import React from "react";
+import truncate from "lodash/truncate";
 import { STModal } from "./STModal";
 import {
   Distributor_distributor,
@@ -36,9 +37,9 @@ export const STDistributorCard = ({
               <div className="is-pulled-right">
                 <span className="tag is-warning">
                   <h6 className="subtitle is-6 is-right">
-                    {distributorData.distributor_items?.length === 1
-                      ? `${distributorData.distributor_items?.length} Item`
-                      : `${distributorData.distributor_items?.length} Items`}
+                    {distributorData.distributor_cities?.length === 1
+                      ? `${distributorData.distributor_cities?.length} City`
+                      : `${distributorData.distributor_cities?.length} Cities`}
                   </h6>
                 </span>
               </div>
@@ -48,17 +49,13 @@ export const STDistributorCard = ({
             {distributorData.phoneNumber}
           </h6>
           <div>
-            <h6 className="subtitle is-6 has-text-grey-light">
-              Available on{" "}
-              {distributorData.distributor_cities?.length === 1
-                ? `${distributorData.distributor_cities?.length} city`
-                : `${distributorData.distributor_cities?.length} cities`}
-            </h6>
-            <p>
-              {distributorData.distributor_cities?.map(
-                (city: Distributor_distributor_distributor_cities) => {
-                  return `${city.city.name}, `;
-                }
+            <p className="has-text-grey-light">
+              {truncate(
+                distributorData.distributor_cities
+                  ?.map((city: Distributor_distributor_distributor_cities) => {
+                    return city.city.name;
+                  })
+                  .join(", ")
               )}
             </p>
           </div>
@@ -152,7 +149,7 @@ export const STDistributorCard = ({
           ""
         )}
 
-        {distributorData.distributor_items && (
+        {distributorData.distributor_items?.length > 0 && (
           <section
             style={{
               marginBottom: 20,
@@ -186,7 +183,7 @@ export const STDistributorCard = ({
           </section>
         )}
 
-        {distributorData.distributor_packs && (
+        {distributorData?.distributor_packs.length > 0 && (
           <section>
             <h4 className="title is-4">Item packs</h4>
 
