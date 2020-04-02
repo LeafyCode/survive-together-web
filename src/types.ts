@@ -1,6 +1,9 @@
+import { TableCellProps } from "react-virtualized";
+import { Need_need } from "./graphql-types/generated/Need";
+
 export type STSelectOption = {
-  label: string | number;
-  value: string | number;
+  label: string;
+  value: string;
 };
 
 export type DistributorItemDataType = {
@@ -23,6 +26,7 @@ export type DistributorDataType = {
   website: string;
   email: string;
   cities: STSelectOption[];
+  bannerImageUrl: string;
   items: DistributorItemDataType[];
   itemPacks: DistributorItemPacksDataType[];
 };
@@ -35,3 +39,7 @@ export type RequestDataType = {
   categories: STSelectOption[];
   agreeToTerms: boolean;
 };
+
+export interface RequestTableRowDataType extends TableCellProps {
+  rowData: Need_need;
+}

@@ -2,8 +2,8 @@ import React from "react";
 import AsyncSelect from "react-select/async";
 import { Control, Controller } from "react-hook-form";
 import Select from "react-select";
+import { useTranslation } from "react-i18next";
 import { STSelectOption } from "../../types";
-import {useTranslation} from "react-i18next";
 
 interface STSelectProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,7 +23,6 @@ interface STSelectProps {
 export const STSelect = ({
   options,
   name,
-  label,
   control,
   loading,
   help,
@@ -32,11 +31,13 @@ export const STSelect = ({
   errors,
   errorField,
 }: STSelectProps) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="field">
-      <label className="label">{t(`${name}InputLabel`)}</label>
+      <label className="label">
+        {t(`${name.replace(/ *\[[^]*\] */g, "")}InputLabel`)}
+      </label>
       <div className="control">
         <Controller
           name={name}

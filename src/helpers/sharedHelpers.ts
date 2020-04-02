@@ -4,6 +4,7 @@ import {
   City_city_city_translations,
 } from "../graphql-types/generated/City";
 import { ItemCategory_item_category } from "../graphql-types/generated/ItemCategory";
+import { District_district } from "../graphql-types/generated/District";
 
 export const getCitiesForSelect = (cities?: City_city[]): STSelectOption[] => {
   if (cities) {
@@ -31,6 +32,19 @@ export const getItemCategoriesForSelect = (
     return itemCategories.map((itemCategory) => ({
       value: itemCategory.id,
       label: itemCategory.name,
+    }));
+  }
+
+  return [];
+};
+
+export const getDistrictsForSelect = (
+  districts?: District_district[]
+): STSelectOption[] => {
+  if (districts) {
+    return districts.map((district) => ({
+      value: district.id,
+      label: district.name,
     }));
   }
 

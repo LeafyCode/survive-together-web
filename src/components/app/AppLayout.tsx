@@ -1,6 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 import { NavBar } from "./NavBar";
 import { Footer } from "./Footer";
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
+const AppContent = styled.div`
+  flex-grow: 1;
+`;
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -8,12 +19,12 @@ interface AppLayoutProps {
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
   return (
-    <div>
+    <AppContainer>
       <NavBar />
 
-      {children}
+      <AppContent>{children}</AppContent>
 
       <Footer />
-    </div>
+    </AppContainer>
   );
 };

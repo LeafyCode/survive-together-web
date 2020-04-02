@@ -1,11 +1,11 @@
 import React from "react";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 interface STInputProps {
   register: (ref: Element | null) => void;
   name: string;
   label: string;
-  help?: string;
+  help?: React.ReactNode;
   type?: "text" | "number" | "email";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   errors?: any;
@@ -15,7 +15,6 @@ interface STInputProps {
 export const STInput = ({
   register,
   name,
-  label,
   type = "text",
   errors,
   errorField,
@@ -25,7 +24,9 @@ export const STInput = ({
 
   return (
     <div className="field">
-      <label className="label"> {t(`${name}InputLabel`)}</label>
+      <label className="label">
+        {t(`${name.replace(/ *\[[^]*\] */g, "")}InputLabel`)}
+      </label>
       <div className="control">
         <input
           name={name}

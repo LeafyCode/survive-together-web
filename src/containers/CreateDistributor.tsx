@@ -3,19 +3,25 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { useToasts } from "react-toast-notifications";
+import { useTranslation } from "react-i18next";
 import { STPageHeader } from "../components/shared/STPageHeader";
 import { STInput } from "../components/shared/STInput";
 import { STSelect } from "../components/shared/STSelect";
 import { DistributorDataType, STSelectOption } from "../types";
-import { getCitiesForSelect,getItemCategoriesForSelect,} from "../helpers/sharedHelpers";
+import {
+  getCitiesForSelect,
+  getItemCategoriesForSelect,
+} from "../helpers/sharedHelpers";
 import { executeCreateDistributorMutation } from "../helpers/distributorHelpers";
 import { CITIES } from "../graphql-types/city";
 import { ITEM_CATEGORIES } from "../graphql-types/itemCategory";
 import { City } from "../graphql-types/generated/City";
 import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { DistributorValidationSchema } from "../validations";
-import { STFormArrayRemoveButton, STPageContainer,} from "../components/shared/styledComponents";
-import { useTranslation } from "react-i18next";
+import {
+  STFormArrayRemoveButton,
+  STPageContainer,
+} from "../components/shared/styledComponents";
 
 export const CreateDistributor = () => {
   const { t } = useTranslation();
@@ -25,7 +31,9 @@ export const CreateDistributor = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // React hook form
-  const { register, handleSubmit, control, errors } = useForm<DistributorDataType>({
+  const { register, handleSubmit, control, errors } = useForm<
+    DistributorDataType
+  >({
     validationSchema: DistributorValidationSchema,
     defaultValues: {
       items: [
@@ -107,8 +115,7 @@ export const CreateDistributor = () => {
                 <p> {t("infoTitle")}</p>
               </div>
               <div className="message-body">
-                <p>{t("infoDistributor")}
-                </p>
+                <p>{t("infoDistributor")}</p>
               </div>
             </article>
 
@@ -157,6 +164,27 @@ export const CreateDistributor = () => {
                     help={t("helpContent")}
                     errors={errors}
                   />
+
+                  <STInput
+                    register={register}
+                    name="bannerImageUrl"
+                    label="Banner image URL"
+                    errors={errors}
+                    help={
+                      <span>
+                        If you have the item details in a banner, please upload
+                        it to a service like{" "}
+                        <a
+                          href="https://imgur.com/upload"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          https://imgur.com/upload
+                        </a>{" "}
+                        and paste the link here.
+                      </span>
+                    }
+                  />
                 </div>
               </div>
 
@@ -167,9 +195,7 @@ export const CreateDistributor = () => {
                   <p> {t("infoTitle")}</p>
                 </div>
                 <div className="message-body">
-                  <p>
-                    {t("infoDistributorItems")}
-                  </p>
+                  <p>{t("infoDistributorItems")}</p>
                 </div>
               </article>
 

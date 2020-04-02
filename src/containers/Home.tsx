@@ -1,212 +1,270 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useLazyQuery, useQuery, useSubscription } from "@apollo/react-hooks";
+import { STRequestCard } from "../components/shared/STRequestCard";
+import { STDistributorCard } from "../components/shared/STDistributorCard";
+import {
+  Distributor,
+  DistributorVariables,
+} from "../graphql-types/generated/Distributor";
+import { DISTRIBUTOR } from "../graphql-types/distributor";
+import { order_by } from "../graphql-types/generated/graphql-global-types";
+import { Hero } from "../components/home/Hero";
+import { AreaSelection } from "../components/home/AreaSelection";
+import { City, CityVariables } from "../graphql-types/generated/City";
+import { CITIES, CITY_BY_NEEDS } from "../graphql-types/city";
+import { DISTRICT } from "../graphql-types/district";
+import { District } from "../graphql-types/generated/District";
+import { STSelectOption } from "../types";
+import {
+  getCitiesForSelect,
+  getDistrictsForSelect,
+} from "../helpers/sharedHelpers";
+import {
+  CityByNeeds,
+  CityByNeedsVariables,
+} from "../graphql-types/generated/CityByNeeds";
+import { STCitySummaryCard } from "../components/shared/STCitySummaryCard";
+import {
+  LatestNeeds,
+  LatestNeedsVariables,
+} from "../graphql-types/generated/LatestNeeds";
+import { LATEST_NEEDS } from "../graphql-types/need";
+import { useStoreState } from "../store";
 
 export const Home = () => {
-  const { t } = useTranslation();
+  const city = useStoreState((state) => state.area.city);
+  const district = useStoreState((state) => state.area.district);
+
+  // Graphql queries
+  const {
+    loading: distributorsDataLoading,
+    error: distributorsDataError,
+    data: distributorsData,
+  } = useQuery<Distributor, DistributorVariables>(DISTRIBUTOR, {
+    variables: {
+      limit: 4,
+      where: {
+        active: {
+          _eq: true,
+        },
+        distributor_cities: {
+          cityId: {
+            _eq: city?.value,
+          },
+        },
+      },
+      order_by: [
+        {
+          created_at: order_by.desc,
+        },
+      ],
+    },
+  });
+  const {
+    loading: districtsDataLoading,
+    error: districtsDataError,
+    data: districtsData,
+  } = useQuery<District>(DISTRICT);
+  const [
+    getCities,
+    { loading: citiesDataLoading, error: citiesDataError, data: citiesData },
+  ] = useLazyQuery<City, CityVariables>(CITIES);
+  const {
+    loading: cityByNeedsDataLoading,
+    error: cityByNeedsDataError,
+    data: cityByNeedsData,
+  } = useSubscription<CityByNeeds, CityByNeedsVariables>(CITY_BY_NEEDS, {
+    variables: {
+      where: {
+        districtId: {
+          _eq: district?.value || null,
+        },
+      },
+      order_by: [
+        {
+          needs_aggregate: {
+            count: order_by.desc,
+          },
+        },
+      ],
+      limit: 8,
+    },
+  });
+  const {
+    loading: latestNeedsDataLoading,
+    error: latestNeedsDataError,
+    data: latestNeedsData,
+  } = useSubscription<LatestNeeds, LatestNeedsVariables>(LATEST_NEEDS, {
+    variables: {
+      where: {
+        cityId: {
+          _eq: city?.value || null,
+        },
+      },
+      order_by: [
+        {
+          created_at: order_by.desc,
+        },
+      ],
+      limit: 8,
+    },
+  });
+
+  const districtsForSelect: STSelectOption[] = getDistrictsForSelect(
+    districtsData?.district
+  );
+  const citiesForSelect: STSelectOption[] = getCitiesForSelect(
+    citiesData?.city
+  );
 
   return (
     <div>
-      {/* content */}
+      <Hero />
+
+      {citiesDataError || districtsDataError ? (
+        <div className="section">
+          <div className="container">
+            <div className="columns">
+              <div className="full-notification notification is-danger is-centered">
+                Something went wrong. I think our servers are getting fried due
+                to the heavy load. Or something else... We&apos;ll look into it!
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <AreaSelection
+          citiesForSelect={citiesForSelect}
+          districtsForSelect={districtsForSelect}
+          districtsDataLoading={districtsDataLoading}
+          citiesDataLoading={citiesDataLoading}
+          getCities={getCities}
+        />
+      )}
+
       <section className="section">
         <div className="container">
-          <div className="columns">
-            <div className="column is-7 is-full-mobile">
-              <div className="column is-9">
-                <h1 className="title is-1 is-spaced">
-                  {t("homeWelcomeTitle")}
-                </h1>
-
-                <h2 className="subtitle is-spaced">
-                  {t("homeWelcomeSubTitle")}
-                </h2>
-                <Link
-                  to="/distributor/create"
-                  type="button"
-                  className="button is-warning is-medium"
-                >{t("addDistributor")}
+          <div className="columns is-mobile">
+            <div className="column">
+              <div>
+                <p className="title is-3 is-spaced">Most recent distributors</p>
+              </div>
+            </div>
+            <div className="column is-right">
+              <div className="is-pulled-right">
+                <Link to="/distributors" className="navbar-item">
+                  <button type="button" className="button">
+                    Show more...
+                  </button>
                 </Link>
               </div>
             </div>
-
-            <div className="column is-4 is-full-mobile">
-              <div className="card">
-                <div className="card-content">
-                  <p className="title is-4 ">{t("specialNote")}</p>
-                  <div className="content">
-                    Lort amet, consectetur adipisdolor sit amet, consectetur
-                    adipiscing elit. lorem ipsum docing elit.
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="card">
-              <div className="card-content">
-                <div className="columns is-centered">
-                  <div className="column is-narrow has-text-centered is-centered">
-                    <div className="field">
-                      <div className="control">
-                        <div className="select is-primary is-centered">
-                          <select>
-                            <option>Select your district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="column is-narrow has-text-centered is-centered">
-                    <div className="field">
-                      <div className="control">
-                        <div className="select is-primary is-centered">
-                          <select>
-                            <option>Select your district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                            <option>district</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <p className="title is-3 is-spaced" >{t("popularDistributors")}</p>
           <div className="columns ">
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">Keels super</h5>
-                        <h6 className="title is-6 has-text-primary ">
-                          Title 6
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="subtitle is-6">Subtitle 6</h6>
-                    <p>asdasdasd asdasd asdas asdasd asdasd asdasda sdasdasd</p>
-                  </div>
+            {distributorsDataError && (
+              <div className="full-notification notification is-danger is-centered">
+                Something went wrong. I think our servers are getting fried due
+                to the heavy load. Or something else... We&apos;ll look into it!
+              </div>
+            )}
+            {distributorsDataLoading && (
+              <progress className="progress is-small is-primary" max="100" />
+            )}
+            {distributorsData && distributorsData.distributor.length === 0 && (
+              <div className="full-notification notification  is-centered">
+                No distributors found. Please be patient.
+              </div>
+            )}
+            {!distributorsDataLoading &&
+              distributorsData &&
+              distributorsData.distributor.map((distributor) => (
+                <STDistributorCard
+                  distributorData={distributor}
+                  key={distributor.id}
+                />
+              ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="columns is-mobile is-multiline">
+            <div className="column">
+              <div>
+                <div className="title is-3 is-spaced">
+                  Cities with most requests{" "}
+                  <span className="tag is-danger">LIVE</span>{" "}
+                  <div className="blob" />
                 </div>
               </div>
             </div>
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">Keels super</h5>
-                        <h6 className="title is-6 has-text-primary ">
-                          Title 6
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="subtitle is-6">Subtitle 6</h6>
-                    <p>asdasdasd asdasd asdas asdasd asdasd asdasda sdasdasd</p>
-                  </div>
+          </div>
+
+          <div className="columns is-multiline">
+            {cityByNeedsDataError && (
+              <div className="full-notification notification is-danger is-centered">
+                Something went wrong. I think our servers are getting fried due
+                to the heavy load. Or something else... We&apos;ll look into it!
+              </div>
+            )}
+            {cityByNeedsDataLoading && (
+              <progress className="progress is-small is-primary" max="100" />
+            )}
+            {cityByNeedsData && cityByNeedsData.city.length === 0 && (
+              <div className="full-notification notification  is-centered">
+                No cities found. Please be patient.
+              </div>
+            )}
+            {!cityByNeedsDataLoading &&
+              cityByNeedsData &&
+              cityByNeedsData.city.map((needCity) => (
+                <STCitySummaryCard key={needCity.id} city={needCity} />
+              ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="columns is-mobile">
+            <div className="column">
+              <div>
+                <div className="title is-3 is-spaced">
+                  Latest requests <span className="tag is-danger">LIVE</span>{" "}
+                  <div className="blob" />
                 </div>
               </div>
             </div>
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">Keels super</h5>
-                        <h6 className="title is-6 has-text-primary ">
-                          Title 6
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="subtitle is-6">Subtitle 6</h6>
-                    <p>asdasdasd asdasd asdas asdasd asdasd asdasda sdasdasd</p>
-                  </div>
-                </div>
-              </div>
+            <div className="column" style={{ flexGrow: "inherit" }}>
+              <Link to="/requests" className="button">
+                Show more...
+              </Link>
             </div>
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">Keels super</h5>
-                        <h6 className="title is-6 has-text-primary ">
-                          Title 6
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="subtitle is-6">Subtitle 6</h6>
-                    <p>asdasdasd asdasd asdas asdasd asdasd asdasda sdasdasd</p>
-                  </div>
-                </div>
+          </div>
+
+          <div className="columns is-multiline">
+            {latestNeedsDataError && (
+              <div className="full-notification notification is-danger is-centered">
+                Something went wrong. I think our servers are getting fried due
+                to the heavy load. Or something else... We&apos;ll look into it!
               </div>
-            </div>
+            )}
+            {latestNeedsDataLoading && (
+              <progress className="progress is-small is-primary" max="100" />
+            )}
+            {latestNeedsData && latestNeedsData.need.length === 0 && (
+              <div className="full-notification notification  is-centered">
+                No requests found. Please be patient.
+              </div>
+            )}
+            {!latestNeedsDataLoading &&
+              latestNeedsData &&
+              latestNeedsData.need.map((need) => (
+                <STRequestCard needData={need} key={need.id} />
+              ))}
           </div>
         </div>
       </section>

@@ -159,6 +159,7 @@ export enum distributor_pack_update_column {
  */
 export enum distributor_update_column {
   active = "active",
+  bannerImageUrl = "bannerImageUrl",
   countryId = "countryId",
   created_at = "created_at",
   email = "email",
@@ -256,6 +257,18 @@ export enum need_update_column {
 }
 
 /**
+ * column ordering options
+ */
+export enum order_by {
+  asc = "asc",
+  asc_nulls_first = "asc_nulls_first",
+  asc_nulls_last = "asc_nulls_last",
+  desc = "desc",
+  desc_nulls_first = "desc_nulls_first",
+  desc_nulls_last = "desc_nulls_last",
+}
+
+/**
  * expression to compare columns of type Boolean. All fields are combined with logical 'AND'.
  */
 export interface Boolean_comparison_exp {
@@ -322,11 +335,36 @@ export interface bpchar_comparison_exp {
 }
 
 /**
+ * order by aggregate values of table "city"
+ */
+export interface city_aggregate_order_by {
+  avg?: city_avg_order_by | null;
+  count?: order_by | null;
+  max?: city_max_order_by | null;
+  min?: city_min_order_by | null;
+  stddev?: city_stddev_order_by | null;
+  stddev_pop?: city_stddev_pop_order_by | null;
+  stddev_samp?: city_stddev_samp_order_by | null;
+  sum?: city_sum_order_by | null;
+  var_pop?: city_var_pop_order_by | null;
+  var_samp?: city_var_samp_order_by | null;
+  variance?: city_variance_order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "city"
  */
 export interface city_arr_rel_insert_input {
   data: city_insert_input[];
   on_conflict?: city_on_conflict | null;
+}
+
+/**
+ * order by avg() on columns of table "city"
+ */
+export interface city_avg_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
 }
 
 /**
@@ -369,6 +407,24 @@ export interface city_insert_input {
 }
 
 /**
+ * order by max() on columns of table "city"
+ */
+export interface city_max_order_by {
+  name?: order_by | null;
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "city"
+ */
+export interface city_min_order_by {
+  name?: order_by | null;
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
  * input type for inserting object relation for remote table "city"
  */
 export interface city_obj_rel_insert_input {
@@ -383,6 +439,65 @@ export interface city_on_conflict {
   constraint: city_constraint;
   update_columns: city_update_column[];
   where?: city_bool_exp | null;
+}
+
+/**
+ * ordering options when selecting data from "city"
+ */
+export interface city_order_by {
+  city_translations_aggregate?: city_translation_aggregate_order_by | null;
+  distributor_cities_aggregate?: distributor_city_aggregate_order_by | null;
+  distributor_item_cities_aggregate?: distributor_item_city_aggregate_order_by | null;
+  distributor_pack_cities_aggregate?: distributor_pack_city_aggregate_order_by | null;
+  district?: district_order_by | null;
+  districtId?: order_by | null;
+  id?: order_by | null;
+  location?: order_by | null;
+  name?: order_by | null;
+  needs_aggregate?: need_aggregate_order_by | null;
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev() on columns of table "city"
+ */
+export interface city_stddev_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev_pop() on columns of table "city"
+ */
+export interface city_stddev_pop_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev_samp() on columns of table "city"
+ */
+export interface city_stddev_samp_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by sum() on columns of table "city"
+ */
+export interface city_sum_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by aggregate values of table "city_translation"
+ */
+export interface city_translation_aggregate_order_by {
+  count?: order_by | null;
+  max?: city_translation_max_order_by | null;
+  min?: city_translation_min_order_by | null;
 }
 
 /**
@@ -417,12 +532,50 @@ export interface city_translation_insert_input {
 }
 
 /**
+ * order by max() on columns of table "city_translation"
+ */
+export interface city_translation_max_order_by {
+  text?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "city_translation"
+ */
+export interface city_translation_min_order_by {
+  text?: order_by | null;
+}
+
+/**
  * on conflict condition type for table "city_translation"
  */
 export interface city_translation_on_conflict {
   constraint: city_translation_constraint;
   update_columns: city_translation_update_column[];
   where?: city_translation_bool_exp | null;
+}
+
+/**
+ * order by var_pop() on columns of table "city"
+ */
+export interface city_var_pop_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by var_samp() on columns of table "city"
+ */
+export interface city_var_samp_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by variance() on columns of table "city"
+ */
+export interface city_variance_order_by {
+  postcode?: order_by | null;
+  sourceId?: order_by | null;
 }
 
 /**
@@ -470,6 +623,27 @@ export interface country_on_conflict {
 }
 
 /**
+ * ordering options when selecting data from "country"
+ */
+export interface country_order_by {
+  code?: order_by | null;
+  distributors_aggregate?: distributor_aggregate_order_by | null;
+  districts_aggregate?: district_aggregate_order_by | null;
+  id?: order_by | null;
+  name?: order_by | null;
+  needs_aggregate?: need_aggregate_order_by | null;
+}
+
+/**
+ * order by aggregate values of table "distributor"
+ */
+export interface distributor_aggregate_order_by {
+  count?: order_by | null;
+  max?: distributor_max_order_by | null;
+  min?: distributor_min_order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "distributor"
  */
 export interface distributor_arr_rel_insert_input {
@@ -485,6 +659,7 @@ export interface distributor_bool_exp {
   _not?: distributor_bool_exp | null;
   _or?: (distributor_bool_exp | null)[] | null;
   active?: Boolean_comparison_exp | null;
+  bannerImageUrl?: String_comparison_exp | null;
   country?: country_bool_exp | null;
   countryId?: uuid_comparison_exp | null;
   created_at?: timestamptz_comparison_exp | null;
@@ -497,6 +672,13 @@ export interface distributor_bool_exp {
   phoneNumber?: String_comparison_exp | null;
   updated_at?: timestamptz_comparison_exp | null;
   website?: String_comparison_exp | null;
+}
+
+/**
+ * order by aggregate values of table "distributor_city"
+ */
+export interface distributor_city_aggregate_order_by {
+  count?: order_by | null;
 }
 
 /**
@@ -546,6 +728,7 @@ export interface distributor_city_on_conflict {
  */
 export interface distributor_insert_input {
   active?: boolean | null;
+  bannerImageUrl?: string | null;
   country?: country_obj_rel_insert_input | null;
   countryId?: any | null;
   created_at?: any | null;
@@ -561,11 +744,36 @@ export interface distributor_insert_input {
 }
 
 /**
+ * order by aggregate values of table "distributor_item"
+ */
+export interface distributor_item_aggregate_order_by {
+  avg?: distributor_item_avg_order_by | null;
+  count?: order_by | null;
+  max?: distributor_item_max_order_by | null;
+  min?: distributor_item_min_order_by | null;
+  stddev?: distributor_item_stddev_order_by | null;
+  stddev_pop?: distributor_item_stddev_pop_order_by | null;
+  stddev_samp?: distributor_item_stddev_samp_order_by | null;
+  sum?: distributor_item_sum_order_by | null;
+  var_pop?: distributor_item_var_pop_order_by | null;
+  var_samp?: distributor_item_var_samp_order_by | null;
+  variance?: distributor_item_variance_order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "distributor_item"
  */
 export interface distributor_item_arr_rel_insert_input {
   data: distributor_item_insert_input[];
   on_conflict?: distributor_item_on_conflict | null;
+}
+
+/**
+ * order by avg() on columns of table "distributor_item"
+ */
+export interface distributor_item_avg_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
 }
 
 /**
@@ -586,6 +794,13 @@ export interface distributor_item_bool_exp {
   name?: String_comparison_exp | null;
   price?: Int_comparison_exp | null;
   updated_at?: timestamptz_comparison_exp | null;
+}
+
+/**
+ * order by aggregate values of table "distributor_item_city"
+ */
+export interface distributor_item_city_aggregate_order_by {
+  count?: order_by | null;
 }
 
 /**
@@ -646,6 +861,28 @@ export interface distributor_item_insert_input {
 }
 
 /**
+ * order by max() on columns of table "distributor_item"
+ */
+export interface distributor_item_max_order_by {
+  created_at?: order_by | null;
+  deliveryFee?: order_by | null;
+  name?: order_by | null;
+  price?: order_by | null;
+  updated_at?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "distributor_item"
+ */
+export interface distributor_item_min_order_by {
+  created_at?: order_by | null;
+  deliveryFee?: order_by | null;
+  name?: order_by | null;
+  price?: order_by | null;
+  updated_at?: order_by | null;
+}
+
+/**
  * input type for inserting object relation for remote table "distributor_item"
  */
 export interface distributor_item_obj_rel_insert_input {
@@ -660,6 +897,88 @@ export interface distributor_item_on_conflict {
   constraint: distributor_item_constraint;
   update_columns: distributor_item_update_column[];
   where?: distributor_item_bool_exp | null;
+}
+
+/**
+ * order by stddev() on columns of table "distributor_item"
+ */
+export interface distributor_item_stddev_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by stddev_pop() on columns of table "distributor_item"
+ */
+export interface distributor_item_stddev_pop_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by stddev_samp() on columns of table "distributor_item"
+ */
+export interface distributor_item_stddev_samp_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by sum() on columns of table "distributor_item"
+ */
+export interface distributor_item_sum_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by var_pop() on columns of table "distributor_item"
+ */
+export interface distributor_item_var_pop_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by var_samp() on columns of table "distributor_item"
+ */
+export interface distributor_item_var_samp_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by variance() on columns of table "distributor_item"
+ */
+export interface distributor_item_variance_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by max() on columns of table "distributor"
+ */
+export interface distributor_max_order_by {
+  bannerImageUrl?: order_by | null;
+  created_at?: order_by | null;
+  email?: order_by | null;
+  name?: order_by | null;
+  phoneNumber?: order_by | null;
+  updated_at?: order_by | null;
+  website?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "distributor"
+ */
+export interface distributor_min_order_by {
+  bannerImageUrl?: order_by | null;
+  created_at?: order_by | null;
+  email?: order_by | null;
+  name?: order_by | null;
+  phoneNumber?: order_by | null;
+  updated_at?: order_by | null;
+  website?: order_by | null;
 }
 
 /**
@@ -680,11 +999,56 @@ export interface distributor_on_conflict {
 }
 
 /**
+ * ordering options when selecting data from "distributor"
+ */
+export interface distributor_order_by {
+  active?: order_by | null;
+  bannerImageUrl?: order_by | null;
+  country?: country_order_by | null;
+  countryId?: order_by | null;
+  created_at?: order_by | null;
+  distributor_cities_aggregate?: distributor_city_aggregate_order_by | null;
+  distributor_items_aggregate?: distributor_item_aggregate_order_by | null;
+  distributor_packs_aggregate?: distributor_pack_aggregate_order_by | null;
+  email?: order_by | null;
+  id?: order_by | null;
+  name?: order_by | null;
+  phoneNumber?: order_by | null;
+  updated_at?: order_by | null;
+  website?: order_by | null;
+}
+
+/**
+ * order by aggregate values of table "distributor_pack"
+ */
+export interface distributor_pack_aggregate_order_by {
+  avg?: distributor_pack_avg_order_by | null;
+  count?: order_by | null;
+  max?: distributor_pack_max_order_by | null;
+  min?: distributor_pack_min_order_by | null;
+  stddev?: distributor_pack_stddev_order_by | null;
+  stddev_pop?: distributor_pack_stddev_pop_order_by | null;
+  stddev_samp?: distributor_pack_stddev_samp_order_by | null;
+  sum?: distributor_pack_sum_order_by | null;
+  var_pop?: distributor_pack_var_pop_order_by | null;
+  var_samp?: distributor_pack_var_samp_order_by | null;
+  variance?: distributor_pack_variance_order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "distributor_pack"
  */
 export interface distributor_pack_arr_rel_insert_input {
   data: distributor_pack_insert_input[];
   on_conflict?: distributor_pack_on_conflict | null;
+}
+
+/**
+ * order by avg() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_avg_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
 }
 
 /**
@@ -704,6 +1068,13 @@ export interface distributor_pack_bool_exp {
   name?: String_comparison_exp | null;
   price?: Int_comparison_exp | null;
   updated_at?: timestamptz_comparison_exp | null;
+}
+
+/**
+ * order by aggregate values of table "distributor_pack_city"
+ */
+export interface distributor_pack_city_aggregate_order_by {
+  count?: order_by | null;
 }
 
 /**
@@ -763,6 +1134,30 @@ export interface distributor_pack_insert_input {
 }
 
 /**
+ * order by max() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_max_order_by {
+  content?: order_by | null;
+  created_at?: order_by | null;
+  deliveryFee?: order_by | null;
+  name?: order_by | null;
+  price?: order_by | null;
+  updated_at?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_min_order_by {
+  content?: order_by | null;
+  created_at?: order_by | null;
+  deliveryFee?: order_by | null;
+  name?: order_by | null;
+  price?: order_by | null;
+  updated_at?: order_by | null;
+}
+
+/**
  * input type for inserting object relation for remote table "distributor_pack"
  */
 export interface distributor_pack_obj_rel_insert_input {
@@ -780,11 +1175,91 @@ export interface distributor_pack_on_conflict {
 }
 
 /**
+ * order by stddev() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_stddev_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by stddev_pop() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_stddev_pop_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by stddev_samp() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_stddev_samp_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by sum() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_sum_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by var_pop() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_var_pop_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by var_samp() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_var_samp_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by variance() on columns of table "distributor_pack"
+ */
+export interface distributor_pack_variance_order_by {
+  deliveryFee?: order_by | null;
+  price?: order_by | null;
+}
+
+/**
+ * order by aggregate values of table "district"
+ */
+export interface district_aggregate_order_by {
+  avg?: district_avg_order_by | null;
+  count?: order_by | null;
+  max?: district_max_order_by | null;
+  min?: district_min_order_by | null;
+  stddev?: district_stddev_order_by | null;
+  stddev_pop?: district_stddev_pop_order_by | null;
+  stddev_samp?: district_stddev_samp_order_by | null;
+  sum?: district_sum_order_by | null;
+  var_pop?: district_var_pop_order_by | null;
+  var_samp?: district_var_samp_order_by | null;
+  variance?: district_variance_order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "district"
  */
 export interface district_arr_rel_insert_input {
   data: district_insert_input[];
   on_conflict?: district_on_conflict | null;
+}
+
+/**
+ * order by avg() on columns of table "district"
+ */
+export interface district_avg_order_by {
+  sourceId?: order_by | null;
 }
 
 /**
@@ -817,6 +1292,22 @@ export interface district_insert_input {
 }
 
 /**
+ * order by max() on columns of table "district"
+ */
+export interface district_max_order_by {
+  name?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "district"
+ */
+export interface district_min_order_by {
+  name?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
  * input type for inserting object relation for remote table "district"
  */
 export interface district_obj_rel_insert_input {
@@ -831,6 +1322,56 @@ export interface district_on_conflict {
   constraint: district_constraint;
   update_columns: district_update_column[];
   where?: district_bool_exp | null;
+}
+
+/**
+ * ordering options when selecting data from "district"
+ */
+export interface district_order_by {
+  cities_aggregate?: city_aggregate_order_by | null;
+  country?: country_order_by | null;
+  countryId?: order_by | null;
+  district_translations_aggregate?: district_translation_aggregate_order_by | null;
+  id?: order_by | null;
+  name?: order_by | null;
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev() on columns of table "district"
+ */
+export interface district_stddev_order_by {
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev_pop() on columns of table "district"
+ */
+export interface district_stddev_pop_order_by {
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by stddev_samp() on columns of table "district"
+ */
+export interface district_stddev_samp_order_by {
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by sum() on columns of table "district"
+ */
+export interface district_sum_order_by {
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by aggregate values of table "district_translation"
+ */
+export interface district_translation_aggregate_order_by {
+  count?: order_by | null;
+  max?: district_translation_max_order_by | null;
+  min?: district_translation_min_order_by | null;
 }
 
 /**
@@ -865,12 +1406,47 @@ export interface district_translation_insert_input {
 }
 
 /**
+ * order by max() on columns of table "district_translation"
+ */
+export interface district_translation_max_order_by {
+  text?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "district_translation"
+ */
+export interface district_translation_min_order_by {
+  text?: order_by | null;
+}
+
+/**
  * on conflict condition type for table "district_translation"
  */
 export interface district_translation_on_conflict {
   constraint: district_translation_constraint;
   update_columns: district_translation_update_column[];
   where?: district_translation_bool_exp | null;
+}
+
+/**
+ * order by var_pop() on columns of table "district"
+ */
+export interface district_var_pop_order_by {
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by var_samp() on columns of table "district"
+ */
+export interface district_var_samp_order_by {
+  sourceId?: order_by | null;
+}
+
+/**
+ * order by variance() on columns of table "district"
+ */
+export interface district_variance_order_by {
+  sourceId?: order_by | null;
 }
 
 /**
@@ -955,6 +1531,13 @@ export interface item_category_insert_input {
 }
 
 /**
+ * order by aggregate values of table "item_category_need"
+ */
+export interface item_category_need_aggregate_order_by {
+  count?: order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "item_category_need"
  */
 export interface item_category_need_arr_rel_insert_input {
@@ -1012,11 +1595,35 @@ export interface item_category_on_conflict {
 }
 
 /**
+ * order by aggregate values of table "need"
+ */
+export interface need_aggregate_order_by {
+  avg?: need_avg_order_by | null;
+  count?: order_by | null;
+  max?: need_max_order_by | null;
+  min?: need_min_order_by | null;
+  stddev?: need_stddev_order_by | null;
+  stddev_pop?: need_stddev_pop_order_by | null;
+  stddev_samp?: need_stddev_samp_order_by | null;
+  sum?: need_sum_order_by | null;
+  var_pop?: need_var_pop_order_by | null;
+  var_samp?: need_var_samp_order_by | null;
+  variance?: need_variance_order_by | null;
+}
+
+/**
  * input type for inserting array relation for remote table "need"
  */
 export interface need_arr_rel_insert_input {
   data: need_insert_input[];
   on_conflict?: need_on_conflict | null;
+}
+
+/**
+ * order by avg() on columns of table "need"
+ */
+export interface need_avg_order_by {
+  numberOfPeople?: order_by | null;
 }
 
 /**
@@ -1059,6 +1666,28 @@ export interface need_insert_input {
 }
 
 /**
+ * order by max() on columns of table "need"
+ */
+export interface need_max_order_by {
+  contactNumber?: order_by | null;
+  contactPersonName?: order_by | null;
+  created_at?: order_by | null;
+  numberOfPeople?: order_by | null;
+  updated_at?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "need"
+ */
+export interface need_min_order_by {
+  contactNumber?: order_by | null;
+  contactPersonName?: order_by | null;
+  created_at?: order_by | null;
+  numberOfPeople?: order_by | null;
+  updated_at?: order_by | null;
+}
+
+/**
  * input type for inserting object relation for remote table "need"
  */
 export interface need_obj_rel_insert_input {
@@ -1073,6 +1702,73 @@ export interface need_on_conflict {
   constraint: need_constraint;
   update_columns: need_update_column[];
   where?: need_bool_exp | null;
+}
+
+/**
+ * ordering options when selecting data from "need"
+ */
+export interface need_order_by {
+  active?: order_by | null;
+  city?: city_order_by | null;
+  cityId?: order_by | null;
+  contactNumber?: order_by | null;
+  contactPersonName?: order_by | null;
+  country?: country_order_by | null;
+  countryId?: order_by | null;
+  created_at?: order_by | null;
+  id?: order_by | null;
+  item_category_needs_aggregate?: item_category_need_aggregate_order_by | null;
+  numberOfPeople?: order_by | null;
+  updated_at?: order_by | null;
+}
+
+/**
+ * order by stddev() on columns of table "need"
+ */
+export interface need_stddev_order_by {
+  numberOfPeople?: order_by | null;
+}
+
+/**
+ * order by stddev_pop() on columns of table "need"
+ */
+export interface need_stddev_pop_order_by {
+  numberOfPeople?: order_by | null;
+}
+
+/**
+ * order by stddev_samp() on columns of table "need"
+ */
+export interface need_stddev_samp_order_by {
+  numberOfPeople?: order_by | null;
+}
+
+/**
+ * order by sum() on columns of table "need"
+ */
+export interface need_sum_order_by {
+  numberOfPeople?: order_by | null;
+}
+
+/**
+ * order by var_pop() on columns of table "need"
+ */
+export interface need_var_pop_order_by {
+  numberOfPeople?: order_by | null;
+}
+
+/**
+ * order by var_samp() on columns of table "need"
+ */
+export interface need_var_samp_order_by {
+  numberOfPeople?: order_by | null;
+}
+
+/**
+ * order by variance() on columns of table "need"
+ */
+export interface need_variance_order_by {
+  numberOfPeople?: order_by | null;
 }
 
 export interface st_d_within_geography_input {
