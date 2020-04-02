@@ -9,10 +9,10 @@ interface STCitySummaryCardProps {
 }
 
 export const STCitySummaryCard = ({ city }: STCitySummaryCardProps) => {
-  const setDistrict = useStoreActions((actions) => actions.area.setDistrict);
-  const setCity = useStoreActions((actions) => actions.area.setCity);
-
-  const history = useHistory();
+  // const setDistrict = useStoreActions((actions) => actions.area.setDistrict);
+  // const setCity = useStoreActions((actions) => actions.area.setCity);
+  //
+  // const history = useHistory();
   const cityNameSI = city?.city_translations.find(
     (cityTranslation: City_city_city_translations) => {
       return cityTranslation.language === "si";
