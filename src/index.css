@@ -36,3 +36,21 @@
     box-shadow: 0 0 0 0 rgba(255, 56, 96, 0);
   }
 }
+
+.ReactVirtualized__Table__headerRow {
+  text-transform: capitalize !important;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 6px;
+}
+
+.st-tr{
+  border-bottom: 1px solid #dddddd;
+}
+
+.st-tr:hover {
+  background-color: #f5f5f5;
+}
+
+.st-tr:nth-child(2n) {
+  background-color: #fafafa;
+}

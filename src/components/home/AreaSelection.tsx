@@ -1,16 +1,15 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import Select from "react-select";
 import { QueryLazyOptions } from "@apollo/react-hooks";
 import { STSelectOption } from "../../types";
 import { CityVariables } from "../../graphql-types/generated/City";
+import { useStoreActions, useStoreState } from "../../store";
 
 interface AreaSelectionProps {
   citiesForSelect: STSelectOption[];
   districtsForSelect: STSelectOption[];
   citiesDataLoading: boolean;
   districtsDataLoading: boolean;
-  selectedCity?: STSelectOption;
-  setSelectedCity: Dispatch<SetStateAction<STSelectOption | undefined>>;
   getCities: (options?: QueryLazyOptions<CityVariables> | undefined) => void;
 }
 
@@ -19,10 +18,13 @@ export const AreaSelection = ({
   districtsForSelect,
   citiesDataLoading,
   districtsDataLoading,
-  selectedCity,
-  setSelectedCity,
   getCities,
 }: AreaSelectionProps) => {
+  const setDistrict = useStoreActions((actions) => actions.area.setDistrict);
+  const district = useStoreState((state) => state.area.district);
+  const setCity = useStoreActions((actions) => actions.area.setCity);
+  const city = useStoreState((state) => state.area.city);
+
   return (
     <section className="section">
       <div className="container">
@@ -39,11 +41,13 @@ export const AreaSelection = ({
                           classNamePrefix="select"
                           placeholder="Select district"
                           options={districtsForSelect}
+                          value={district || null}
                           isLoading={districtsDataLoading}
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           onChange={(selectedDistrict: any) => {
                             if (selectedDistrict) {
-                              setSelectedCity(undefined);
+                              setDistrict(selectedDistrict);
+                              setCity(undefined);
 
                               getCities({
                                 variables: {
@@ -66,12 +70,12 @@ export const AreaSelection = ({
                       <div className="control">
                         <Select
                           className="basic-multi-select"
-                          onChange={(city) => {
-                            if (city) {
-                              setSelectedCity(city as STSelectOption);
+                          onChange={(selectedCity) => {
+                            if (selectedCity) {
+                              setCity(selectedCity as STSelectOption);
                             }
                           }}
-                          value={selectedCity || null}
+                          value={city || null}
                           classNamePrefix="select"
                           placeholder="Select city"
                           options={citiesForSelect}

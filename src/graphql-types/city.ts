@@ -30,6 +30,7 @@ export const CITY_BY_NEEDS = gql`
       id
       district {
         name
+        id
       }
       city_translations {
         language

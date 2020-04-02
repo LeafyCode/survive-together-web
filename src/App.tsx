@@ -8,6 +8,7 @@ import { CreateRequest } from "./containers/CreateRequest";
 import { PrivacyPolicy } from "./containers/PrivacyPolicy";
 import { TermsAndConditions } from "./containers/TermsAndConditions";
 import { Districts } from "./containers/Districts";
+import { Requests } from "./containers/Requests";
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
 
             <Route path="/terms">
               <TermsAndConditions />
+            </Route>
+
+            <Route path="/requests">
+              <Requests />
             </Route>
 
             <Route path="/distributors">

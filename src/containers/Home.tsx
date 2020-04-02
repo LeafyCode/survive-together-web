@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useLazyQuery, useQuery, useSubscription } from "@apollo/react-hooks";
 import { STRequestCard } from "../components/shared/STRequestCard";
@@ -30,9 +30,10 @@ import {
   LatestNeedsVariables,
 } from "../graphql-types/generated/LatestNeeds";
 import { LATEST_NEEDS } from "../graphql-types/need";
+import { useStoreState } from "../store";
 
 export const Home = () => {
-  const [selectedCity, setSelectedCity] = useState<STSelectOption>();
+  const city = useStoreState((state) => state.area.city);
 
   // Graphql queries
   const {
@@ -48,7 +49,7 @@ export const Home = () => {
         },
         distributor_cities: {
           cityId: {
-            _eq: selectedCity?.value,
+            _eq: city?.value,
           },
         },
       },
@@ -59,15 +60,15 @@ export const Home = () => {
       ],
     },
   });
-  const [
-    getCities,
-    { loading: citiesDataLoading, error: citiesDataError, data: citiesData },
-  ] = useLazyQuery<City, CityVariables>(CITIES);
   const {
     loading: districtsDataLoading,
     error: districtsDataError,
     data: districtsData,
   } = useQuery<District>(DISTRICT);
+  const [
+    getCities,
+    { loading: citiesDataLoading, error: citiesDataError, data: citiesData },
+  ] = useLazyQuery<City, CityVariables>(CITIES);
   const {
     loading: cityByNeedsDataLoading,
     error: cityByNeedsDataError,
@@ -99,11 +100,11 @@ export const Home = () => {
     },
   });
 
-  const citiesForSelect: STSelectOption[] = getCitiesForSelect(
-    citiesData?.city
-  );
   const districtsForSelect: STSelectOption[] = getDistrictsForSelect(
     districtsData?.district
+  );
+  const citiesForSelect: STSelectOption[] = getCitiesForSelect(
+    citiesData?.city
   );
 
   return (
@@ -127,8 +128,6 @@ export const Home = () => {
           districtsForSelect={districtsForSelect}
           districtsDataLoading={districtsDataLoading}
           citiesDataLoading={citiesDataLoading}
-          selectedCity={selectedCity}
-          setSelectedCity={setSelectedCity}
           getCities={getCities}
         />
       )}
@@ -191,11 +190,6 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="column" style={{ flexGrow: "inherit" }}>
-              <Link to="/districts" className="button">
-                Show more...
-              </Link>
-            </div>
           </div>
 
           <div className="columns is-multiline">
@@ -215,8 +209,8 @@ export const Home = () => {
             )}
             {!cityByNeedsDataLoading &&
               cityByNeedsData &&
-              cityByNeedsData.city.map((city) => (
-                <STCitySummaryCard key={city.id} city={city} />
+              cityByNeedsData.city.map((needCity) => (
+                <STCitySummaryCard key={needCity.id} city={needCity} />
               ))}
           </div>
         </div>
@@ -227,14 +221,14 @@ export const Home = () => {
           <div className="columns is-mobile">
             <div className="column">
               <div>
-                <p className="title is-3 is-spaced">
+                <div className="title is-3 is-spaced">
                   Latest requests <span className="tag is-danger">LIVE</span>{" "}
                   <div className="blob" />
-                </p>
+                </div>
               </div>
             </div>
             <div className="column" style={{ flexGrow: "inherit" }}>
-              <Link to="/districts" className="button">
+              <Link to="/requests" className="button">
                 Show more...
               </Link>
             </div>
@@ -263,46 +257,6 @@ export const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* <section className="section"> */}
-      {/*  <div className="container"> */}
-      {/*    <p className="title is-3 is-spaced has-text-centered">Sponsors</p> */}
-      {/*    <div className="columns "> */}
-      {/*      <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop"> */}
-      {/*        <figure className="image is-2by1"> */}
-      {/*          <img */}
-      {/*            alt="sponsor-logo" */}
-      {/*            src="https://bulma.io/images/placeholders/256x256.png" */}
-      {/*          /> */}
-      {/*        </figure> */}
-      {/*      </div> */}
-      {/*      <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop"> */}
-      {/*        <figure className="image is-2by1"> */}
-      {/*          <img */}
-      {/*            alt="sponsor-logo" */}
-      {/*            src="https://bulma.io/images/placeholders/256x256.png" */}
-      {/*          /> */}
-      {/*        </figure> */}
-      {/*      </div> */}
-      {/*      <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop"> */}
-      {/*        <figure className="image is-2by1"> */}
-      {/*          <img */}
-      {/*            alt="sponsor-logo" */}
-      {/*            src="https://bulma.io/images/placeholders/256x256.png" */}
-      {/*          /> */}
-      {/*        </figure> */}
-      {/*      </div> */}
-      {/*      <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop"> */}
-      {/*        <figure className="image is-2by1"> */}
-      {/*          <img */}
-      {/*            alt="sponsor-logo" */}
-      {/*            src="https://bulma.io/images/placeholders/256x256.png" */}
-      {/*          /> */}
-      {/*        </figure> */}
-      {/*      </div> */}
-      {/*    </div> */}
-      {/*  </div> */}
-      {/* </section> */}
     </div>
   );
 };

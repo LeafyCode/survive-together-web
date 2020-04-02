@@ -22,6 +22,7 @@ export interface CityByNeeds_city_needs_aggregate {
 export interface CityByNeeds_city_district {
   __typename: "district";
   name: string;
+  id: any;
 }
 
 export interface CityByNeeds_city_city_translations {
