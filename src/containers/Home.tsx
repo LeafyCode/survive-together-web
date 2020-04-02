@@ -178,43 +178,43 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="columns is-mobile is-multiline">
-            <div className="column">
-              <div>
-                <div className="title is-3 is-spaced">
-                  Cities with most requests{" "}
-                  <span className="tag is-danger">LIVE</span>{" "}
-                  <div className="blob" />
-                </div>
-              </div>
-            </div>
-          </div>
+      {/*<section className="section">*/}
+      {/*  <div className="container">*/}
+      {/*    <div className="columns is-mobile is-multiline">*/}
+      {/*      <div className="column">*/}
+      {/*        <div>*/}
+      {/*          <div className="title is-3 is-spaced">*/}
+      {/*            Cities with most requests{" "}*/}
+      {/*            <span className="tag is-danger">LIVE</span>{" "}*/}
+      {/*            <div className="blob" />*/}
+      {/*          </div>*/}
+      {/*        </div>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
 
-          <div className="columns is-multiline">
-            {cityByNeedsDataError && (
-              <div className="full-notification notification is-danger is-centered">
-                Something went wrong. I think our servers are getting fried due
-                to the heavy load. Or something else... We&apos;ll look into it!
-              </div>
-            )}
-            {cityByNeedsDataLoading && (
-              <progress className="progress is-small is-primary" max="100" />
-            )}
-            {cityByNeedsData && cityByNeedsData.city.length === 0 && (
-              <div className="full-notification notification  is-centered">
-                No cities found. Please be patient.
-              </div>
-            )}
-            {!cityByNeedsDataLoading &&
-              cityByNeedsData &&
-              cityByNeedsData.city.map((needCity) => (
-                <STCitySummaryCard key={needCity.id} city={needCity} />
-              ))}
-          </div>
-        </div>
-      </section>
+      {/*    <div className="columns is-multiline">*/}
+      {/*      {cityByNeedsDataError && (*/}
+      {/*        <div className="full-notification notification is-danger is-centered">*/}
+      {/*          Something went wrong. I think our servers are getting fried due*/}
+      {/*          to the heavy load. Or something else... We&apos;ll look into it!*/}
+      {/*        </div>*/}
+      {/*      )}*/}
+      {/*      {cityByNeedsDataLoading && (*/}
+      {/*        <progress className="progress is-small is-primary" max="100" />*/}
+      {/*      )}*/}
+      {/*      {cityByNeedsData && cityByNeedsData.city.length === 0 && (*/}
+      {/*        <div className="full-notification notification  is-centered">*/}
+      {/*          No cities found. Please be patient.*/}
+      {/*        </div>*/}
+      {/*      )}*/}
+      {/*      {!cityByNeedsDataLoading &&*/}
+      {/*        cityByNeedsData &&*/}
+      {/*        cityByNeedsData.city.map((needCity) => (*/}
+      {/*          <STCitySummaryCard key={needCity.id} city={needCity} />*/}
+      {/*        ))}*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
 
       {/*<section className="section">*/}
       {/*  <div className="container">*/}
