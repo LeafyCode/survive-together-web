@@ -37,6 +37,7 @@ export const AreaSelection = ({
                     <div className="field">
                       <div className="control">
                         <Select
+                          isClearable
                           className="basic-multi-select  "
                           classNamePrefix="select"
                           placeholder="Select district"
@@ -45,10 +46,10 @@ export const AreaSelection = ({
                           isLoading={districtsDataLoading}
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           onChange={(selectedDistrict: any) => {
-                            if (selectedDistrict) {
-                              setDistrict(selectedDistrict);
-                              setCity(undefined);
+                            setDistrict(selectedDistrict);
+                            setCity(undefined);
 
+                            if (selectedDistrict) {
                               getCities({
                                 variables: {
                                   where: {
@@ -69,11 +70,10 @@ export const AreaSelection = ({
                     <div className="field">
                       <div className="control">
                         <Select
+                          isClearable
                           className="basic-multi-select"
                           onChange={(selectedCity) => {
-                            if (selectedCity) {
-                              setCity(selectedCity as STSelectOption);
-                            }
+                            setCity(selectedCity as STSelectOption);
                           }}
                           value={city || null}
                           classNamePrefix="select"

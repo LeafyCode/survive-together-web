@@ -34,6 +34,7 @@ import { useStoreState } from "../store";
 
 export const Home = () => {
   const city = useStoreState((state) => state.area.city);
+  const district = useStoreState((state) => state.area.district);
 
   // Graphql queries
   const {
@@ -75,6 +76,11 @@ export const Home = () => {
     data: cityByNeedsData,
   } = useSubscription<CityByNeeds, CityByNeedsVariables>(CITY_BY_NEEDS, {
     variables: {
+      where: {
+        districtId: {
+          _eq: district?.value || null,
+        },
+      },
       order_by: [
         {
           needs_aggregate: {
@@ -91,6 +97,11 @@ export const Home = () => {
     data: latestNeedsData,
   } = useSubscription<LatestNeeds, LatestNeedsVariables>(LATEST_NEEDS, {
     variables: {
+      where: {
+        cityId: {
+          _eq: city?.value || null,
+        },
+      },
       order_by: [
         {
           created_at: order_by.desc,
