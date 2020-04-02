@@ -29,18 +29,18 @@ export const STCitySummaryCard = ({ city }: STCitySummaryCardProps) => {
         cursor: "pointer",
         outline: "none",
       }}
-      onClick={() => {
-        setDistrict({
-          value: city.district.id,
-          label: city.district.name,
-        });
-        setCity({
-          value: city.id,
-          label: `${city.name}${cityNameSI?.text ? ` ${cityNameSI.text}` : ""}`,
-        });
-
-        history.push("/requests");
-      }}
+      // onClick={() => {
+      //   setDistrict({
+      //     value: city.district.id,
+      //     label: city.district.name,
+      //   });
+      //   setCity({
+      //     value: city.id,
+      //     label: `${city.name}${cityNameSI?.text ? ` ${cityNameSI.text}` : ""}`,
+      //   });
+      //
+      //   history.push("/requests");
+      // }}
     >
       <div role="menuitem" aria-hidden="true" className="card">
         <div className="card-content">

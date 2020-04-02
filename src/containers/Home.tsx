@@ -209,11 +209,11 @@ export const Home = () => {
                 No cities found. Please be patient.
               </div>
             )}
-            {/*{!cityByNeedsDataLoading &&*/}
-            {/*  cityByNeedsData &&*/}
-            {/*  cityByNeedsData.city.map((needCity) => (*/}
-            {/*    <STCitySummaryCard key={needCity.id} city={needCity} />*/}
-            {/*  ))}*/}
+            {!cityByNeedsDataLoading &&
+              cityByNeedsData &&
+              cityByNeedsData.city.map((needCity) => (
+                <STCitySummaryCard key={needCity.id} city={needCity} />
+              ))}
           </div>
         </div>
       </section>
