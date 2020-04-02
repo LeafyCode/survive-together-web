@@ -1,52 +1,74 @@
 import React from "react";
+import { useQuery } from "@apollo/react-hooks";
+import { STPageHeaderWithFilters } from "../components/shared/STPageHeaderWithFilters";
+import {
+  Distributor,
+  DistributorVariables,
+} from "../graphql-types/generated/Distributor";
+import { DISTRIBUTOR } from "../graphql-types/distributor";
+import { order_by } from "../graphql-types/generated/graphql-global-types";
+import { useStoreState } from "../store";
+import { STDistributorCard } from "../components/shared/STDistributorCard";
 
 export const Distributors = () => {
+  const city = useStoreState((state) => state.area.city);
+
+  const {
+    loading: distributorsDataLoading,
+    error: distributorsDataError,
+    data: distributorsData,
+  } = useQuery<Distributor, DistributorVariables>(DISTRIBUTOR, {
+    variables: {
+      where: {
+        active: {
+          _eq: true,
+        },
+        distributor_cities: {
+          cityId: {
+            _eq: city?.value,
+          },
+        },
+      },
+      order_by: [
+        {
+          created_at: order_by.desc,
+        },
+      ],
+    },
+  });
+
   return (
-    <>
-      <section className="hero is-light">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title">Distributors</h1>
-            <h2 className="subtitle">All distributors</h2>
-          </div>
-        </div>
-      </section>
+    <div>
+      <STPageHeaderWithFilters title="Requests" subTitle="What people need" />
 
       <section className="section">
         <div className="container">
-          <div className="columns ">
-            <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
-              <div className="card">
-                <div className="card-content">
-                  <div className="columns is-mobile">
-                    <div className="column">
-                      <div>
-                        <h5 className="title is-5">Keels super</h5>
-                      </div>
-                    </div>
-                    <div className="column is-right">
-                      <div className="is-pulled-right">
-                        <span className="tag is-warning">
-                          <h6 className="subtitle is-6 is-right">+50 Items</h6>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <h6 className="title is-6 has-text-primary">
-                    +94 77 65456456
-                  </h6>
-                  <div>
-                    <h6 className="subtitle is-6 has-text-grey-light">
-                      Available on 30 cities
-                    </h6>
-                    <p>Galle, Kottawa, Kasbawa, Horana, Kandy, Jaffna</p>
-                  </div>
-                </div>
+          <div className="columns is-multiline">
+            {distributorsDataError && (
+              <div className="full-notification notification is-danger is-centered">
+                Something went wrong. I think our servers are getting fried due
+                to the heavy load. Or something else... We&apos;ll look into it!
               </div>
-            </div>
+            )}
+            {distributorsDataLoading && (
+              <progress className="progress is-small is-primary" max="100" />
+            )}
+            {distributorsData && distributorsData.distributor.length === 0 && (
+              <div className="full-notification notification  is-centered">
+                No distributors found. Please be patient.
+              </div>
+            )}
+            {!distributorsDataLoading &&
+              distributorsData &&
+              distributorsData.distributor.map((distributor) => (
+                <STDistributorCard
+                  distributorData={distributor}
+                  key={distributor.id}
+                />
+              ))}
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };

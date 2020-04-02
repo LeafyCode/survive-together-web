@@ -7,8 +7,7 @@ import {
   SortIndicator,
   SortDirectionType,
 } from "react-virtualized";
-import { useLazyQuery, useQuery } from "@apollo/react-hooks";
-import Select from "react-select";
+import { useQuery } from "@apollo/react-hooks";
 import moment from "moment";
 import { NEED } from "../graphql-types/need";
 import {
@@ -16,25 +15,15 @@ import {
   order_by,
 } from "../graphql-types/generated/graphql-global-types";
 import { Need, NeedVariables } from "../graphql-types/generated/Need";
-import { RequestTableRowDataType, STSelectOption } from "../types";
+import { RequestTableRowDataType } from "../types";
 import {
   STPageContainer,
   STPageContentWrapper,
 } from "../components/shared/styledComponents";
-import { District } from "../graphql-types/generated/District";
-import { DISTRICT } from "../graphql-types/district";
-import {
-  getCitiesForSelect,
-  getDistrictsForSelect,
-} from "../helpers/sharedHelpers";
-import { City, CityVariables } from "../graphql-types/generated/City";
-import { CITIES } from "../graphql-types/city";
-import { useStoreActions, useStoreState } from "../store";
+import { useStoreState } from "../store";
+import { STPageHeaderWithFilters } from "../components/shared/STPageHeaderWithFilters";
 
 export const Requests = () => {
-  const setDistrict = useStoreActions((actions) => actions.area.setDistrict);
-  const district = useStoreState((state) => state.area.district);
-  const setCity = useStoreActions((actions) => actions.area.setCity);
   const city = useStoreState((state) => state.area.city);
 
   const [sortDirection, setSortDirection] = useState<SortDirectionType>(
@@ -42,13 +31,6 @@ export const Requests = () => {
   );
   const [sortBy, setSortBy] = useState<string>();
 
-  const { loading: districtsDataLoading, data: districtsData } = useQuery<
-    District
-  >(DISTRICT);
-  const [
-    getCities,
-    { loading: citiesDataLoading, data: citiesData },
-  ] = useLazyQuery<City, CityVariables>(CITIES);
   const {
     refetch: needsDataRefetch,
     loading: needsDataLoading,
@@ -69,79 +51,9 @@ export const Requests = () => {
     },
   });
 
-  const districtsForSelect: STSelectOption[] = getDistrictsForSelect(
-    districtsData?.district
-  );
-  const citiesForSelect: STSelectOption[] = getCitiesForSelect(
-    citiesData?.city
-  );
-
   return (
     <div>
-      <section className="hero is-light">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title">Requests</h1>
-            <h2 className="subtitle">What people need</h2>
-            <div className="columns">
-              <div className="column is-half">
-                <div className="columns">
-                  <div className="column">
-                    <div className="field">
-                      <div className="control">
-                        <Select
-                          className="basic-multi-select"
-                          classNamePrefix="select"
-                          placeholder="Select district"
-                          value={district || null}
-                          options={districtsForSelect}
-                          isLoading={districtsDataLoading}
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          onChange={(selectedDistrict: any) => {
-                            if (selectedDistrict) {
-                              setDistrict(selectedDistrict);
-                              setCity(undefined);
-
-                              getCities({
-                                variables: {
-                                  where: {
-                                    districtId: {
-                                      _eq: selectedDistrict.value,
-                                    },
-                                  },
-                                },
-                              });
-                            }
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="column">
-                    <div className="field">
-                      <div className="control">
-                        <Select
-                          className="basic-multi-select"
-                          onChange={(selectedCity) => {
-                            if (selectedCity) {
-                              setCity(selectedCity as STSelectOption);
-                            }
-                          }}
-                          value={city || null}
-                          classNamePrefix="select"
-                          placeholder="Select city"
-                          options={citiesForSelect}
-                          isLoading={citiesDataLoading}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <STPageHeaderWithFilters title="Requests" subTitle="What people need" />
 
       <STPageContainer className="container">
         <STPageContentWrapper>

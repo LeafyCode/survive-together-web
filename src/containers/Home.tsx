@@ -100,8 +100,6 @@ export const Home = () => {
     },
   });
 
-  console.log(cityByNeedsDataLoading, cityByNeedsDataError, cityByNeedsData);
-
   const districtsForSelect: STSelectOption[] = getDistrictsForSelect(
     districtsData?.district
   );
