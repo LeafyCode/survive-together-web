@@ -42,41 +42,42 @@ export const STCitySummaryCard = ({ city }: STCitySummaryCardProps) => {
       //   history.push("/requests");
       // }}
     >
-      <div role="menuitem" aria-hidden="true" className="card">
-        <div className="card-content">
-          <div className="columns is-mobile">
-            <div className="column">
-              <div>
-                <p className="title is-5">{`${city.name}${
-                  cityNameSI?.text ? ` ${cityNameSI.text}` : ""
-                }`}</p>
-              </div>
-            </div>
-            <div className="column is-right">
-              <div className="is-pulled-right">
-                <div className="tags has-addons">
-                  <span className="tag is-primary">
-                    {city.needs_aggregate.aggregate?.count}
-                  </span>
-                  <span className="tag ">requests</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p className="subtitle is-6 has-text-grey-light">
-              District: {city.district.name}
-            </p>
+      dd
+      {/*<div role="menuitem" aria-hidden="true" className="card">*/}
+      {/*  <div className="card-content">*/}
+      {/*    <div className="columns is-mobile">*/}
+      {/*      <div className="column">*/}
+      {/*        <div>*/}
+      {/*          <p className="title is-5">{`${city.name}${*/}
+      {/*            cityNameSI?.text ? ` ${cityNameSI.text}` : ""*/}
+      {/*          }`}</p>*/}
+      {/*        </div>*/}
+      {/*      </div>*/}
+      {/*      <div className="column is-right">*/}
+      {/*        <div className="is-pulled-right">*/}
+      {/*          <div className="tags has-addons">*/}
+      {/*            <span className="tag is-primary">*/}
+      {/*              {city.needs_aggregate.aggregate?.count}*/}
+      {/*            </span>*/}
+      {/*            <span className="tag ">requests</span>*/}
+      {/*          </div>*/}
+      {/*        </div>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*    <div>*/}
+      {/*      <p className="subtitle is-6 has-text-grey-light">*/}
+      {/*        District: {city.district.name}*/}
+      {/*      </p>*/}
 
-            <p>
-              <strong>Distributors: </strong>{" "}
-              <span className="tag">
-                {city.distributor_cities_aggregate.aggregate?.count}
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
+      {/*      <p>*/}
+      {/*        <strong>Distributors: </strong>{" "}*/}
+      {/*        <span className="tag">*/}
+      {/*          {city.distributor_cities_aggregate.aggregate?.count}*/}
+      {/*        </span>*/}
+      {/*      </p>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </div>
   );
 };
