@@ -16,6 +16,10 @@ export const STRequestCard = ({ needData }: STRequestCardPropsTypes) => {
         aria-hidden="true"
         className="card"
         onClick={() => setIsModalOpen(!isModalOpen)}
+        style={{
+          cursor: "pointer",
+          outline: "none",
+        }}
       >
         <div className="card-content">
           <div className="columns is-mobile">
@@ -50,7 +54,21 @@ export const STRequestCard = ({ needData }: STRequestCardPropsTypes) => {
         </div>
       </div>
 
-      <STModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <STModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        title="Requested items"
+      >
+        <div className="content">
+          <ol style={{ marginTop: 0 }}>
+            {needData.item_category_needs.map((category) => (
+              <li key={category.item_category.id}>
+                {category.item_category.name}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </STModal>
     </div>
   );
 };

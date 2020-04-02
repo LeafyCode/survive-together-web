@@ -18,9 +18,12 @@ export const STDistributorCard = ({
     <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
       <div
         role="menuitem"
-        aria-hidden="true"
         className="card"
         onClick={() => setIsModalOpen(!isModalOpen)}
+        style={{
+          cursor: "pointer",
+          outline: "none",
+        }}
       >
         <div className="card-content">
           <div className="columns is-mobile">
@@ -61,7 +64,14 @@ export const STDistributorCard = ({
           </div>
         </div>
       </div>
-      <STModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+
+      <STModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        title="Items"
+      >
+        ss
+      </STModal>
     </div>
   );
 };
