@@ -19,15 +19,12 @@ export const Home = () => {
 
                 <h2 className="subtitle is-spaced">
                   {t("homeWelcomeSubTitle")}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempo
                 </h2>
                 <Link
                   to="/distributor/create"
                   type="button"
                   className="button is-warning is-medium"
-                >
-                  Add a Distributor
+                >{t("addDistributor")}
                 </Link>
               </div>
             </div>
@@ -35,7 +32,7 @@ export const Home = () => {
             <div className="column is-4 is-full-mobile">
               <div className="card">
                 <div className="card-content">
-                  <p className="title is-4 ">Special note</p>
+                  <p className="title is-4 ">{t("specialNote")}</p>
                   <div className="content">
                     Lort amet, consectetur adipisdolor sit amet, consectetur
                     adipiscing elit. lorem ipsum docing elit.
@@ -100,7 +97,7 @@ export const Home = () => {
 
       <section className="section">
         <div className="container">
-          <p className="title is-3 is-spaced">Popular Distributors</p>
+          <p className="title is-3 is-spaced" >{t("popularDistributors")}</p>
           <div className="columns ">
             <div className="column is-full-mobile is-half-tablet is-one-quarter-desktop">
               <div className="card">

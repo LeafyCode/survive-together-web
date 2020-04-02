@@ -11,15 +11,15 @@ import { RequestValidationSchema } from "../validations";
 import { STSelect } from "../components/shared/STSelect";
 import { City } from "../graphql-types/generated/City";
 import { CITIES } from "../graphql-types/city";
-import {
-  getCitiesForSelect,
-  getItemCategoriesForSelect,
-} from "../helpers/sharedHelpers";
+import { getCitiesForSelect,getItemCategoriesForSelect,} from "../helpers/sharedHelpers";
 import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { ITEM_CATEGORIES } from "../graphql-types/itemCategory";
 import { executeCreateNeedMutation } from "../helpers/requestHelpers";
+import {useTranslation} from "react-i18next";
 
 export const CreateRequest = () => {
+  const { t } = useTranslation();
+
   const { addToast } = useToasts();
   const history = useHistory();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -72,8 +72,8 @@ export const CreateRequest = () => {
   return (
     <div>
       <STPageHeader
-        title="Add request"
-        subTitle="State your needs and make a request"
+        title={t("addNewRequest")}
+        subTitle={t("addNewRequestSubtitle")}
       />
 
       <STPageContainer className="container">
@@ -86,16 +86,11 @@ export const CreateRequest = () => {
           <div>
             <article className="message is-info">
               <div className="message-header">
-                <p>Info</p>
+                <p> {t("infoTitle")}</p>
               </div>
               <div className="message-body">
                 <p>
-                  Please try to contact the distributors in your area first.
-                  Only make a request if you have no other way to obtain the
-                  basics. If there are other people in your area who face the
-                  same difficulty as you, please add their information also. Do
-                  not go around the village to get the information. Use your
-                  phone or just shout to the neighbour&nbsp;
+                  {t("info")}&nbsp;
                   <span role="img" aria-label="monkey-face">
                     🙊
                   </span>
@@ -129,7 +124,7 @@ export const CreateRequest = () => {
                     loading={citiesDataLoading}
                     errors={errors}
                     isAsync
-                    help="Showing the most matching 100 cities based on your input."
+                    help={t("helpContent")}
                   />
                 </div>
 
@@ -158,10 +153,9 @@ export const CreateRequest = () => {
                 <div className="column">
                   <label className="checkbox">
                     <input type="checkbox" ref={register} name="agreeToTerms" />
-                    &nbsp; I give my consent to share the above details publicly
-                    and I have read and agree to the{" "}
+                    &nbsp; {t('termsAndConditionDetails')}&nbsp;&nbsp;
                     <Link to="/terms" target="_blank">
-                      terms and conditions
+                      {t('termsAndConditionLink')}
                     </Link>
                   </label>
                 </div>
@@ -176,8 +170,7 @@ export const CreateRequest = () => {
                           isLoading ? "is-loading" : ""
                         }`}
                         type="submit"
-                      >
-                        Submit
+                      >{t("submitButton")}
                       </button>
                     </div>
 
@@ -187,8 +180,7 @@ export const CreateRequest = () => {
                           className="button is-link is-light"
                           type="button"
                           to="/"
-                        >
-                          Cancel
+                        >{t("cancelButton")}
                         </Link>
                       </div>
                     )}

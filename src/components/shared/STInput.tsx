@@ -1,4 +1,5 @@
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 interface STInputProps {
   register: (ref: Element | null) => void;
@@ -20,9 +21,11 @@ export const STInput = ({
   errorField,
   help,
 }: STInputProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className="field">
-      <label className="label">{label}</label>
+      <label className="label"> {t(`${name}InputLabel`)}</label>
       <div className="control">
         <input
           name={name}

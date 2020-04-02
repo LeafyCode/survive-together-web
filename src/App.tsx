@@ -4,8 +4,9 @@ import { Home } from "./containers/Home";
 import { CreateDistributor } from "./containers/CreateDistributor";
 import { AppLayout } from "./components/app/AppLayout";
 import { CreateRequest } from "./containers/CreateRequest";
-import { PrivacyPolicy } from "./containers/PrivacyPolicy";
 import { TermsAndConditions } from "./containers/TermsAndConditions";
+import { PrivacyPolicySinhala } from "./components/privacyPolicyLanguges/PrivacyPolicySinhala";
+import { PrivacyPolicyEnglish } from "./components/privacyPolicyLanguges/PrivacyPolicyEnglish";
 
 function App() {
   return (
@@ -16,19 +17,21 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-
             <Route path="/distributor/create">
               <CreateDistributor />
             </Route>
-
             <Route path="/request/create">
               <CreateRequest />
             </Route>
-
             <Route path="/privacy">
-              <PrivacyPolicy />
+              <PrivacyPolicySinhala/>
             </Route>
-
+            <Route path="/privacySinhala">
+              <PrivacyPolicySinhala/>
+            </Route>
+            <Route path="/privacyEnglish">
+              < PrivacyPolicyEnglish />
+            </Route>
             <Route path="/terms">
               <TermsAndConditions />
             </Route>

@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { city_bool_exp } from "./graphql-global-types";
+
 // ====================================================
 // GraphQL query operation: City
 // ====================================================
@@ -29,4 +31,8 @@ export interface City {
    * fetch data from the table: "city"
    */
   city: City_city[];
+}
+
+export interface CityVariables {
+  where?: city_bool_exp | null;
 }

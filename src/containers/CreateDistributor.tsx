@@ -7,30 +7,25 @@ import { STPageHeader } from "../components/shared/STPageHeader";
 import { STInput } from "../components/shared/STInput";
 import { STSelect } from "../components/shared/STSelect";
 import { DistributorDataType, STSelectOption } from "../types";
-import {
-  getCitiesForSelect,
-  getItemCategoriesForSelect,
-} from "../helpers/sharedHelpers";
+import { getCitiesForSelect,getItemCategoriesForSelect,} from "../helpers/sharedHelpers";
 import { executeCreateDistributorMutation } from "../helpers/distributorHelpers";
 import { CITIES } from "../graphql-types/city";
 import { ITEM_CATEGORIES } from "../graphql-types/itemCategory";
 import { City } from "../graphql-types/generated/City";
 import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { DistributorValidationSchema } from "../validations";
-import {
-  STFormArrayRemoveButton,
-  STPageContainer,
-} from "../components/shared/styledComponents";
+import { STFormArrayRemoveButton, STPageContainer,} from "../components/shared/styledComponents";
+import { useTranslation } from "react-i18next";
 
 export const CreateDistributor = () => {
+  const { t } = useTranslation();
+
   const { addToast } = useToasts();
   const history = useHistory();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // React hook form
-  const { register, handleSubmit, control, errors } = useForm<
-    DistributorDataType
-  >({
+  const { register, handleSubmit, control, errors } = useForm<DistributorDataType>({
     validationSchema: DistributorValidationSchema,
     defaultValues: {
       items: [
@@ -95,8 +90,8 @@ export const CreateDistributor = () => {
   return (
     <div>
       <STPageHeader
-        title="Add distributor"
-        subTitle="Enter new distributor details"
+        title={t("addNewDistributor")}
+        subTitle={t("addNewDistributorSubtitle")}
       />
 
       <STPageContainer className="container">
@@ -109,14 +104,10 @@ export const CreateDistributor = () => {
           <div>
             <article className="message is-info">
               <div className="message-header">
-                <p>Info</p>
+                <p> {t("infoTitle")}</p>
               </div>
               <div className="message-body">
-                <p>
-                  Please make sure the content is correct. We will{" "}
-                  <strong>approve</strong> distributors only after validating
-                  the information. If the information is incorrect, we will not
-                  approve it.
+                <p>{t("infoDistributor")}
                 </p>
               </div>
             </article>
@@ -126,28 +117,28 @@ export const CreateDistributor = () => {
                 <div className="column">
                   <STInput
                     register={register}
-                    name="name"
+                    name="distributorName"
                     label="Distributor name *"
                     errors={errors}
                   />
 
                   <STInput
                     register={register}
-                    name="phoneNumber"
+                    name="distributorPhoneNumber"
                     label="Phone number *"
                     errors={errors}
                   />
 
                   <STInput
                     register={register}
-                    name="website"
+                    name="distributorWebsite"
                     label="Website"
                     errors={errors}
                   />
 
                   <STInput
                     register={register}
-                    name="email"
+                    name="distributorEmail"
                     label="Email"
                     type="email"
                     errors={errors}
@@ -159,11 +150,11 @@ export const CreateDistributor = () => {
                     isMulti
                     control={control}
                     label="Distribution areas *"
-                    name="cities"
+                    name="distributorCities"
                     options={citiesForSelect}
                     loading={citiesDataLoading}
                     isAsync
-                    help="Showing the most matching 100 cities based on your input."
+                    help={t("helpContent")}
                     errors={errors}
                   />
                 </div>
@@ -173,12 +164,11 @@ export const CreateDistributor = () => {
 
               <article className="message is-info">
                 <div className="message-header">
-                  <p>Info</p>
+                  <p> {t("infoTitle")}</p>
                 </div>
                 <div className="message-body">
                   <p>
-                    There should be at least one item or one item pack. Make
-                    sure you fill all the required fields denoted by *
+                    {t("infoDistributorItems")}
                   </p>
                 </div>
               </article>
@@ -186,13 +176,13 @@ export const CreateDistributor = () => {
               <hr />
 
               <h4 className="title is-4">
-                Items&nbsp;
+                {t("items")}&nbsp;
                 <button
                   className="button is-small"
                   type="button"
                   onClick={itemsAppend}
                 >
-                  Add
+                  {t("add")}
                 </button>
               </h4>
 
@@ -251,7 +241,7 @@ export const CreateDistributor = () => {
                         itemsRemove(index);
                       }}
                     >
-                      Remove
+                      {t("removeItem")}
                     </STFormArrayRemoveButton>
                   </div>
                 </div>
@@ -260,13 +250,13 @@ export const CreateDistributor = () => {
               <hr />
 
               <h4 className="title is-4">
-                Item packs&nbsp;
+                {t("itemsPacks")}&nbsp;
                 <button
                   className="button is-small"
                   type="button"
                   onClick={itemPacksAppend}
                 >
-                  Add
+                  {t("add")}
                 </button>
               </h4>
 
@@ -285,7 +275,7 @@ export const CreateDistributor = () => {
                       register={register}
                       name={`itemPacks[${index}].content`}
                       label="Content *"
-                      help="Please add a comma separated list."
+                      help={t("helpItemPacks")}
                     />
                   </div>
 
@@ -316,7 +306,7 @@ export const CreateDistributor = () => {
                         itemPacksRemove(index);
                       }}
                     >
-                      Remove
+                      {t("removeItem")}
                     </STFormArrayRemoveButton>
                   </div>
                 </div>
@@ -334,7 +324,7 @@ export const CreateDistributor = () => {
                         }`}
                         type="submit"
                       >
-                        Submit for Review
+                        {t("submitReview")}
                       </button>
                     </div>
                     {!isLoading && (
@@ -344,7 +334,7 @@ export const CreateDistributor = () => {
                           type="button"
                           to="/"
                         >
-                          Cancel
+                          {t("cancelButton")}
                         </Link>
                       </div>
                     )}

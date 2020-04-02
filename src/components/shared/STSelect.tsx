@@ -3,6 +3,7 @@ import AsyncSelect from "react-select/async";
 import { Control, Controller } from "react-hook-form";
 import Select from "react-select";
 import { STSelectOption } from "../../types";
+import {useTranslation} from "react-i18next";
 
 interface STSelectProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,9 +32,11 @@ export const STSelect = ({
   errors,
   errorField,
 }: STSelectProps) => {
+    const { t } = useTranslation();
+
   return (
     <div className="field">
-      <label className="label">{label}</label>
+      <label className="label">{t(`${name}InputLabel`)}</label>
       <div className="control">
         <Controller
           name={name}
@@ -59,14 +62,14 @@ export const STSelect = ({
                     : ""
                 }`}
                 classNamePrefix="select"
-                placeholder="Start typing..."
+                placeholder={t("startType")}
               />
             ) : (
               <Select
                 isMulti={isMulti}
                 className="basic-multi-select"
                 classNamePrefix="select"
-                placeholder="Start typing..."
+                placeholder={t("startType")}
                 options={options}
               />
             )
