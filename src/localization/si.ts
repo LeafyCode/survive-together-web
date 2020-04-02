@@ -1,5 +1,5 @@
 export const si = {
   translation: {
-    homeWelcomeTitle: "අවශ්‍යතා ඇති අයට උදව් කරමු.",
+    homeWelcomeTitle: "ලෝකය පවත්වාගෙන යන්න උදවු වෙමු",
   },
 };

@@ -13,11 +13,7 @@ export const Hero = () => {
             <div className="column is-9">
               <h1 className="title is-1 is-spaced">{t("homeWelcomeTitle")}</h1>
 
-              <h2 className="subtitle is-spaced">
-                {t("homeWelcomeSubTitle")}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempo
-              </h2>
+              <h2 className="subtitle is-spaced">{t("homeWelcomeSubTitle")}</h2>
               <Link
                 to="/request/create"
                 type="button"
@@ -33,8 +29,13 @@ export const Hero = () => {
               <div className="card-content">
                 <p className="title is-4 ">Special note</p>
                 <div className="content">
-                  Lort amet, consectetur adipisdolor sit amet, consectetur
-                  adipiscing elit. lorem ipsum docing elit.
+                  This website is free for everyone to use. Please do not abuse
+                  it&apos;s capabilities. Currently, some areas get all the
+                  required items. There are deliveries, mobile stores, online
+                  stores, etc. But for some areas there&apos;s nothing. The main
+                  target of this website is to identify such areas and make sure
+                  everyone survives this crisis together. Learn more on our{" "}
+                  <Link to="/about">About Us</Link> page.
                 </div>
               </div>
             </div>
