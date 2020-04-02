@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ToastProvider } from "react-toast-notifications";
 import { StoreProvider } from "easy-peasy";
+import * as Sentry from "@sentry/browser";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
@@ -12,6 +13,13 @@ import "./index.css";
 import "react-virtualized/styles.css";
 import { apolloClient } from "./lib/apollo";
 import { store } from "./store";
+import { SENTRY_DSN } from "./config";
+
+if (SENTRY_DSN) {
+  Sentry.init({
+    dsn: SENTRY_DSN,
+  });
+}
 
 ReactDOM.render(
   <ToastProvider>
