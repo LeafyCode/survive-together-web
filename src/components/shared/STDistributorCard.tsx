@@ -68,9 +68,108 @@ export const STDistributorCard = ({
       <STModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        title="Items"
+        title="Distributor details"
       >
-        ss
+        <h4 className="title is-4">Distributing cities</h4>
+        <div
+          className="tags"
+          style={{
+            marginBottom: 20,
+            display: "block",
+          }}
+        >
+          {distributorData.distributor_cities.map((city) => (
+            <span className="tag">{city.city.name}</span>
+          ))}
+        </div>
+
+        {distributorData.bannerImageUrl ? (
+          <>
+            <a
+              href={distributorData.bannerImageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                marginBottom: 20,
+                display: "block",
+              }}
+            >
+              <img
+                src={
+                  distributorData.bannerImageUrl?.includes("imgur")
+                    ? `${distributorData.bannerImageUrl}.jpg`
+                    : distributorData.bannerImageUrl
+                }
+                alt="Items banner"
+              />
+            </a>
+          </>
+        ) : (
+          ""
+        )}
+
+        {distributorData.distributor_items && (
+          <section
+            style={{
+              marginBottom: 20,
+              display: "block",
+            }}
+          >
+            <h4 className="title is-4">Items</h4>
+
+            <div className="content">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Item name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Delivery fee</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {distributorData.distributor_items.map((item) => (
+                    <tr>
+                      <td>{item.name}</td>
+                      <td>{item.item_category.name}</td>
+                      <td>{item.price || "-"}</td>
+                      <td>{item.deliveryFee || "-"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+
+        {distributorData.distributor_packs && (
+          <section>
+            <h4 className="title is-4">Item packs</h4>
+
+            <div className="content">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Item name</th>
+                    <th>Content</th>
+                    <th>Price</th>
+                    <th>Delivery fee</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {distributorData.distributor_packs.map((pack) => (
+                    <tr>
+                      <td>{pack.name}</td>
+                      <td>{pack.content}</td>
+                      <td>{pack.price || "-"}</td>
+                      <td>{pack.deliveryFee || "-"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
       </STModal>
     </div>
   );

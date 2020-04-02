@@ -31,6 +31,7 @@ export const DISTRIBUTOR = gql`
         id
         name
         price
+        deliveryFee
         item_category {
           name
           id

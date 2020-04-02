@@ -34,6 +34,7 @@ export interface Distributor_distributor_distributor_items {
   id: any;
   name: string;
   price: number | null;
+  deliveryFee: number | null;
   /**
    * An object relationship
    */
