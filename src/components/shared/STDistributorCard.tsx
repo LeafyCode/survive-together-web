@@ -79,7 +79,9 @@ export const STDistributorCard = ({
           }}
         >
           {distributorData.distributor_cities.map((city) => (
-            <span className="tag">{city.city.name}</span>
+            <span className="tag" key={city.city.id}>
+              {city.city.name}
+            </span>
           ))}
         </div>
 
@@ -129,7 +131,7 @@ export const STDistributorCard = ({
                 </thead>
                 <tbody>
                   {distributorData.distributor_items.map((item) => (
-                    <tr>
+                    <tr key={item.id}>
                       <td>{item.name}</td>
                       <td>{item.item_category.name}</td>
                       <td>{item.price || "-"}</td>
@@ -158,7 +160,7 @@ export const STDistributorCard = ({
                 </thead>
                 <tbody>
                   {distributorData.distributor_packs.map((pack) => (
-                    <tr>
+                    <tr key={pack.id}>
                       <td>{pack.name}</td>
                       <td>{pack.content}</td>
                       <td>{pack.price || "-"}</td>
