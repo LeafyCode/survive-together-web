@@ -1,23 +1,14 @@
 import React from "react";
-import {PrivacyPolicySinhala} from '../components/privacyPolicyLanguges/PrivacyPolicySinhala';
-import {PrivacyPolicyEnglish} from "../components/privacyPolicyLanguges/PrivacyPolicyEnglish";
+import { useTranslation } from "react-i18next";
+import { PrivacyPolicySinhala } from "../components/privacyPolicyLanguges/PrivacyPolicySinhala";
+import { PrivacyPolicyEnglish } from "../components/privacyPolicyLanguges/PrivacyPolicyEnglish";
 
 export const PrivacyPolicy = () => {
-  const value = 'sin';
+  const { i18n } = useTranslation();
 
-  if (value ==='sin') {
-    return (
-        <>
-          <PrivacyPolicySinhala/>
-        </>
-    );
+  if (i18n.language === "si") {
+    return <PrivacyPolicySinhala />;
   }
-  else  {
-    return (
-        <>
-          <PrivacyPolicyEnglish/>
-        </>
 
-    );
-  }
-}
+  return <PrivacyPolicyEnglish />;
+};

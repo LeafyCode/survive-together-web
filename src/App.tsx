@@ -6,12 +6,11 @@ import { Distributors } from "./containers/Distributors";
 import { AppLayout } from "./components/app/AppLayout";
 import { CreateRequest } from "./containers/CreateRequest";
 import { TermsAndConditions } from "./containers/TermsAndConditions";
-import { PrivacyPolicySinhala } from "./components/privacyPolicyLanguges/PrivacyPolicySinhala";
-import { PrivacyPolicyEnglish } from "./components/privacyPolicyLanguges/PrivacyPolicyEnglish";
 import { Districts } from "./containers/Districts";
 import { Requests } from "./containers/Requests";
 import { AboutUs } from "./containers/AboutUs";
 import { ContactUs } from "./containers/ContactUs";
+import { PrivacyPolicy } from "./containers/PrivacyPolicy";
 
 function App() {
   return (
@@ -29,13 +28,7 @@ function App() {
               <CreateRequest />
             </Route>
             <Route path="/privacy">
-              <PrivacyPolicySinhala />
-            </Route>
-            <Route path="/privacySinhala">
-              <PrivacyPolicySinhala />
-            </Route>
-            <Route path="/privacyEnglish">
-              <PrivacyPolicyEnglish />
+              <PrivacyPolicy />
             </Route>
             <Route path="/terms">
               <TermsAndConditions />
