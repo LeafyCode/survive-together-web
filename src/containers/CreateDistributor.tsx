@@ -201,20 +201,6 @@ export const CreateDistributor = () => {
 
               <hr />
 
-              <article className="message is-info">
-                <div className="message-header">
-                  <p>Info</p>
-                </div>
-                <div className="message-body">
-                  <p>
-                    There should be at least one item or one item pack. Make
-                    sure you fill all the required fields denoted by *
-                  </p>
-                </div>
-              </article>
-
-              <hr />
-
               <h4 className="title is-4">
                 Items&nbsp;
                 <button
