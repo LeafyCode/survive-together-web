@@ -77,7 +77,7 @@ export const si = {
     "items.deliveryFeeInputLabel":"බෙදාහැරීමේ ගාස්තු",
     "itemPacks.nameInputLabel":"නම *",
     "itemPacks.contentInputLabel":"අන්තර්ගතය *",
-    "itemPacks.priceInputLabel":"Price",
-    "itemPacksdeliveryFeeInputLabel":"බෙදාහැරීමේ ගාස්තු",
+    "itemPacks.priceInputLabel":"මිල",
+    "itemPacks.deliveryFeeInputLabel":"බෙදාහැරීමේ ගාස්තු",
   },
 };

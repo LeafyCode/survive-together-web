@@ -76,6 +76,6 @@ export const en = {
     "itemPacks.nameInputLabel":"Name *",
     "itemPacks.contentInputLabel":"Content *",
     "itemPacks.priceInputLabel":"Price",
-    "itemPacksdeliveryFeeInputLabel":"Delivery Fee",
+    "itemPacks.deliveryFeeInputLabel":"Delivery Fee",
   },
 };

@@ -314,7 +314,7 @@ export const CreateDistributor = () => {
                   <div className="column ">
                     <STInput
                       register={register}
-                      name={`itemPacks[${index}]`+t('deliveryFee')}
+                      name={`itemPacks[${index}].deliveryFee`}
                       label="Delivery fee"
                       type="number"
                     />
