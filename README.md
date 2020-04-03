@@ -1,6 +1,6 @@
 # SurviveTogether.org
 
-To help those in need.
+This website is free for everyone to use. Please do not abuse it's capabilities. Currently, some areas get all the required items. There are deliveries, mobile stores, online stores, etc. But for some areas there's nothing. The main target of this website is to identify such areas and make sure everyone survives this crisis together. Learn more on our [About Us](https://survivetogether.org/about) page.
 
 *This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).*
 
