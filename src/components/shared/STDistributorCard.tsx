@@ -1,4 +1,6 @@
 import React from "react";
+import truncate from "lodash/truncate";
+import Embed from "react-embed";
 import { STModal } from "./STModal";
 import {
   Distributor_distributor,
@@ -36,9 +38,9 @@ export const STDistributorCard = ({
               <div className="is-pulled-right">
                 <span className="tag is-warning">
                   <h6 className="subtitle is-6 is-right">
-                    {distributorData.distributor_items?.length === 1
-                      ? `${distributorData.distributor_items?.length} Item`
-                      : `${distributorData.distributor_items?.length} Items`}
+                    {distributorData.distributor_cities?.length === 1
+                      ? `${distributorData.distributor_cities?.length} City`
+                      : `${distributorData.distributor_cities?.length} Cities`}
                   </h6>
                 </span>
               </div>
@@ -48,17 +50,13 @@ export const STDistributorCard = ({
             {distributorData.phoneNumber}
           </h6>
           <div>
-            <h6 className="subtitle is-6 has-text-grey-light">
-              Available on{" "}
-              {distributorData.distributor_cities?.length === 1
-                ? `${distributorData.distributor_cities?.length} city`
-                : `${distributorData.distributor_cities?.length} cities`}
-            </h6>
-            <p>
-              {distributorData.distributor_cities?.map(
-                (city: Distributor_distributor_distributor_cities) => {
-                  return `${city.city.name}, `;
-                }
+            <p className="has-text-grey-light">
+              {truncate(
+                distributorData.distributor_cities
+                  ?.map((city: Distributor_distributor_distributor_cities) => {
+                    return city.city.name;
+                  })
+                  .join(", ")
               )}
             </p>
           </div>
@@ -85,32 +83,81 @@ export const STDistributorCard = ({
           ))}
         </div>
 
+        {distributorData.website && (
+          <section
+            style={{
+              marginBottom: 20,
+              display: "block",
+            }}
+          >
+            <h4 className="title is-4">Website</h4>
+
+            <p>
+              <a
+                href={distributorData.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {distributorData.website}
+              </a>
+            </p>
+          </section>
+        )}
+
+        {distributorData.email && (
+          <section
+            style={{
+              marginBottom: 20,
+              display: "block",
+            }}
+          >
+            <h4 className="title is-4">Email</h4>
+
+            <p>
+              <a
+                href={`mailto:${distributorData.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {distributorData.email}
+              </a>
+            </p>
+          </section>
+        )}
+
         {distributorData.bannerImageUrl ? (
           <>
-            <a
-              href={distributorData.bannerImageUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                marginBottom: 20,
-                display: "block",
-              }}
-            >
-              <img
-                src={
-                  distributorData.bannerImageUrl?.includes("imgur")
-                    ? `${distributorData.bannerImageUrl}.jpg`
-                    : distributorData.bannerImageUrl
-                }
-                alt="Items banner"
-              />
-            </a>
+            {distributorData.bannerImageUrl?.includes("imgur") ? (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 20,
+                }}
+              >
+                <Embed url={distributorData.bannerImageUrl} />
+              </div>
+            ) : (
+              <a
+                href={distributorData.bannerImageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  marginBottom: 20,
+                  display: "block",
+                  textAlign: "center",
+                }}
+              >
+                <img src={distributorData.bannerImageUrl} alt="Items banner" />
+              </a>
+            )}
           </>
         ) : (
           ""
         )}
 
-        {distributorData.distributor_items && (
+        {distributorData.distributor_items?.length > 0 && (
           <section
             style={{
               marginBottom: 20,
@@ -144,7 +191,7 @@ export const STDistributorCard = ({
           </section>
         )}
 
-        {distributorData.distributor_packs && (
+        {distributorData?.distributor_packs.length > 0 && (
           <section>
             <h4 className="title is-4">Item packs</h4>
 

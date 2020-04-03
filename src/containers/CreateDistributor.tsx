@@ -8,14 +8,20 @@ import { STPageHeader } from "../components/shared/STPageHeader";
 import { STInput } from "../components/shared/STInput";
 import { STSelect } from "../components/shared/STSelect";
 import { DistributorDataType, STSelectOption } from "../types";
-import { getCitiesForSelect,getItemCategoriesForSelect,} from "../helpers/sharedHelpers";
+import {
+  getCitiesForSelect,
+  getItemCategoriesForSelect,
+} from "../helpers/sharedHelpers";
 import { executeCreateDistributorMutation } from "../helpers/distributorHelpers";
 import { CITIES } from "../graphql-types/city";
 import { ITEM_CATEGORIES } from "../graphql-types/itemCategory";
 import { City } from "../graphql-types/generated/City";
 import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { DistributorValidationSchema } from "../validations";
-import { STFormArrayRemoveButton,STPageContainer,} from "../components/shared/styledComponents";
+import {
+  STFormArrayRemoveButton,
+  STPageContainer,
+} from "../components/shared/styledComponents";
 
 export const CreateDistributor = () => {
   const { t } = useTranslation();
@@ -25,7 +31,9 @@ export const CreateDistributor = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // React hook form
-  const { register, handleSubmit, control, errors } = useForm<DistributorDataType>({
+  const { register, handleSubmit, control, errors } = useForm<
+    DistributorDataType
+  >({
     validationSchema: DistributorValidationSchema,
     defaultValues: {
       items: [
@@ -153,7 +161,16 @@ export const CreateDistributor = () => {
                     options={citiesForSelect}
                     loading={citiesDataLoading}
                     isAsync
-                    help={t("helpContent")}
+                    help={
+                      <span>
+                        Showing the most matching 100 cities based on your
+                        input. If your city is not there. Please{" "}
+                        <Link to="/contact" target="_blank">
+                          contact us
+                        </Link>
+                        . We&apos;ll fix it.
+                      </span>
+                    }
                     errors={errors}
                   />
 
@@ -166,11 +183,11 @@ export const CreateDistributor = () => {
                       <span>
                         {t("bannerImageUploadDetails")}{" "}
                         <a
-                          href="https://imgur.com/upload"
+                          href="https://postimages.org/"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          https://imgur.com/upload
+                          https://postimages.org/
                         </a>{" "}
                         {t('bannerImageUploadDetailsTwo')}
                       </span>
@@ -178,17 +195,6 @@ export const CreateDistributor = () => {
                   />
                 </div>
               </div>
-
-              <hr />
-
-              <article className="message is-info">
-                <div className="message-header">
-                  <p> {t("infoTitle")}</p>
-                </div>
-                <div className="message-body">
-                  <p>{t("infoDistributorItems")}</p>
-                </div>
-              </article>
 
               <hr />
 
