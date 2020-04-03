@@ -1,16 +1,16 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { STPageHeaderWithFilters } from "../components/shared/STPageHeaderWithFilters";
-import {
-  Distributor,
-  DistributorVariables,
-} from "../graphql-types/generated/Distributor";
+import { Distributor,DistributorVariables,} from "../graphql-types/generated/Distributor";
 import { DISTRIBUTOR } from "../graphql-types/distributor";
 import { order_by } from "../graphql-types/generated/graphql-global-types";
 import { useStoreState } from "../store";
 import { STDistributorCard } from "../components/shared/STDistributorCard";
+import { useTranslation } from "react-i18next";
 
 export const Distributors = () => {
+  const { t } = useTranslation();
+
   const city = useStoreState((state) => state.area.city);
 
   const {
@@ -39,7 +39,7 @@ export const Distributors = () => {
 
   return (
     <div>
-      <STPageHeaderWithFilters title="Requests" subTitle="What people need" />
+      <STPageHeaderWithFilters title={t('requestDistributor')} subTitle={t('requestDistributorSubtitle')} />
 
       <section className="section">
         <div className="container">

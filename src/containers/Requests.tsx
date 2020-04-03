@@ -1,29 +1,19 @@
 import React, { useState } from "react";
-import {
-  Column,
-  Table,
-  AutoSizer,
-  SortDirection,
-  SortIndicator,
-  SortDirectionType,
-} from "react-virtualized";
+import {Column, Table,AutoSizer,SortDirection,SortIndicator,SortDirectionType,} from "react-virtualized";
 import { useQuery } from "@apollo/react-hooks";
 import moment from "moment";
 import { NEED } from "../graphql-types/need";
-import {
-  need_order_by,
-  order_by,
-} from "../graphql-types/generated/graphql-global-types";
+import { need_order_by,order_by,} from "../graphql-types/generated/graphql-global-types";
 import { Need, NeedVariables } from "../graphql-types/generated/Need";
 import { RequestTableRowDataType } from "../types";
-import {
-  STPageContainer,
-  STPageContentWrapper,
-} from "../components/shared/styledComponents";
+import { STPageContainer,STPageContentWrapper,} from "../components/shared/styledComponents";
 import { useStoreState } from "../store";
 import { STPageHeaderWithFilters } from "../components/shared/STPageHeaderWithFilters";
+import { useTranslation} from "react-i18next";
 
 export const Requests = () => {
+  const {t}= useTranslation();
+
   const city = useStoreState((state) => state.area.city);
 
   const [sortDirection, setSortDirection] = useState<SortDirectionType>(
@@ -53,7 +43,7 @@ export const Requests = () => {
 
   return (
     <div>
-      <STPageHeaderWithFilters title="Requests" subTitle="What people need" />
+      <STPageHeaderWithFilters title={t('requestPage')} subTitle={t('requestPageSubtitle')} />
 
       <STPageContainer className="container">
         <STPageContentWrapper>
@@ -119,7 +109,7 @@ export const Requests = () => {
                     rowGetter={({ index }) => needsData?.need[index]}
                   >
                     <Column
-                      label="Contact person"
+                      label={t('contactPersonRequestTable')}
                       dataKey="contactPersonName"
                       width={200}
                       headerRenderer={({ dataKey, label }) => (
@@ -134,17 +124,17 @@ export const Requests = () => {
                     />
                     <Column
                       width={200}
-                      label="Contact number"
+                      label={t('contactNumberRequestTable')}
                       dataKey="contactNumber"
                     />
                     <Column
                       width={120}
-                      label="No people"
+                      label={t('noOfPeopleRequestTable')}
                       dataKey="numberOfPeople"
                     />
                     <Column
                       width={200}
-                      label="City"
+                      label={t('cityRequestTable')}
                       dataKey="city"
                       cellRenderer={({ rowData }: RequestTableRowDataType) => (
                         <span>{rowData.city.name}</span>
@@ -152,7 +142,7 @@ export const Requests = () => {
                     />
                     <Column
                       width={200}
-                      label="Created at"
+                      label={t('createdAtTable')}
                       dataKey="created_at"
                       cellRenderer={({ rowData }: RequestTableRowDataType) => (
                         <span>
@@ -164,7 +154,7 @@ export const Requests = () => {
                     />
                     <Column
                       width={200}
-                      label="Requested items"
+                      label={t('requestItemTable')}
                       dataKey="item_category_needs"
                       flexGrow={1}
                       cellRenderer={({ rowData }: RequestTableRowDataType) => (

@@ -15,7 +15,7 @@ import { getCitiesForSelect,getItemCategoriesForSelect,} from "../helpers/shared
 import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { ITEM_CATEGORIES } from "../graphql-types/itemCategory";
 import { executeCreateNeedMutation } from "../helpers/requestHelpers";
-import {useTranslation} from "react-i18next";
+import { useTranslation} from "react-i18next";
 
 export const CreateRequest = () => {
   const { t } = useTranslation();

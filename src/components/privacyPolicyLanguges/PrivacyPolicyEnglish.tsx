@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  STPageContainer,
-  STPageContentWrapper,
-} from "../shared/styledComponents";
+import { STPageContainer, STPageContentWrapper,} from "../shared/styledComponents";
 
 export const PrivacyPolicyEnglish = () => {
   return (

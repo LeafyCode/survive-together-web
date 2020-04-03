@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  STPageContainer,
-  STPageContentWrapper,
-} from "../shared/styledComponents";
+import { STPageContainer,STPageContentWrapper,} from "../shared/styledComponents";
 
 export const PrivacyPolicySinhala = () => {
   return (
-    <>
-      <div>
+    <div>
         <section className="hero is-light">
           <div className="hero-body">
             <div className="container">
@@ -268,6 +264,5 @@ export const PrivacyPolicySinhala = () => {
           </STPageContentWrapper>
         </STPageContainer>
       </div>
-    </>
   );
 };

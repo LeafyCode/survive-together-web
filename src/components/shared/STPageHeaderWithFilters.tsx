@@ -11,6 +11,7 @@ import { District } from "../../graphql-types/generated/District";
 import { DISTRICT } from "../../graphql-types/district";
 import { City, CityVariables } from "../../graphql-types/generated/City";
 import { CITIES } from "../../graphql-types/city";
+import {useTranslation} from "react-i18next";
 
 interface STPageHeaderWithFiltersProps {
   title: string;
@@ -41,12 +42,13 @@ export const STPageHeaderWithFilters = ({
     citiesData?.city
   );
 
+  const {t}= useTranslation();
   return (
     <section className="hero is-light">
       <div className="hero-body">
         <div className="container">
-          <h1 className="title">{title}</h1>
-          <h2 className="subtitle">{subTitle}</h2>
+          <h1 className="title">{t(`${title}InputLabel`)}</h1>
+          <h2 className="subtitle">{t(`${subTitle}InputLabel`)}</h2>
           <div className="columns">
             <div className="column is-half">
               <div className="columns">
@@ -57,7 +59,7 @@ export const STPageHeaderWithFilters = ({
                         isClearable
                         className="basic-multi-select"
                         classNamePrefix="select"
-                        placeholder="Select district"
+                        placeholder={t('selectDistrict')}
                         value={district || null}
                         options={districtsForSelect}
                         isLoading={districtsDataLoading}
@@ -93,7 +95,7 @@ export const STPageHeaderWithFilters = ({
                         }}
                         value={city || null}
                         classNamePrefix="select"
-                        placeholder="Select city"
+                        placeholder={t('selectCity')}
                         options={citiesForSelect}
                         isLoading={citiesDataLoading}
                       />

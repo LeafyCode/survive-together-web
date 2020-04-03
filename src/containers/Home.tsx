@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 import { useLazyQuery, useQuery, useSubscription } from "@apollo/react-hooks";
 import { STRequestCard } from "../components/shared/STRequestCard";
 import { STDistributorCard } from "../components/shared/STDistributorCard";
-import {
-  Distributor,
-  DistributorVariables,
-} from "../graphql-types/generated/Distributor";
+import { Distributor,DistributorVariables,} from "../graphql-types/generated/Distributor";
 import { DISTRIBUTOR } from "../graphql-types/distributor";
 import { order_by } from "../graphql-types/generated/graphql-global-types";
 import { Hero } from "../components/home/Hero";
@@ -16,23 +13,17 @@ import { CITIES, CITY_BY_NEEDS } from "../graphql-types/city";
 import { DISTRICT } from "../graphql-types/district";
 import { District } from "../graphql-types/generated/District";
 import { STSelectOption } from "../types";
-import {
-  getCitiesForSelect,
-  getDistrictsForSelect,
-} from "../helpers/sharedHelpers";
-import {
-  CityByNeeds,
-  CityByNeedsVariables,
-} from "../graphql-types/generated/CityByNeeds";
+import { getCitiesForSelect,getDistrictsForSelect,} from "../helpers/sharedHelpers";
+import { CityByNeeds,CityByNeedsVariables,} from "../graphql-types/generated/CityByNeeds";
 import { STCitySummaryCard } from "../components/shared/STCitySummaryCard";
-import {
-  LatestNeeds,
-  LatestNeedsVariables,
-} from "../graphql-types/generated/LatestNeeds";
+import { LatestNeeds,LatestNeedsVariables,} from "../graphql-types/generated/LatestNeeds";
 import { LATEST_NEEDS } from "../graphql-types/need";
 import { useStoreState } from "../store";
+import { useTranslation} from "react-i18next";
 
 export const Home = () => {
+  const { t } = useTranslation();
+
   const city = useStoreState((state) => state.area.city);
   const district = useStoreState((state) => state.area.district);
 
@@ -148,14 +139,14 @@ export const Home = () => {
           <div className="columns is-mobile">
             <div className="column">
               <div>
-                <p className="title is-3 is-spaced">Most recent distributors</p>
+                <p className="title is-3 is-spaced">{t("mostRecentDistributors")}</p>
               </div>
             </div>
             <div className="column is-right">
               <div className="is-pulled-right">
                 <Link to="/distributors" className="navbar-item">
                   <button type="button" className="button">
-                    Show more...
+                    {t('showMore')}
                   </button>
                 </Link>
               </div>
@@ -195,7 +186,7 @@ export const Home = () => {
             <div className="column">
               <div>
                 <div className="title is-3 is-spaced">
-                  Cities with most requests{" "}
+                  {t("citiesWithMostRequest")}
                   <span className="tag is-danger">LIVE</span>{" "}
                   <div className="blob" />
                 </div>
@@ -233,14 +224,14 @@ export const Home = () => {
             <div className="column">
               <div>
                 <div className="title is-3 is-spaced">
-                  Latest requests <span className="tag is-danger">LIVE</span>{" "}
+                  {t("latestRequests")} <span className="tag is-danger">LIVE</span>{" "}
                   <div className="blob" />
                 </div>
               </div>
             </div>
             <div className="column" style={{ flexGrow: "inherit" }}>
               <Link to="/requests" className="button">
-                Show more...
+                {t('showMore')}
               </Link>
             </div>
           </div>

@@ -8,20 +8,14 @@ import { STPageHeader } from "../components/shared/STPageHeader";
 import { STInput } from "../components/shared/STInput";
 import { STSelect } from "../components/shared/STSelect";
 import { DistributorDataType, STSelectOption } from "../types";
-import {
-  getCitiesForSelect,
-  getItemCategoriesForSelect,
-} from "../helpers/sharedHelpers";
+import { getCitiesForSelect,getItemCategoriesForSelect,} from "../helpers/sharedHelpers";
 import { executeCreateDistributorMutation } from "../helpers/distributorHelpers";
 import { CITIES } from "../graphql-types/city";
 import { ITEM_CATEGORIES } from "../graphql-types/itemCategory";
 import { City } from "../graphql-types/generated/City";
 import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { DistributorValidationSchema } from "../validations";
-import {
-  STFormArrayRemoveButton,
-  STPageContainer,
-} from "../components/shared/styledComponents";
+import { STFormArrayRemoveButton,STPageContainer,} from "../components/shared/styledComponents";
 
 export const CreateDistributor = () => {
   const { t } = useTranslation();
@@ -31,9 +25,7 @@ export const CreateDistributor = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // React hook form
-  const { register, handleSubmit, control, errors } = useForm<
-    DistributorDataType
-  >({
+  const { register, handleSubmit, control, errors } = useForm<DistributorDataType>({
     validationSchema: DistributorValidationSchema,
     defaultValues: {
       items: [
@@ -167,7 +159,7 @@ export const CreateDistributor = () => {
 
                   <STInput
                     register={register}
-                    name="bannerImageUrl"
+                    name={t("bannerImageUrl")}
                     label="Banner image URL"
                     errors={errors}
                     help={

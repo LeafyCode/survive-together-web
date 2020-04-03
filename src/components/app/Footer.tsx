@@ -2,6 +2,7 @@ import React from "react";
 import GitHubButton from "react-github-btn";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const STGithubButtonWrapper = styled.div`
   padding: 2px;
@@ -11,19 +12,20 @@ const STGithubButtonWrapper = styled.div`
 `;
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="content has-text-centered">
         <p>
-          <Link to="/terms">Terms and Conditions</Link> |{" "}
-          <Link to="/privacy">Privacy Policy</Link> |{" "}
-          <Link to="/contact">Contact Us</Link>
+          <Link to="/terms">{t("termsAndConditionLink")}</Link> |{" "}
+          <Link to="/privacy">{t("privacyPolicy")}</Link> |{" "}
+          <Link to="/contact">{t("contactUs")}</Link>
         </p>
       </div>
       <div className="content has-text-centered">
         <p>
-          If you are a developer, please help improve this project. The code is
-          on GitHub:&nbsp;
+          {t("bottomGitHubDetails")}&nbsp;
           <STGithubButtonWrapper>
             <GitHubButton
               href="https://github.com/LeafyCode/survive-together-web"
