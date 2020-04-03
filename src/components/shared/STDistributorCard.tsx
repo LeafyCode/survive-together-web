@@ -146,6 +146,7 @@ export const STDistributorCard = ({
                 style={{
                   marginBottom: 20,
                   display: "block",
+                  textAlign: "center",
                 }}
               >
                 <img src={distributorData.bannerImageUrl} alt="Items banner" />

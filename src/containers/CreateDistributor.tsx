@@ -186,13 +186,14 @@ export const CreateDistributor = () => {
                         If you have the item details in a banner, please upload
                         it to a service like{" "}
                         <a
-                          href="https://imgur.com/upload"
+                          href="https://postimages.org/"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          https://imgur.com/upload
+                          https://postimages.org/
                         </a>{" "}
-                        and paste the link here.
+                        and paste the link here. If you used postimages.org,
+                        please copy paste the <strong>direct link</strong>.
                       </span>
                     }
                   />
