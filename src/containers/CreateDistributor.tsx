@@ -181,8 +181,7 @@ export const CreateDistributor = () => {
                     errors={errors}
                     help={
                       <span>
-                        If you have the item details in a banner, please upload
-                        it to a service like{" "}
+                        {t("bannerImageUploadDetails")}{" "}
                         <a
                           href="https://postimages.org/"
                           target="_blank"
@@ -190,8 +189,7 @@ export const CreateDistributor = () => {
                         >
                           https://postimages.org/
                         </a>{" "}
-                        and paste the link here. If you used postimages.org,
-                        please copy paste the <strong>direct link</strong>.
+                        {t('bannerImageUploadDetailsTwo')}
                       </span>
                     }
                   />
