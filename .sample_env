@@ -1,0 +1,4 @@
+REACT_APP_GRAPHQL_ENDPOINT=http://localhost:8080/v1/graphql
+REACT_APP_GRAPHQL_WS_ENDPOINT=wss://localhost:8080/v1/graphql
+REACT_APP_COUNTRY_ID=taken_from_the_db
+HASURA_GRAPHQL_ADMIN_SECRET=secret
