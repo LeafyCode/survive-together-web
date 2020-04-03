@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import AsyncSelect from "react-select/async";
 import { Control, Controller } from "react-hook-form";
 import Select from "react-select";
@@ -12,7 +12,7 @@ interface STSelectProps {
   label: string;
   options: STSelectOption[];
   loading: boolean;
-  help?: string;
+  help?: ReactNode;
   isMulti?: boolean;
   isAsync?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
