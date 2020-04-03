@@ -1,5 +1,6 @@
 import React from "react";
 import truncate from "lodash/truncate";
+import Embed from "react-embed";
 import { STModal } from "./STModal";
 import {
   Distributor_distributor,
@@ -126,24 +127,30 @@ export const STDistributorCard = ({
 
         {distributorData.bannerImageUrl ? (
           <>
-            <a
-              href={distributorData.bannerImageUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                marginBottom: 20,
-                display: "block",
-              }}
-            >
-              <img
-                src={
-                  distributorData.bannerImageUrl?.includes("imgur")
-                    ? `${distributorData.bannerImageUrl}.jpg`
-                    : distributorData.bannerImageUrl
-                }
-                alt="Items banner"
-              />
-            </a>
+            {distributorData.bannerImageUrl?.includes("imgur") ? (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 20,
+                }}
+              >
+                <Embed url={distributorData.bannerImageUrl} />
+              </div>
+            ) : (
+              <a
+                href={distributorData.bannerImageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  marginBottom: 20,
+                  display: "block",
+                }}
+              >
+                <img src={distributorData.bannerImageUrl} alt="Items banner" />
+              </a>
+            )}
           </>
         ) : (
           ""
