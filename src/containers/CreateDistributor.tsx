@@ -164,8 +164,7 @@ export const CreateDistributor = () => {
                     errors={errors}
                     help={
                       <span>
-                        If you have the item details in a banner, please upload
-                        it to a service like{" "}
+                        {t("bannerImageUploadDetails")}{" "}
                         <a
                           href="https://imgur.com/upload"
                           target="_blank"
@@ -173,7 +172,7 @@ export const CreateDistributor = () => {
                         >
                           https://imgur.com/upload
                         </a>{" "}
-                        and paste the link here.
+                        {t('bannerImageUploadDetailsTwo')}
                       </span>
                     }
                   />
@@ -309,7 +308,7 @@ export const CreateDistributor = () => {
                   <div className="column ">
                     <STInput
                       register={register}
-                      name={`itemPacks[${index}].deliveryFee`}
+                      name={`itemPacks[${index}]`+t('deliveryFee')}
                       label="Delivery fee"
                       type="number"
                     />
