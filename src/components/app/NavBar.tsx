@@ -5,7 +5,7 @@ import surviveTogetherLogoInverted from "../../assets/survive-together-logo-inve
 
 export const NavBar = () => {
   const { i18n } = useTranslation();
-  const { t} = useTranslation();
+  const { t } = useTranslation();
 
   const [isMobileMenuActive, setIsMobileMenuActive] = useState<boolean>(false);
 
@@ -24,7 +24,7 @@ export const NavBar = () => {
             height="28"
             style={{ marginRight: 9 }}
           />
-          <h1>{t('surviveTogetherNavBar')}</h1>
+          <h1>{t("surviveTogetherNavBar")}</h1>
         </Link>
 
         <span
@@ -48,19 +48,19 @@ export const NavBar = () => {
       <div className={`navbar-menu ${isMobileMenuActive ? "is-active" : ""}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/distributors">
-            {t('requestDistributorInputLabel')}
+            {t("requestDistributorInputLabel")}
           </Link>
 
           <Link className="navbar-item" to="/requests">
-            {t('requestPageInputLabel')}
+            {t("requestPageInputLabel")}
           </Link>
 
           <Link className="navbar-item" to="/about">
-            {t('aboutUsInputLabel')}
+            {t("aboutUsInputLabel")}
           </Link>
 
           <Link className="navbar-item" to="/contact">
-            {t('contactInputLabel')}
+            {t("contactInputLabel")}
           </Link>
 
           <div className="buttons  are-small has-addons navbar-item">
@@ -99,7 +99,7 @@ export const NavBar = () => {
               }`}
               to="/distributor/create"
             >
-              {t('newDistributorNavBar')}
+              {t("newDistributorNavBar")}
             </Link>
           </div>
         </div>

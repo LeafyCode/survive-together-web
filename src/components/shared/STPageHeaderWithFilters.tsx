@@ -1,6 +1,7 @@
 import React from "react";
 import { useLazyQuery, useQuery } from "@apollo/react-hooks";
 import Select from "react-select";
+import { useTranslation } from "react-i18next";
 import { useStoreActions, useStoreState } from "../../store";
 import { STSelectOption } from "../../types";
 import {
@@ -11,7 +12,6 @@ import { District } from "../../graphql-types/generated/District";
 import { DISTRICT } from "../../graphql-types/district";
 import { City, CityVariables } from "../../graphql-types/generated/City";
 import { CITIES } from "../../graphql-types/city";
-import {useTranslation} from "react-i18next";
 
 interface STPageHeaderWithFiltersProps {
   title: string;
@@ -42,7 +42,7 @@ export const STPageHeaderWithFilters = ({
     citiesData?.city
   );
 
-  const {t}= useTranslation();
+  const { t } = useTranslation();
   return (
     <section className="hero is-light">
       <div className="hero-body">
@@ -59,7 +59,7 @@ export const STPageHeaderWithFilters = ({
                         isClearable
                         className="basic-multi-select"
                         classNamePrefix="select"
-                        placeholder={t('selectDistrict')}
+                        placeholder={t("selectDistrict")}
                         value={district || null}
                         options={districtsForSelect}
                         isLoading={districtsDataLoading}
@@ -95,7 +95,7 @@ export const STPageHeaderWithFilters = ({
                         }}
                         value={city || null}
                         classNamePrefix="select"
-                        placeholder={t('selectCity')}
+                        placeholder={t("selectCity")}
                         options={citiesForSelect}
                         isLoading={citiesDataLoading}
                       />

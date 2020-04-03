@@ -4,7 +4,7 @@ export const si = {
     homeWelcomeSubTitle:
       "ලෝකය අගුලු දමන්න  යන විට සියල්ල නතර වෙනවා . ඒවුනාට අගුලු දැම්ම කියල අපට මිනිසුන්ට මැරෙන්නට ඉඩදෙන්න බෑ.සෑම කෙනෙකුටම දිවි ගලවා ගැනීමට අවශ්‍ය දේ ලබා ගැනීමට  පුළුවන් වන  බවට අපිට විශ්වාසයි .",
     addDistributor: "බෙදාහරින්නෙක් එකතු කිරීම",
-    mostRecentDistributors: "වඩාත්ම මෑතකාලීන බෙදාහරින්නන්",
+    mostRecentDistributors: "අලුත්ම බෙදාහරින්නන්",
     specialNote: "විශේෂ සටහන",
     addRequest: "ඇනවුම් කිරීම",
     addRequestSubTitle: "ඔබේ අවශ්‍යතා සඳහන් කර ඉල්ලීමක් කරන්න",
@@ -55,7 +55,7 @@ export const si = {
     contactUs: "අපි හා සම්බන්ධ වන්න ",
     citiesWithMostRequest: "ඉල්ලීම් ගොඩක් තියන නගර ",
     latestRequests: "අලුත්ම ඉල්ලීම්",
-    requestForHelp: "එන්න උදව් කරන්න ",
+    requestForHelp: "මට උදව් අවශ්‍යයි",
     selectCity: "නගරය තෝරන්න",
     selectDistrict: "දිස්ත්‍රික්කය තෝරන්න",
     aboutUsInputLabel: "අපි ගැන ",

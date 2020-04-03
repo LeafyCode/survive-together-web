@@ -189,7 +189,7 @@ export const CreateDistributor = () => {
                         >
                           https://postimages.org/
                         </a>{" "}
-                        {t('bannerImageUploadDetailsTwo')}
+                        {t("bannerImageUploadDetailsTwo")}
                       </span>
                     }
                   />

@@ -1,10 +1,10 @@
 import React from "react";
 import Select from "react-select";
 import { QueryLazyOptions } from "@apollo/react-hooks";
+import { useTranslation } from "react-i18next";
 import { STSelectOption } from "../../types";
 import { CityVariables } from "../../graphql-types/generated/City";
 import { useStoreActions, useStoreState } from "../../store";
-import { useTranslation} from "react-i18next";
 
 interface AreaSelectionProps {
   citiesForSelect: STSelectOption[];
@@ -26,7 +26,7 @@ export const AreaSelection = ({
   const setCity = useStoreActions((actions) => actions.area.setCity);
   const city = useStoreState((state) => state.area.city);
 
-  const {t}= useTranslation();
+  const { t } = useTranslation();
 
   return (
     <section className="section">

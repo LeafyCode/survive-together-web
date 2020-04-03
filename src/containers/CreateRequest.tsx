@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useQuery } from "@apollo/react-hooks";
 import { Link, useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
+import { useTranslation } from "react-i18next";
 import { STPageHeader } from "../components/shared/STPageHeader";
 import { STPageContainer } from "../components/shared/styledComponents";
 import { STInput } from "../components/shared/STInput";
@@ -11,11 +12,13 @@ import { RequestValidationSchema } from "../validations";
 import { STSelect } from "../components/shared/STSelect";
 import { City } from "../graphql-types/generated/City";
 import { CITIES } from "../graphql-types/city";
-import { getCitiesForSelect,getItemCategoriesForSelect,} from "../helpers/sharedHelpers";
+import {
+  getCitiesForSelect,
+  getItemCategoriesForSelect,
+} from "../helpers/sharedHelpers";
 import { ItemCategory } from "../graphql-types/generated/ItemCategory";
 import { ITEM_CATEGORIES } from "../graphql-types/itemCategory";
 import { executeCreateNeedMutation } from "../helpers/requestHelpers";
-import { useTranslation} from "react-i18next";
 
 export const CreateRequest = () => {
   const { t } = useTranslation();
@@ -153,9 +156,9 @@ export const CreateRequest = () => {
                 <div className="column">
                   <label className="checkbox">
                     <input type="checkbox" ref={register} name="agreeToTerms" />
-                    &nbsp; {t('termsAndConditionDetails')}&nbsp;&nbsp;
+                    &nbsp; {t("termsAndConditionDetails")}&nbsp;&nbsp;
                     <Link to="/terms" target="_blank">
-                      {t('termsAndConditionLink')}
+                      {t("termsAndConditionLink")}
                     </Link>
                   </label>
                 </div>
@@ -170,7 +173,8 @@ export const CreateRequest = () => {
                           isLoading ? "is-loading" : ""
                         }`}
                         type="submit"
-                      >{t("submitButton")}
+                      >
+                        {t("submitButton")}
                       </button>
                     </div>
 
@@ -180,7 +184,8 @@ export const CreateRequest = () => {
                           className="button is-link is-light"
                           type="button"
                           to="/"
-                        >{t("cancelButton")}
+                        >
+                          {t("cancelButton")}
                         </Link>
                       </div>
                     )}

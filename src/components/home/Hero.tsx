@@ -29,7 +29,7 @@ export const Hero = () => {
               <div className="card-content">
                 <p className="title is-4 ">{t("specialNote")}</p>
                 <div className="content">
-                  {t('specialNoteDetailsHome')}
+                  {t("specialNoteDetailsHome")}
                   <Link to="/about">About Us page.</Link>
                 </div>
               </div>

@@ -2,7 +2,7 @@ import React from "react";
 import GitHubButton from "react-github-btn";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const STGithubButtonWrapper = styled.div`
   padding: 2px;
