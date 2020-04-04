@@ -124,28 +124,28 @@ export const CreateDistributor = () => {
                 <div className="column">
                   <STInput
                     register={register}
-                    name="distributorName"
+                    name="name"
                     label="Distributor name *"
                     errors={errors}
                   />
 
                   <STInput
                     register={register}
-                    name="distributorPhoneNumber"
+                    name="phoneNumber"
                     label="Phone number *"
                     errors={errors}
                   />
 
                   <STInput
                     register={register}
-                    name="distributorWebsite"
+                    name="website"
                     label="Website"
                     errors={errors}
                   />
 
                   <STInput
                     register={register}
-                    name="distributorEmail"
+                    name="email"
                     label="Email"
                     type="email"
                     errors={errors}
@@ -157,7 +157,7 @@ export const CreateDistributor = () => {
                     isMulti
                     control={control}
                     label="Distribution areas *"
-                    name="distributorCities"
+                    name="cities"
                     options={citiesForSelect}
                     loading={citiesDataLoading}
                     isAsync
@@ -176,7 +176,7 @@ export const CreateDistributor = () => {
 
                   <STInput
                     register={register}
-                    name={t("bannerImageUrl")}
+                    name="bannerImageUrl"
                     label="Banner image URL"
                     errors={errors}
                     help={
