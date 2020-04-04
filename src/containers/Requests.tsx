@@ -75,7 +75,7 @@ export const Requests = () => {
           )}
           {needsData && needsData.need.length === 0 && (
             <div className="full-notification notification  is-centered">
-              {t('emptyRequestContent')}
+              {t("emptyRequestContent")}
             </div>
           )}
           {!needsDataLoading && needsData && (

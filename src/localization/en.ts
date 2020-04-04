@@ -1,18 +1,21 @@
 export const en = {
   translation: {
     homeWelcomeTitle: "Keep the world running",
-    homeWelcomeSubTitle: "When the world goes into lockdown, everything stops. But we can't let people die because of the lockdown. Let's make sure everyone gets what they need to survive.",
+    homeWelcomeSubTitle:
+      "When the world goes into lockdown, everything stops. But we can't let people die because of the lockdown. Let's make sure everyone gets what they need to survive.",
     mostRecentDistributors: "Most recent distributors",
     specialNote: "Special note",
     addRequestSubTitle: "State your needs and make a request",
     infoTitle: "Info",
-    info: "Please try to contact the distributors in your area first. Only make a request if you have no other way to obtain the basics. If there are other people in your area who face the same difficulty as you, please add their information also. Do not go around the village to get the information. Use your phone or just shout to the neighbour",
+    info:
+      "Please try to contact the distributors in your area first. Only make a request if you have no other way to obtain the basics. If there are other people in your area who face the same difficulty as you, please add their information also. Do not go around the village to get the information. Use your phone or just shout to the neighbour",
     contactPersonNameInputLabel: "Contact person name",
     numberOfPeopleInputLabel: "Number of people *",
     contactNumberInputLabel: "Contact Number *",
     categoriesInputLabel: "Items needed *",
     cityInputLabel: "City *",
-    termsAndConditionDetails: "I give my consent to share the above details publicly and I have read and agree to the",
+    termsAndConditionDetails:
+      "I give my consent to share the above details publicly and I have read and agree to the",
     termsAndConditionLink: "terms and conditions",
     privacyPolicy: "Privacy Policy",
     submitButton: "Submit",
@@ -26,8 +29,10 @@ export const en = {
     distributorPhoneNumberInputLabel: "Distributor contact number *",
     distributorWebsiteInputLabel: "Website",
     distributorEmailInputLabel: "Email",
-    infoDistributor: "Please make sure the content is correct. We will approve distributors only after validating the information. If the information is incorrect, we will not approve it.",
-    infoDistributorItems: "There should be at least one item or one item pack. Make sure you fill all the required fields denoted by *",
+    infoDistributor:
+      "Please make sure the content is correct. We will approve distributors only after validating the information. If the information is incorrect, we will not approve it.",
+    infoDistributorItems:
+      "There should be at least one item or one item pack. Make sure you fill all the required fields denoted by *",
     items: "Items",
     itemsPacks: "Items packs",
     add: "Add",
@@ -38,10 +43,12 @@ export const en = {
     helpItemPacks: "Please add a comma separated list.",
     startType: "Start typing...",
     bannerImageUrlInputLabel: "Banner Image URL",
-    bannerImageUploadDetails: "If you have the item details in a banner, please upload it to a service like :",
+    bannerImageUploadDetails:
+      "If you have the item details in a banner, please upload it to a service like :",
     bannerImageUploadDetailsTwo: "and paste the 'direct link' here.",
     priceInputLabel: "Price",
-    bottomGitHubDetails: "If you are a developer, please help improve this project. The code is on GitHub:",
+    bottomGitHubDetails:
+      "If you are a developer, please help improve this project. The code is on GitHub:",
     contactUs: "Contact Us",
     citiesWithMostRequest: "Cities with most requests ",
     latestRequests: "Latest requests",
@@ -53,14 +60,16 @@ export const en = {
     contactInputLabel: "Contact Us",
     howToContactInputLabel: "How to contact us",
     requestDistributorInputLabel: "Distributors",
-    requestDistributorSubtitleInputLabel: "Where they can go and what they have",
+    requestDistributorSubtitleInputLabel:
+      "Where they can go and what they have",
     requestPageInputLabel: "Requests",
     requestPageSubtitleInputLabel: "What people need",
-    specialNoteDetailsHome: "This website is free for everyone to use. Please do not abuse it's capabilities. Currently, some areas get all the required items. There are deliveries, mobile stores, online stores, etc. But for some areas there's nothing. The main target of this website is to identify such areas and make sure everyone survives this crisis together.Learn more on our ",
+    specialNoteDetailsHome:
+      "This website is free for everyone to use. Please do not abuse it's capabilities. Currently, some areas get all the required items. There are deliveries, mobile stores, online stores, etc. But for some areas there's nothing. The main target of this website is to identify such areas and make sure everyone survives this crisis together.Learn more on our ",
     newDistributorNavBar: "Add Distributor",
     surviveTogetherNavBar: "Survive Together",
     showMore: "Show more...",
-    emptyRequestContent:"No requests found. Please be patient.",
+    emptyRequestContent: "No requests found. Please be patient.",
     contactPersonRequestTable: "Contact person",
     contactNumberRequestTable: "Contact Number",
     noOfPeopleRequestTable: "No of people",
@@ -68,7 +77,8 @@ export const en = {
     createdAtTable: "Created at",
     requestItemTable: "Requested Items",
     termsAndConditionPageInputLabel: "Terms and conditions",
-    termsAndConditionSubtitlePageInputLabel: "Terms and Conditions for Survive Together",
+    termsAndConditionSubtitlePageInputLabel:
+      "Terms and Conditions for Survive Together",
     cookiesTermsAndConditionPage: "Cookies",
     "items.nameInputLabel": "Name *",
     "items.categoryInputLabel": "Category *",
