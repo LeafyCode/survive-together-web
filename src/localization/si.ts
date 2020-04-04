@@ -91,5 +91,7 @@ export const si = {
     "itemPacks.contentInputLabel": "අන්තර්ගතය *",
     "itemPacks.priceInputLabel": "මිල",
     "itemPacks.deliveryFeeInputLabel": "බෙදාහැරීමේ ගාස්තු",
+    requestContactHelp:
+      "ඔබේ දුරකථන අංකය ඇතුලත් කිරීමට අකමැති නම් - සංකේතය ඇතුලත් කරන්න. නමුත් දුරකථන අංකය ඇතුලත් කෙළහොත් පමණයි තව අයෙකුට ඔබව සම්බන්ද කරගෙන අවශ්‍ය දේ ඔබට ගෙනදිය හැක්කේ.",
   },
 };

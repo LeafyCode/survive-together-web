@@ -117,6 +117,7 @@ export const CreateRequest = () => {
                     name="contactNumber"
                     label="Contact number *"
                     errors={errors}
+                    help={t("requestContactHelp")}
                   />
 
                   <STSelect
