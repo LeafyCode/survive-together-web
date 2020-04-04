@@ -46,6 +46,7 @@ export const STSelect = ({
           as={
             isAsync ? (
               <AsyncSelect
+                ignoreAccents={false}
                 isMulti={isMulti}
                 loadOptions={(value, callback) => {
                   return callback(
@@ -67,6 +68,7 @@ export const STSelect = ({
               />
             ) : (
               <Select
+                ignoreAccents={false}
                 isMulti={isMulti}
                 className="basic-multi-select"
                 classNamePrefix="select"
