@@ -24,11 +24,10 @@ export const en = {
     addNewRequestSubtitleInputLabel: "State your needs and make a request",
     addNewDistributorInputLabel: "Add distributor",
     addNewDistributorSubtitleInputLabel: "Enter new distributor details",
-    distributorNameInputLabel: "Distributor name *",
-    distributorCitiesInputLabel: "City *",
-    distributorPhoneNumberInputLabel: "Distributor contact number *",
-    distributorWebsiteInputLabel: "Website",
-    distributorEmailInputLabel: "Email",
+    citiesInputLabel: "City *",
+    phoneNumberInputLabel: "Contact number *",
+    websiteInputLabel: "Website",
+    emailInputLabel: "Email",
     infoDistributor:
       "Please make sure the content is correct. We will approve distributors only after validating the information. If the information is incorrect, we will not approve it.",
     infoDistributorItems:

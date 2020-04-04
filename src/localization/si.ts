@@ -27,11 +27,10 @@ export const si = {
     addNewDistributorInputLabel: "බෙදාහරින්නෙක් එකතු කිරීම",
     addNewDistributorSubtitleInputLabel:
       "නව බෙදාහරින්නාගේ තොරතුරු ඇතුලත් කිරීම",
-    distributorNameInputLabel: "බෙදාහරින්නාගේ නම *",
-    distributorCitiesInputLabel: "බෙදා හැරීමේ ප්‍රදේශ *",
-    distributorPhoneNumberInputLabel: "බෙදාහරින්නාගේ දුරකථන අංකය *",
-    distributorWebsiteInputLabel: "වෙබ් අඩවිය",
-    distributorEmailInputLabel: "විද්යුත් තැපෑල",
+    citiesInputLabel: "බෙදා හැරීමේ ප්‍රදේශ *",
+    phoneNumberInputLabel: "බෙදාහරින්නාගේ දුරකථන අංකය *",
+    websiteInputLabel: "වෙබ් අඩවිය",
+    emailInputLabel: "විද්යුත් තැපෑල",
     infoDistributor:
       "කරුණාකර අන්තර්ගතය නිවැරදි බවට වග බලා ගන්න. අපි බෙදාහරින්නන් අනුමත කරන්නේ තොරතුරු වලංගු කිරීමෙන් පසුව පමණි. තොරතුරු වැරදියි නම්, අපි එය අනුමත නොකරමු.",
     infoDistributorItems:
