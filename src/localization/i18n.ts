@@ -15,6 +15,7 @@ i18n
   .init({
     resources,
     fallbackLng: "si",
+    lng: "si", // Make it default since we serve only sri lanka now
     saveMissing: true,
 
     keySeparator: false, // we do not use keys in form messages.welcome

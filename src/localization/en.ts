@@ -89,5 +89,6 @@ export const en = {
     "itemPacks.deliveryFeeInputLabel": "Delivery Fee",
     requestContactHelp:
       "If you don't want to share your phone number publicly, simple put a - in the field. But we strongly recommend you to share it so people can contact you and send what you need.",
+    agreeToTerms: "Please read and agree to the terms and conditions first.",
   },
 };

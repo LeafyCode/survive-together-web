@@ -57,7 +57,7 @@ export const CreateRequest = () => {
   const onSubmit = handleSubmit((requestData) => {
     if (!isLoading) {
       if (!requestData.agreeToTerms) {
-        addToast("Please read and agree to the terms and conditions first.", {
+        addToast(t("agreeToTerms"), {
           appearance: "error",
           autoDismiss: true,
         });
