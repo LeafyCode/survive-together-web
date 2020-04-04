@@ -24,20 +24,18 @@ export const Footer = () => {
         </p>
       </div>
       <div className="content has-text-centered">
-        <p>
-          {t("bottomGitHubDetails")}&nbsp;
-          <STGithubButtonWrapper>
-            <GitHubButton
-              href="https://github.com/LeafyCode/survive-together-web"
-              data-color-scheme="no-preference: light; light: light; dark: light;"
-              data-size="small"
-              data-show-count
-              aria-label="Star LeafyCode/survive-together-web on GitHub"
-            >
-              Star
-            </GitHubButton>
-          </STGithubButtonWrapper>
-        </p>
+        {t("bottomGitHubDetails")}&nbsp;
+        <STGithubButtonWrapper>
+          <GitHubButton
+            href="https://github.com/LeafyCode/survive-together-web"
+            data-color-scheme="no-preference: light; light: light; dark: light;"
+            data-size="small"
+            data-show-count
+            aria-label="Star LeafyCode/survive-together-web on GitHub"
+          >
+            Star
+          </GitHubButton>
+        </STGithubButtonWrapper>
       </div>
       <div className="content has-text-centered">
         <p>
