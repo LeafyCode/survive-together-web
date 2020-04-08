@@ -1,10 +1,13 @@
 export const en = {
   translation: {
+    notificationContent:
+      "This website does not make any kind of delivery or distribution. We provide a way for people in need to post about their needs. By that the distributors can find them easily and distributors can post about their services as well.",
     homeWelcomeTitle: "Keep the world running",
     homeWelcomeSubTitle:
       "When the world goes into lockdown, everything stops. But we can't let people die because of the lockdown. Let's make sure everyone gets what they need to survive.",
     mostRecentDistributors: "Most recent distributors",
-    specialNote: "Special note",
+    FirstSpecialNote: "Special note",
+    SecondSpecialNote: "Hotline",
     addRequestSubTitle: "State your needs and make a request",
     infoTitle: "Info",
     info:
@@ -63,9 +66,14 @@ export const en = {
       "Where they can go and what they have",
     requestPageInputLabel: "Requests",
     requestPageSubtitleInputLabel: "What people need",
-    specialNoteDetailsHome:
+    FirstSpecialNoteDetailsHome:
       "This website is free for everyone to use. Please do not abuse it's capabilities. Currently, some areas get all the required items. There are deliveries, mobile stores, online stores, etc. But for some areas there's nothing. The main target of this website is to identify such areas and make sure everyone survives this crisis together.Learn more on our ",
-    newDistributorNavBar: "Add Distributor",
+    SecondSpecialNoteDetailsHome:
+      "The government has introduced a hotline for the public to submit complaints on difficulties in receiving essential services. The special presidential task force had set up an operation center to coordinate and follow up on taking necessary action to deal with problems in providing services to the public. therefore the general public can submit complaints on receiving essential services through the below contact details.",
+    FirstSpecialNoteItem: "Telephone- 0113456200",
+    SecondSpecialNoteItem: "Fax - 0112333066 / 0114354882",
+    ThirdSpecialNoteItem: "Email - ptf@pmoffice.gov.lk",
+    newDistributorNavBar: ",Add Distributor",
     surviveTogetherNavBar: "Survive Together",
     showMore: "Show more...",
     emptyRequestContent: "No requests found. Please be patient.",

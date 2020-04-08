@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { NavBar } from "./NavBar";
 import { Footer } from "./Footer";
+import { STNotification } from "../shared/STNotification";
 
 const AppContainer = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ interface AppLayoutProps {
 export const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <AppContainer>
+      <STNotification />
       <NavBar />
 
       <AppContent>{children}</AppContent>

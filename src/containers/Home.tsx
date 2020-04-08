@@ -110,7 +110,7 @@ export const Home = () => {
           created_at: order_by.desc,
         },
       ],
-      limit: 8,
+      limit: 50,
     },
   });
 
