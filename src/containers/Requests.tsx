@@ -15,7 +15,11 @@ import {
   need_order_by,
   order_by,
 } from "../graphql-types/generated/graphql-global-types";
-import { Need, NeedVariables } from "../graphql-types/generated/Need";
+import {
+  Need,
+  Need_need_item_category_needs,
+  NeedVariables,
+} from "../graphql-types/generated/Need";
 import { RequestTableRowDataType } from "../types";
 import {
   STPageContainer,
@@ -23,8 +27,13 @@ import {
 } from "../components/shared/styledComponents";
 import { useStoreState } from "../store";
 import { STPageHeaderWithFilters } from "../components/shared/STPageHeaderWithFilters";
+import { STModal } from "../components/shared/STModal";
 
 export const Requests = () => {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [requestedItems, setRequestedItems] = React.useState<
+    Need_need_item_category_needs[]
+  >([]);
   const { t } = useTranslation();
 
   const city = useStoreState((state) => state.area.city);
@@ -116,7 +125,7 @@ export const Requests = () => {
                     sortBy={sortBy}
                     height={500}
                     headerHeight={39}
-                    rowHeight={38}
+                    rowHeight={50}
                     sortDirection={sortDirection}
                     className="table"
                     headerClassName="st-thead"
@@ -174,26 +183,47 @@ export const Requests = () => {
                       dataKey="item_category_needs"
                       flexGrow={1}
                       cellRenderer={({ rowData }: RequestTableRowDataType) => (
-                        <span
-                          className="tags"
-                          title={rowData.item_category_needs
-                            .map((category) => category.item_category.name)
-                            .join(", ")}
-                        >
-                          {rowData.item_category_needs.map((category) => (
-                            <span
-                              key={category.item_category.id}
-                              className="tag"
-                            >
-                              {category.item_category.name}
-                            </span>
-                          ))}
-                        </span>
+                        <div className="is-desktop is-mobile is-tab">
+                          <button
+                            type="button"
+                            className="button is-primary is-small"
+                            onClick={() => {
+                              setIsModalOpen(!isModalOpen);
+                              setRequestedItems(rowData.item_category_needs);
+                            }}
+                          >
+                            Items
+                          </button>
+                        </div>
                       )}
                     />
                   </Table>
                 )}
               </AutoSizer>
+
+              <STModal
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                title="Requested items"
+              >
+                <div className="content">
+                  <ol style={{ marginTop: 0 }}>
+                    <p>Item list :</p>
+                    {requestedItems.map((item) => {
+                      return (
+                        <div key={item.item_category.id} className="is-inline">
+                          <span
+                            className="tag is-light"
+                            style={{ marginLeft: 5 }}
+                          >
+                            {item.item_category.name}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </ol>
+                </div>
+              </STModal>
 
               <br />
             </>
