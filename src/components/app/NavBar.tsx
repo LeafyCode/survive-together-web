@@ -63,6 +63,10 @@ export const NavBar = () => {
             {t("contactInputLabel")}
           </Link>
 
+          <a className="navbar-item" href="https://blog.survivetogether.org">
+            {t("blog")}
+          </a>
+
           <div className="buttons  are-small has-addons navbar-item">
             <button
               type="button"
