@@ -19,7 +19,7 @@ export const en = {
     cityInputLabel: "City *",
     termsAndConditionDetails:
       "I give my consent to share the above details publicly and I have read and agree to the",
-    termsAndConditionLink: "terms and conditions",
+    termsAndConditionLink: "Terms and Conditions",
     privacyPolicy: "Privacy Policy",
     submitButton: "Submit",
     cancelButton: "Cancel",
@@ -73,7 +73,7 @@ export const en = {
     FirstSpecialNoteItem: "Telephone- 0113456200",
     SecondSpecialNoteItem: "Fax - 0112333066 / 0114354882",
     ThirdSpecialNoteItem: "Email - ptf@pmoffice.gov.lk",
-    newDistributorNavBar: ",Add Distributor",
+    newDistributorNavBar: "Add Distributor",
     surviveTogetherNavBar: "Survive Together",
     showMore: "Show more...",
     emptyRequestContent: "No requests found. Please be patient.",
