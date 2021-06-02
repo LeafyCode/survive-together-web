@@ -40,7 +40,9 @@ export const ContactUsSinhala = () => {
               &nbsp;හරහා පණිවුඩයක් යැවීමෙන් ඔබට Survive Together පිටුපස සිටින
               කණ්ඩායම සම්බන්ධ කර ගත හැකිය.
             </p>
-            <ContactIcon role="img">💌</ContactIcon>
+            <ContactIcon role="img">
+              <span role="img">💌</span>
+            </ContactIcon>
           </ContactContent>
         </STPageContentWrapper>
       </STPageContainer>
