@@ -18,6 +18,7 @@ module.exports = {
     "import/no-cycle": 'off',
     // prettier
     "prettier/prettier": ["error"],
+    "jsx-a11y/accessible-emoji": 'off',
     // TypeScript
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/explicit-member-accessibility": "off",

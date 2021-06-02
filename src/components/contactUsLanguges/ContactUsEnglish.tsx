@@ -42,9 +42,7 @@ export const ContactUsEnglish = () => {
               .
             </p>
 
-            <ContactIcon role="img">
-              <span role="img">💌</span>
-            </ContactIcon>
+            <ContactIcon role="img">💌</ContactIcon>
           </ContactContent>
         </STPageContentWrapper>
       </STPageContainer>
