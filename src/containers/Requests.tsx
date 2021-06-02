@@ -50,11 +50,13 @@ export const Requests = () => {
     data: needsData,
   } = useQuery<Need, NeedVariables>(NEED, {
     variables: {
-      where: {
-        cityId: {
-          _eq: city?.value || null,
-        },
-      },
+      where: city?.value
+        ? {
+            cityId: {
+              _eq: city?.value || null,
+            },
+          }
+        : {},
       order_by: [
         {
           created_at: order_by.desc,

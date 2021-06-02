@@ -79,11 +79,13 @@ export const Home = () => {
     data: cityByNeedsData,
   } = useSubscription<CityByNeeds, CityByNeedsVariables>(CITY_BY_NEEDS, {
     variables: {
-      where: {
-        districtId: {
-          _eq: district?.value || null,
-        },
-      },
+      where: district?.value
+        ? {
+            districtId: {
+              _eq: district?.value || null,
+            },
+          }
+        : {},
       order_by: [
         {
           needs_aggregate: {
@@ -94,17 +96,20 @@ export const Home = () => {
       limit: 8,
     },
   });
+
   const {
     loading: latestNeedsDataLoading,
     error: latestNeedsDataError,
     data: latestNeedsData,
   } = useSubscription<LatestNeeds, LatestNeedsVariables>(LATEST_NEEDS, {
     variables: {
-      where: {
-        cityId: {
-          _eq: city?.value || null,
-        },
-      },
+      where: city?.value
+        ? {
+            cityId: {
+              _eq: city?.value,
+            },
+          }
+        : {},
       order_by: [
         {
           created_at: order_by.desc,
